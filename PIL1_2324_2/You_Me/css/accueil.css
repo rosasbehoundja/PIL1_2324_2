@@ -1,8 +1,8 @@
 img
 {
     position: relative;
-    bottom: 140px;
-    right:90px
+    bottom: 0px;
+    right:100px
 }
 body{
    background-image:url(background.jpg);
@@ -14,6 +14,11 @@ body{
     background-color: #FF5757;
 }
 
+nav
+{
+    position: relative;
+   bottom:150px;
+}
 .carousel-item img
 {
     height: 350px;
@@ -35,3 +40,23 @@ body{
 h3{
     color: #FF5757;
 }
+
+.navbar-brand {
+    font-weight: bold;
+  }
+  
+  .nav-link {
+    font-size: 16px;
+    margin-left: 20px;
+  }
+  
+  /*.nav-link.active,
+  .nav-link:hover {
+    color: white !important;
+    background-color: #FF5757;
+  }*/
+  
+  li{
+    position: relative;
+    bottom: 30px;
+  }
