@@ -1,0 +1,37 @@
+img
+{
+    position: relative;
+    bottom: 140px;
+    right:90px
+}
+body{
+   background-image:url(background.jpg);
+   background-size:cover ;
+}
+.btn:hover
+{
+    color: white;
+    background-color: #FF5757;
+}
+
+.carousel-item img
+{
+    height: 350px;
+    width: auto;
+    border-radius: 75px;
+    margin-left: 100px;
+    position: relative;
+    top: 0px;
+}
+#carouselExampleIndicators
+{
+    position: relative;
+    bottom: 250px;
+    background-color:white;
+    margin-left: 40px;
+    margin-right: 40px;
+    border-radius: 70px;
+}
+h3{
+    color: #FF5757;
+}
