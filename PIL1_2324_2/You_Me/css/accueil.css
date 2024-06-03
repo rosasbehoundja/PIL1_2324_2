@@ -5,10 +5,11 @@ img
     right:100px
 }
 body{
-   background-image:url(background.jpg);
-   background-size:cover ;
+
+    background-image: linear-gradient(to right, white, #FF5757);
+  
 }
-.btn:hover
+li.nav-item button:hover
 {
     color: white;
     background-color: #FF5757;
@@ -56,7 +57,8 @@ h3{
     background-color: #FF5757;
   }*/
   
-  li{
+  li.nav-item
+  {
     position: relative;
     bottom: 30px;
   }
