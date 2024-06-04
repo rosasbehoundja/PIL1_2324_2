@@ -1,17 +1,29 @@
-img
+a.navbar-brand 
 {
     position: relative;
     bottom: 0px;
-    right:100px
+    right:150px
 }
 body{
-   background-image:url(images/background.jpg);
-   background-size:cover ;
+
+  background-image: linear-gradient(45deg, white, #FF5757);
+
 }
-.btn:hover
+li.nav-item button:hover
 {
     color: white;
     background-color: #FF5757;
+}
+
+
+h1 {
+  color: black;
+  background-image: linear-gradient(-45deg, white, #FF5757);
+  border-radius: 30px;
+}
+
+h1{
+  font-size: 130px;
 }
 
 nav
@@ -24,9 +36,15 @@ nav
     height: 350px;
     width: auto;
     border-radius: 75px;
-    margin-left: 100px;
+    margin-left: 20px;
     position: relative;
     top: 0px;
+}
+
+.carousel-indicators li
+{
+ position: relative;
+ top:20px
 }
 #carouselExampleIndicators
 {
