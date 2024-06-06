@@ -15,4 +15,4 @@ class ConnexionForm(forms.Form):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['age', 'height', 'body_type','education', 'drink', 'drug', 'smokes', 'likes_drog', 'likes_cat', 'bio', 'photo']
+        fields = ['photo', 'age', 'bio', 'height', 'body_type', 'education', 'drink', 'drugs', 'smokes', 'likes_dogs', 'likes_cats']
