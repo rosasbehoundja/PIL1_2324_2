@@ -55,3 +55,6 @@ class Profile(models.Model):
     smokes = models.CharField(max_length=50)
     likes_dogs = models.CharField(max_length=50)
     likes_cat = models.CharField(max_length=50)
+        
+    def __str__(self):
+        return self.utilisateur.nom
