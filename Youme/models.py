@@ -40,3 +40,18 @@ class Utilisateur(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_admin
+
+
+class Profile(models.Model):
+    utilisateur = models.OneToOneField(Utilisateur, on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to='profile_pictures/', null=True)
+    age = models.PositiveIntegerField(null=True, blank=True)
+    bio = models.TextField(max_length= 1000)
+    height = models.PositiveIntegerField(null=True, blank=True)
+    body_type = models.CharField(max_length=255, unique=False)
+    education =  models.CharField(max_length=255, unique=False)
+    drink = models.CharField(max_length=255)
+    drugs = models.CharField(max_length=50)
+    smokes = models.CharField(max_length=50)
+    likes_dogs = models.CharField(max_length=50)
+    likes_cat = models.CharField(max_length=50)
