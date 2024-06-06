@@ -23,7 +23,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'pil1.youme@gmail.com'
-EMAIL_HOST_PASSWORD = 'pil123242'
+EMAIL_HOST_PASSWORD = '20077'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'PIL1_2324_2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'youme_base',
+        'NAME': 'PIL1_base',
         'USER': 'youme',
         'PASSWORD': 'perrier',
         'HOST': 'localhost',

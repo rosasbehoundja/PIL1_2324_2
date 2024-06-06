@@ -2,11 +2,12 @@ from django import forms
 from .models import Utilisateur
 
 class InscriptionForm(forms.ModelForm):
-    class Meta:
-        model = Utilisateur
-        fields = ['nom', 'email', 'motdepasse']
+    password = forms.CharField(widget=forms.PasswordInput)
 
-class ConnexionForm(forms.ModelForm):
     class Meta:
         model = Utilisateur
-        fields = ['email', 'motdepasse']
+        fields = ['nom', 'email', 'password']
+
+class ConnexionForm(forms.Form):
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)

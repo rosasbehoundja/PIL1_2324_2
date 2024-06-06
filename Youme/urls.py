@@ -5,6 +5,7 @@ from django.urls import path, include
 urlpatterns = [
     path('accounts', include("django.contrib.auth.urls")),
     path('', accueil, name= 'accueil'),
-    path('inscription/', inscription, name= 'Inscription'),
+    path('inscription/', inscription, name= 'inscription'),
+    path('connexion/', connexion, name= 'connexion')
 ]
 
