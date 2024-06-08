@@ -44,17 +44,20 @@ class Utilisateur(AbstractBaseUser):
 
 class Profile(models.Model):
     utilisateur = models.OneToOneField(Utilisateur, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to='profile_pictures/', null=True)
+    photo = models.ImageField(upload_to='profile_pictures/', null=True )
     age = models.PositiveIntegerField(null=True, blank=True)
-    bio = models.TextField(max_length= 1000)
     height = models.PositiveIntegerField(null=True, blank=True)
+    sex = models.CharField(max_length=10, default='unknown')
+    orientation = models.CharField(max_length=255, default='unknown')
     body_type = models.CharField(max_length=255, unique=False)
-    education =  models.CharField(max_length=255, unique=False)
+    diet = models.CharField(max_length=255, unique=False, default= 'unknown')
     drink = models.CharField(max_length=255)
     drugs = models.CharField(max_length=50)
+    education =  models.CharField(max_length=255, unique=False)
+    location = models.CharField(max_length=255, unique=False, default='Cotonou')
+    offspring = models.CharField(max_length=255, unique=False, default='unknown')
     smokes = models.CharField(max_length=50)
-    likes_dogs = models.CharField(max_length=50)
-    likes_cats = models.CharField(max_length=50)
+    bio = models.TextField(max_length= 1000)
         
     def __str__(self):
         return self.utilisateur.nom
