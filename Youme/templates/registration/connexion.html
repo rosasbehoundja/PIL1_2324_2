@@ -9,14 +9,14 @@
     <link rel="stylesheet" href='{% static "css/stylesconnex.css" %}'>
 </head>
 
-<body style="background: url('static/images/background.jpg') no-repeat center center fixed">
+<body>
     <div class="container">
         <div class="header">
             <object data="{% static 'images/logomoise.svg' %}" type="image/svg+xml" width="500" height="500" class="logo"></object>
         </div>
         <div class="login-box">
             <h2>Connexion</h2>
-            <p>Bienvenu connecte-toi pour accéder au fonctionnalité</p>
+            <p>Bienvenue! connecte-toi pour accéder aux fonctionnalités</p>
             <a href="{% url 'inscription' %}" class="forget-password">Inscrivez-vous si vous n'avez pas un compte?</a>
 
             <form>
@@ -24,7 +24,7 @@
                 <input type="text" name="password" id="password" placeholder="Mot de passe">
                 <button type="submit">Poursuivre</button>
             </form>
-            <!-- <a href="password_reset_form.html" class="password">Avez-vous oubliez votre mot de passe?</a> -->
+            <a href="#" class="password">Avez-vous oubliez votre mot de passe?</a>
 
 
         </div>

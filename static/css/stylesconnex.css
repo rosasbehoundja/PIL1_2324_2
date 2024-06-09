@@ -1,11 +1,14 @@
 body {
     margin: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(white, #FF5757);;
+    background-size: cover;
 }
 
 .container {
@@ -13,16 +16,18 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 90%;
+    width: 80%;
+    height: 70%;
     max-width: 600px;
-    /* background: url('static/images/background.jpg')no-repeat center center; */
-    background-size: cover;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    right: 230px;
+    text-align: center;
 }
 
-.header {
+/*.header {
     width: 100%;
     padding: 20px;
     display: flex;
@@ -30,11 +35,15 @@ body {
     align-items: center;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
-}
-/* 
+}*/
+
 .logo {
-    height: 70px;
-} */
+    height: 500px;
+    width: 500px;
+    position: relative;
+    bottom: 330px;
+    right: 280px;
+}
 
 .login-box {
     text-align: center;
@@ -48,7 +57,7 @@ body {
     color: #4a4a4a;
 }
 
-.forget-password {
+.Connexion {
     color: #FF6E6E;
     text-decoration: none;
     display: block;
@@ -79,13 +88,4 @@ button {
     font-size: 1em;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.password {
-    color: #FF6E6E;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 20px;
-    margin-top: 25px;
-    font-size: 14px;
 }
