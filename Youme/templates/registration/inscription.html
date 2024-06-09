@@ -1,23 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'Inscription YOU&ME</title>
+    <link rel="stylesheet" href='{% static "css/stylesinscrip.css" %}'>
 </head>
+
 <body>
-    <h1>Inscription</h1>
-    <form method="post" action="{% url 'inscription' %}">
-        {% csrf_token %}
-        <label for="username">Username:</label>
-        <input type="text" id="nom" name="nom"><br><br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email"><br><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password"><br><br>
-        <button type="submit">Sign Up</button>
-    </form>
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
+
+
+    <div class="container">
+        <div class="header">
+            <object data="{% static 'images/logomoise.svg' %}" type="image/svg+xml" width="500" height="500"></object>
+        </div>
+        <div class="login-box">
+            <h2>Inscription</h2>
+            <p>Bienvenue inscris-toi pour accéder aux fonctionnalités</p>
+            <a href="{% url 'connexion' %}" class="Connexion">Avez-vous déjà un compte?</a>
+
+            <form>
+                <input type="text" name="name" id="name" placeholder="Nom">
+                <input type="text" name="email" id="email" placeholder="Adresse email ">
+                <input type="text" name="password" id="password" placeholder="Mot de passe ">
+                <button type="submit ">Poursuivre</button>
+            </form>
+        </div>
+
+    </div>
+
 </body>
+
 </html>

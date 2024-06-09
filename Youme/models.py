@@ -18,7 +18,7 @@ class UtilisateurManager(BaseUserManager):
         return utilisateur
 
 class Utilisateur(AbstractBaseUser):
-    nom = models.CharField(max_length=255, unique=True)
+    nom = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -47,15 +47,15 @@ class Profile(models.Model):
     photo = models.ImageField(upload_to='profile_pictures/', null=True )
     age = models.PositiveIntegerField(null=True, blank=True)
     height = models.PositiveIntegerField(null=True, blank=True)
-    sex = models.CharField(max_length=10, default='unknown')
-    orientation = models.CharField(max_length=255, default='unknown')
+    sex = models.CharField(max_length=10, default='f')
+    orientation = models.CharField(max_length=255, default='Hétérosexuel')
     body_type = models.CharField(max_length=255, unique=False)
-    diet = models.CharField(max_length=255, unique=False, default= 'unknown')
+    diet = models.CharField(max_length=255, unique=False, default= 'Végétarien')
     drink = models.CharField(max_length=255)
     drugs = models.CharField(max_length=50)
     education =  models.CharField(max_length=255, unique=False)
     location = models.CharField(max_length=255, unique=False, default='Cotonou')
-    offspring = models.CharField(max_length=255, unique=False, default='unknown')
+    offspring = models.CharField(max_length=255, unique=False, default="Je n'en ai pas, mais je souhaiterais en avoir")
     smokes = models.CharField(max_length=50)
     bio = models.TextField(max_length= 1000)
         
