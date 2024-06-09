@@ -6,7 +6,7 @@ a.navbar-brand
 }
 body{
 
-  background-image: linear-gradient(45deg, white, #e0b7b7);
+  background-image: linear-gradient(45deg, white, #FF5757);
 
 }
 li.nav-item button:hover
@@ -78,3 +78,9 @@ h3{
     position: relative;
     bottom: 30px;
   }
+
+
+footer div ul li:hover
+{
+ color: #FF5757;
+}

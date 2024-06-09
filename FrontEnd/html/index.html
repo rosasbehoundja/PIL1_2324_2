@@ -10,10 +10,35 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <link rel="icon" type="image/svg" href="C:\Users\ALLOGNON Gabin\OneDrive\Bureau\Projet-Int-grateur\static\images\logomoise.svg">
   <style>
     .carousel-control-prev,
     .carousel-control-next {
       display: none;
+    }
+
+    .carousel-caption {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 1rem;
+      border-radius: 10px;
+    }
+    .carousel-caption h3 {
+      color: #fff;
+      font-size: 1.5rem;
+    }
+    .carousel-caption p {
+      color: #ccc;
+      font-size: 1.2rem;
+    }
+    .testimonials-label {
+      background-color: #333;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 0 0 10px 10px;
+      display: inline-block;
+      margin-bottom: 2rem;
     }
   </style>
   
@@ -38,14 +63,14 @@
              <button class="btn btn-light custom-pink-border  rounded-5" type="submit" href="#">Connexion</button> 
             </li>-->
             <li class="nav-item mx-4 mb-5 ">
-             <button class="btn btn-light custom-pink-border  rounded-5" type="submit" href="#">A propos</button>
+             <button class="btn btn-light custom-pink-border  rounded-5" type="submit"><a href="#" style="color: inherit; text-decoration: none;">A propos</a></button>
             </li> 
             <li class="nav-item mx-4 mb-5">
-              <button class="btn btn-light custom-pink-border rounded-5 " type="submit" href="#">Inscription</button>
+              <button class="btn btn-light custom-pink-border rounded-5 " type="submit"><a href="#" style="color: inherit; text-decoration: none;">Inscription</a></button>
 
             </li>
             <li class="nav-item mx-4 mb-5">
-              <button class="btn btn-light custom-pink-border  rounded-5" type="submit" href="#">Connexion</button>
+              <button class="btn btn-light custom-pink-border  rounded-5" type="submit"><a href="#" style="color: inherit; text-decoration: none;">Connexion</a></button>
             </li>
           </ul>
         </div>
@@ -54,7 +79,7 @@
    
   </div>
 
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-keyboard="true">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-keyboard="true" data-interval="3000">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active bg-dark"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="1" class="bg-dark"></li>
@@ -135,10 +160,11 @@
     
     <div class="row my-5 justify-content-around">
       <div class="col-md-5 rounded-5 bg-light  text-center" style="box-shadow: 0 0.5rem 1rem #FF5757;">
-        <h2>Des profils modérés</h2>
-        <p>Des profils vérifiés et modérés pour une meilleure expérience de rencontre.</p>
+        <h2>La proximité</h2>
+        <p>Des profils adaptés à votre desription et situés à proximité de vous.</p><br>
         <div class="d-flex justify-content-center">
-          <i class="bi bi-person-check-fill text-primary me-2"></i>
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000"><path d="M480-80q-106 0-173-33.5T240-200q0-24 14.5-44.5T295-280l63 59q-9 4-19.5 9T322-200q13 16 60 28t98 12q51 0 98.5-12t60.5-28q-7-8-18-13t-21-9l62-60q28 16 43 36.5t15 45.5q0 53-67 86.5T480-80Zm1-220q99-73 149-146.5T680-594q0-102-65-154t-135-52q-70 0-135 52t-65 154q0 67 49 139.5T481-300Zm-1 100Q339-304 269.5-402T200-594q0-71 25.5-124.5T291-808q40-36 90-54t99-18q49 0 99 18t90 54q40 36 65.5 89.5T760-594q0 94-69.5 192T480-200Zm0-320q33 0 56.5-23.5T560-600q0-33-23.5-56.5T480-680q-33 0-56.5 23.5T400-600q0 33 23.5 56.5T480-520Zm0-80Z"/></svg>
+         
         </div>
       </div>
       <div class="col-md-5 rounded-5 bg-light text-center" style="box-shadow: 0 0.5rem 1rem #FF5757;">
@@ -150,7 +176,114 @@
         </div>
       </div>
     </div>
+     <div class="text-center rounded-5" style="font-size: 82px; font-family:Freestyle Script; background-color: white;"><svg xmlns="http://www.w3.org/2000/svg" height="98px" viewBox="0 -960 960 960" width="68px" fill="#EAC452"><path d="m637-244-42-178 138-120-182-16-71-168v387l157 95ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"/></svg> YouMe : L'amour vous tend les bras <svg xmlns="http://www.w3.org/2000/svg" height="98px" viewBox="0 -960 960 960" width="68px" fill="#EAC452"><path d="m637-244-42-178 138-120-182-16-71-168v387l157 95ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"/></svg></div>
   </div>
+  <div class="testimonials-label">Nos témoignages</div>
+  <div id="my-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-keyboard="true" data-interval="5000">
+    <ol class="carousel-indicators">
+      <li data-target="#my-carousel" data-slide-to="0" class="active"></li>
+      <li data-target="#my-carousel" data-slide-to="1"></li>
+      <li data-target="#my-carousel" data-slide-to="2"></li>
+      <li data-target="#my-carousel" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h3>Arthur 32 ans et Lynda 30ans</h3>
+            <strong> <p>Je me sentais seul dans ma vie natale, parce que la plupart de mes amies s'étaient en couple pendant que j'étais à l'étranger. On a tous les deux décidé de télécharger Youme et de voir ce que ça donnerait.<br>
+              
+              Sans l'appli on ne se serait peut être jamais rencontrés et on ne se serait jamais lancées dans cette aventure.Merci infiniement de nous avoir permis de nous rencontrer.
+          
+            </p></strong>
+          </div>
+          <div class="col-md-6">
+            <img src="C:\Users\ALLOGNON Gabin\OneDrive\Bureau\Projet-Int-grateur\FrontEnd\img\Arthur et lynda.jpg" class="d-block" alt="Image 1">
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h3>Mireille,32 ans</h3>
+            <strong><p>A tou-tes les célibataires, en particulier les introverti-es comme nous n'ayez pas peur de sortir de votre zone de confort. C'est comme ça que vous pourrez établir un vrai lien. Youme nous a permis de nous rencontrer, et je ne les remercieral jamais assez pour ça.
+
+            </strong></p>
+          </div>
+          <div class="col-md-6">
+            <img src="C:\Users\ALLOGNON Gabin\OneDrive\Bureau\Projet-Int-grateur\FrontEnd\img\mireille.jpg" class="d-block" alt="Image 2">
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item ">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h3>Sylvain,32 ans et Léa 33 ans</h3>
+            <p><strong>J'ai rencontré ma fiancée sur Youme pendant le confinement. Elle vient de Lafayette, dans l'Indiana, et moi de Cleveland, dans l'Ohio. Nous sommes deux chrétiens qui sont tombés follement amoureux</strong></p>
+          </div>
+          <div class="col-md-6">
+            <img src="C:\Users\ALLOGNON Gabin\OneDrive\Bureau\Projet-Int-grateur\FrontEnd\img\sylvain et léa.webp" class="d-block" alt="Image 1">
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h3>Loïc,30ans et jean,23 ans</h3>
+            <p>J'ai vraiment eu beaucoup de dates Youme et j'étais sûr que ça serait juste un flirt de plus, l'occasion de manger gratos et de m'amuser un peu... 3 ans et de nooombreux rendez-vous plus tard, je suis marié à mon mec de Youme, Loïc!</p>
+          </div>
+          <div class="col-md-6">
+            <img src="C:\Users\ALLOGNON Gabin\OneDrive\Bureau\Projet-Int-grateur\FrontEnd\img\loïc et jean.jpeg" class="d-block" alt="Image 3">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><br><br><br>
+
+  <span style="font-size: 70px; color: black; font-family: Brush Script MT;"> Envie de commencer une belle aventure ?</span><br>
+  <button class="rounded-5" style="background-color: black;color: white;"><a href="#" style="color: inherit; text-decoration: none;">Rejoins nous</a> </button>
+  
+  <br><br><br><br><br>
+
+  <footer class=" text-white row" style="background-color:#1b1c1c; padding-left: 70px;padding-right: 70px; ">
+    <div class="col-md-4  mt-5">
+      <ul style="list-style-type: none;">
+        <li><strong style="font-size: 20px;">Mentions Légales</strong></li>
+        <li> <a href="#" style="color: inherit; text-decoration: none;">Conditions d'utilisation</a></li>
+        <li> <a href="#" style="color: inherit; text-decoration: none;">Police</a></li>
+        <li> <a href="#" style="color: inherit; text-decoration: none;">Confidentialité</a></li>
+        <li> <a href="#" style="color: inherit; text-decoration: none;">Politique relative aux cookie</a></li>
+     
+      </ul>
+    </div>
+    <div class="col-md-4 mt-5">
+      <ul style="list-style-type: none;">
+        <li><strong style="font-size: 20px;">Réseaux sociaux</strong> </li>
+        <li> <a href="https://web.facebook.com/?ref=homescreenpwa&_rdc=1&_rdr" style="color: inherit; text-decoration: none;">Facebook <i class="fa-brands fa-facebook" style="color: #74C0FC;"></i> </a></i></li>
+        <li><a href="https://www.instagram.com/" style="color: inherit; text-decoration: none;">Instagram <i class="fa-brands fa-instagram fa-rotate-270" style="color: #B197FC;"></i></a></li>
+        <li><a href="https://x.com/" style="color: inherit; text-decoration: none;">Twitter <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue" class="bi bi-twitter" viewBox="0 0 16 16">
+          <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334q.002-.211-.006-.422A6.7 6.7 0 0 0 16 3.542a6.7 6.7 0 0 1-1.889.518 3.3 3.3 0 0 0 1.447-1.817 6.5 6.5 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.32 9.32 0 0 1-6.767-3.429 3.29 3.29 0 0 0 1.018 4.382A3.3 3.3 0 0 1 .64 6.575v.045a3.29 3.29 0 0 0 2.632 3.218 3.2 3.2 0 0 1-.865.115 3 3 0 0 1-.614-.057 3.28 3.28 0 0 0 3.067 2.277A6.6 6.6 0 0 1 .78 13.58a6 6 0 0 1-.78-.045A9.34 9.34 0 0 0 5.026 15"/>
+        </svg></a></li>
+        <li><a href="https://www.youtube.com/#!" style="color: inherit; text-decoration: none;">Youtube <i class="fa-brands fa-youtube" style="color: #ff000d;"></i></a></li>
+        <li><a href="https://www.tiktok.com/fr/" style="color: inherit; text-decoration: none;">Titok  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-tiktok" viewBox="0 0 16 16">
+          <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z"/>
+        </svg></a></li>
+      </ul>
+    </div>
+    <div class="col-md-4 mt-5">
+      <ul style="list-style-type: none;">
+        <li><strong style="font-size: 20px;" >Télécharger</strong> </li>
+        <li> <a href="#" class="app-store-link">
+          <img style="height: 40px; width: 120px;" src="C:\Users\ALLOGNON Gabin\OneDrive\Bureau\Projet-Int-grateur\FrontEnd\img\appstore.jpeg" alt="Télécharger sur l'App Store">
+          </a></li><br>
+        <li><a href="#">
+          <img style="height: 40px; width: 120px;" src="C:\Users\ALLOGNON Gabin\OneDrive\Bureau\Projet-Int-grateur\FrontEnd\img\googleplay.jpeg" alt="Disponible sur Google Play">
+          </a></li>
+      </ul>
+    </div>
+
+
+  </footer>
   
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
