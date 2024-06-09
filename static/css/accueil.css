@@ -6,7 +6,8 @@ a.navbar-brand
 }
 body{
 
-  background-image: linear-gradient(45deg, white, #FF5757);
+  /*background-image: linear-gradient(45deg, white, #FF5757);*/
+  background-image: url('C:\Users\ALLOGNON Gabin\OneDrive\Bureau\Projet-Int-grateur\FrontEnd\html\background.jpg');
 
 }
 li.nav-item button:hover

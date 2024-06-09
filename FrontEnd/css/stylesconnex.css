@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background: url(background.jpg) no-repeat center center fixed;
+    background: url() no-repeat center center fixed;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -16,7 +16,7 @@ body {
     justify-content: center;
     width: 90%;
     max-width: 600px;
-    background: url('background\ 2.jpg')no-repeat center center;
+    background: url('c:\Users\ALLOGNON Gabin\OneDrive\Bureau\Projet-Int-grateur\static\images\background.jpg')no-repeat center center;
     background-size: cover;
     padding: 20px;
     border-radius: 10px;
