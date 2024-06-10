@@ -1,0 +1,7 @@
+
+<h1>Profils suggérés</h1>
+<ul>
+    {% for profile in suggested_profiles %}
+    <li>{{ profile.utilisateur.nom }} - {{ profile.age }} ans</li>
+    {% endfor %}
+</ul>

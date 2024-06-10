@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Suggestion de Profils</title>
+</head>
+<body>
+    <h1>Profil de {{ current_user_id }}</h1>
+    {% for profile in suggested_profiles %}
+        <p>Nom: {{ profile.utilisateur.nom }}</p>
+        <p>Email: {{ profile.utilisateur.email }}</p>
+        <p>Photo: <img src="{{ profile.photo.url }}" alt="Photo de profil"></p>
+        <p>Âge: {{ profile.age }}</p>
+        <p>Taille: {{ profile.height }}</p>
+        <p>Sexe: {{ profile.sex }}</p>
+        <p>Orientation: {{ profile.orientation }}</p>
+        <p>Type de corps: {{ profile.body_type }}</p>
+        <p>Régime: {{ profile.diet }}</p>
+        <p>Boissons: {{ profile.drink }}</p>
+        <p>Drogues: {{ profile.drugs }}</p>
+        <p>Éducation: {{ profile.education }}</p>
+        <p>Localisation: {{ profile.location }}</p>
+        <p>Enfants: {{ profile.offspring }}</p>
+        <p>Fume: {{ profile.smokes }}</p>
+        <p>Bio: {{ profile.bio }}</p>
+    {% endfor %}
+   
+</body>
+</html>
+
+<!-- <h1>Profils suggérés</h1>
+<ul>
+    {% for profile in suggested_profiles %}
+    <li>{{ profile.utilisateur.email }} - {{ profile.age }} ans</li>
+    {% endfor %}
+</ul> -->
