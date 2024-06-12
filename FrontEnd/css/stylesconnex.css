@@ -1,30 +1,29 @@
 body {
     margin: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-image: linear-gradient(white, #FF5757);
+    background-image: linear-gradient(45deg, white, #FF5757);
     background-size: cover;
     display: flex;
-    
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
 }
 
-.container {
+.tainer {
     display: flex;
     flex-direction: column;
-    position: relative;
-    top:200px;
-    right: 50px;
     align-items: center;
     justify-content: center;
     width: 90%;
     max-width: 600px;
-    height: 70%;
+    background: url('background\ 2.jpg')no-repeat center center;
+    background-size: cover;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/*.header {
+.header {
     width: 100%;
     padding: 20px;
     display: flex;
@@ -32,14 +31,10 @@ body {
     align-items: center;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
-}*/
+}
 
 .logo {
-    height: 500px;
-    width: 500px;
-    position: relative;
-    bottom: 150px;
-    right: 100px;
+    height: 70px;
 }
 
 .login-box {
