@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'PIL1_2324_2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'PIL1_base',
+        'NAME': 'youmetable',
         'USER': 'youme',
         'PASSWORD': 'perrier',
         'HOST': 'localhost',
@@ -138,6 +138,12 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGOUT_REDIRECT_URL = "accueil"
+LOGIN_URL = 'connexion/'
+LOGOUT_REDIRECT_URL = 'suggestion_profiles/'
 
 AUTH_USER_MODEL = 'Youme.Utilisateur'
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]

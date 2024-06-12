@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {% load static %}
     <title>Suggestion de Profils</title>
 </head>
 <body>
-    <h1>Profil de {{ current_user_id }}</h1>
+    <button type="submit"><a href='{% url "deconnexion" %}' style="color: inherit; text-decoration: none;">Poursuivre</a></button>
     {% for profile in suggested_profiles %}
-        <p>Nom: {{ profile.utilisateur.nom }}</p>
-        <p>Email: {{ profile.utilisateur.email }}</p>
-        <p>Photo: <img src="{{ profile.photo.url }}" alt="Photo de profil"></p>
+        <h1>Profile de :  {{ profile.utilisateur.nom }}</h1>
+        <!-- <p>Email: {{ profile.utilisateur.email }}</p> -->
+        <p>Photo: <img src="#" alt="Photo de profil"></p>
         <p>Âge: {{ profile.age }}</p>
         <p>Taille: {{ profile.height }}</p>
         <p>Sexe: {{ profile.sex }}</p>
         <p>Orientation: {{ profile.orientation }}</p>
         <p>Type de corps: {{ profile.body_type }}</p>
-        <p>Régime: {{ profile.diet }}</p>
+        <!-- <p>Régime: {{ profile.diet }}</p>
         <p>Boissons: {{ profile.drink }}</p>
         <p>Drogues: {{ profile.drugs }}</p>
         <p>Éducation: {{ profile.education }}</p>
         <p>Localisation: {{ profile.location }}</p>
         <p>Enfants: {{ profile.offspring }}</p>
         <p>Fume: {{ profile.smokes }}</p>
-        <p>Bio: {{ profile.bio }}</p>
+        <p>Bio: {{ profile.bio }}</p> -->
     {% endfor %}
-   
+    <button type="submit"><a href='{% url "recherche_profiles" %}' style="color: inherit; text-decoration: none;">Poursuivre</a></button>
 </body>
 </html>
 
