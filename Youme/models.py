@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+import datetime
 
 class UtilisateurManager(BaseUserManager):
     def create_user(self, email, nom, password=None):
@@ -20,6 +21,7 @@ class UtilisateurManager(BaseUserManager):
 class Utilisateur(AbstractBaseUser):
     nom = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
+    last_login = models.DateTimeField(datetime.datetime.now(), null=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
@@ -44,20 +46,35 @@ class Utilisateur(AbstractBaseUser):
 
 class Profile(models.Model):
     utilisateur = models.OneToOneField(Utilisateur, on_delete=models.CASCADE)
-    photo = models.ImageField(upload_to='profile_pictures/', null=True )
     age = models.PositiveIntegerField(null=True, blank=True)
     height = models.PositiveIntegerField(null=True, blank=True)
     sex = models.CharField(max_length=10, default='f')
     orientation = models.CharField(max_length=255, default='Hétérosexuel')
-    body_type = models.CharField(max_length=255, unique=False)
-    diet = models.CharField(max_length=255, unique=False, default= 'Végétarien')
-    drink = models.CharField(max_length=255)
-    drugs = models.CharField(max_length=50)
+    body_type = models.CharField(max_length=255, unique=False, null=True)
+    diet = models.CharField(max_length=255, unique=False, null=True)
+    drink = models.CharField(max_length=255, null=True)
+    drugs = models.CharField(max_length=50, null=True)
     education =  models.CharField(max_length=255, unique=False)
     location = models.CharField(max_length=255, unique=False, default='Cotonou')
-    offspring = models.CharField(max_length=255, unique=False, default="Je n'en ai pas, mais je souhaiterais en avoir")
-    smokes = models.CharField(max_length=50)
-    bio = models.TextField(max_length= 1000)
-        
+    offspring = models.CharField(max_length=255, unique=False, default="Non")
+    enfant = models.CharField(max_length=255, unique=False, default="Oui")
+    smokes = models.CharField(max_length=50, null=True)
+    religion = models.CharField(max_length=300, null=True)
+    origin = models.CharField(max_length=255, null=True)
+    langue = models.CharField(max_length=225, null=True)
+    bio = models.TextField(max_length= 1000, null=True)
+    photo = models.ImageField(upload_to='profile_pictures/', null=True)
+
     def __str__(self):
         return self.utilisateur.nom
+
+class Préférences(models.Model):
+    user = models.OneToOneField(Utilisateur, on_delete=models.CASCADE)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    religion = models.CharField(max_length=50, blank=True, null=True)
+    origin = models.CharField(max_length=50, blank=True, null=True)
+    height = models.FloatField(blank=True, null=True)
+    physique = models.CharField(max_length=50, blank=True, null=True)
+    education = models.CharField(max_length=100, blank=True, null=True)
+    lifestyle = models.CharField(max_length=100, blank=True, null=True)
+    

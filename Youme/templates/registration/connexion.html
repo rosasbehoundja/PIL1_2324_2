@@ -6,25 +6,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href='{% static "css/stylesconnex.css" %}'>
+    <link rel="stylesheet" href='{% static "css/stylesconnexion.css" %}'>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" style="background: url('{% static "images/background2.jpg" %}') no-repeat center center;">
         <div class="header">
-            <object data="{% static 'images/logomoise.svg' %}" type="image/svg+xml" width="500" height="500" class="logo"></object>
+            <img src='{% static "images/logo.png" %}' alt="YOU&ME logo" class="logo">
         </div>
         <div class="login-box">
             <h2>Connexion</h2>
-            <p>Bienvenue! connecte-toi pour accéder aux fonctionnalités</p>
-            <a href="{% url 'inscription' %}" class="forget-password">Inscrivez-vous si vous n'avez pas un compte?</a>
+            <p>Bienvenue connecte-toi pour accéder aux fonctionnalités</p>
+            <a href='{% url "inscription" %}' class="forget-password">Inscrivez-vous si vous n'avez pas un compte?</a>
 
-            <form>
-                <input type="text" name="email" id="email" placeholder="Adresse email">
-                <input type="text" name="password" id="password" placeholder="Mot de passe">
-                <button type="submit"><a href='{% url "view_profiles" %}' style="color: inherit; text-decoration: none;">Poursuivre</a></button>
+            <form method="post" action="{% url 'connexion' %}">
+                {% csrf_token %}
+                <input type="text" name="email"  id="email" placeholder="Adresse email">
+                <input type="password" name="password" id="password" placeholder="Mot de passe">
+                <button type="submit">Soumettre</button>
             </form>
-            <a href="#" class="password">Avez-vous oubliez votre mot de passe?</a>
+            {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+            <p>               ______________________                 </p>
+
+            <a href="#" class="password">Avez-vous oublié votre mot de passe?</a>
+
+            <!-- <button><a href='{% url "info_profil" %}' style="color: inherit; text-decoration: none;">Poursuivre</a></button> -->
 
 
         </div>

@@ -12,23 +12,24 @@
 <body>
 
 
-    <div class="container">
+    <div class="container" style="background: url('{% static "images/background2.jpg" %}') no-repeat center center;">
         <div class="header">
-            <object data="{% static 'images/logomoise.svg' %}" type="image/svg+xml" width="500" height="500"></object>
+            <img src='{% static "images/logo.png" %}' alt="YOU&ME logo" class="logo">
         </div>
         <div class="login-box">
             <h2>Inscription</h2>
             <p>Bienvenue inscris-toi pour accéder aux fonctionnalités</p>
-            <a href="{% url 'connexion' %}" class="Connexion">Avez-vous déjà un compte?</a>
+            <a href='{% url "connexion" %}' class="Connexion">Avez-vous déjà un compte?</a>
 
-            <form>
-                <input type="text" name="name" id="name" placeholder="Nom">
+            <form method="post" action="{% url 'inscription' %}">
+                {% csrf_token %}
+                <input type="text" name="nom" id="nom" placeholder="Nom">
                 <input type="text" name="email" id="email" placeholder="Adresse email ">
-                <input type="text" name="password" id="password" placeholder="Mot de passe ">
-                <button type="submit "><a href='{% url "view_profiles" %}' style="color: inherit; text-decoration: none;">Poursuivre</a></button>
+                <input type="password" name="password" id="password" placeholder="Mot de passe ">
+                <button type="submit">Poursuivre</button>
             </form>
         </div>
-
+        
     </div>
 
 </body>

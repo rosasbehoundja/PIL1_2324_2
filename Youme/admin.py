@@ -3,3 +3,4 @@ from .models import *
 
 admin.site.register(Utilisateur)
 admin.site.register(Profile)
+admin.site.register(Préférences)
