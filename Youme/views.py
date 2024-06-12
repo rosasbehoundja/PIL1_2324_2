@@ -133,19 +133,6 @@ MODEL_PATH = os.path.join(settings.BASE_DIR, 'Youme/models/youme_cleaned_model.p
 # Charger le modèle
 model = joblib.load(MODEL_PATH)
 
-# @login_required
-# def view_profiles(request):
-#     try:
-#         user_profile = Profile.objects.get(utilisateur=request.user)
-#     except Profile.DoesNotExist:
-#         # Gérer le cas où le profil n'existe pas
-#         messages.error(request, "Votre profil n'existe pas. Veuillez le créer.")
-#         return redirect('maj_profile')  # Rediriger vers la page de mise à jour du profil
-
-#     suggestions = generate_suggestions(user_profile)
-#     suggested_profiles = Profile.objects.filter(id__in=suggestions)
-#     return render(request, 'profile/view_profiles.html', {'suggested_profiles': suggested_profiles})
-
 @login_required
 def suggestion_profiles(request):
     suggested_profiles = []
