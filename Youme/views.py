@@ -42,7 +42,7 @@ def inscription(request):
             else:
                 messages.success(request, 'Votre compte a été créé avec succès!')
             # return redirect('maj_profile')
-            return redirect('personality_test')
+            return redirect('profile_form')
     else:
         form = InscriptionForm()
     return render(request, 'registration/inscription.html', {'form': form})
@@ -76,9 +76,58 @@ def deconnexion(request):
     return redirect('accueil')
 ######################################### PROFILS DES UTILISATEURS  - RECHERCHE & SUGGESTIONS ###########################################
 
-def info_profil(request):
-    user = request.user
-    return render(request, 'profile/info_profil.html', {'user': user})
+# def info_profil(request):
+#     user = request.user
+#     return render(request, 'profile/info_profil.html', {'user': user})
+def profile_form_view(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Enregistrer le formulaire dans la base de données
+            profile = form.save(commit=False)
+            # Si besoin, effectuer des manipulations supplémentaires avant l'enregistrement
+            profile.user = request.user  # Exemple : lier le profil à l'utilisateur connecté
+            profile.age = form.cleaned_data['age']
+            profile.height = form.cleaned_data['height']
+            profile.sex = form.cleaned_data['sex']
+            profile.orientation = form.cleaned_data['orientation']
+            profile.body_type = form.cleaned_data['body_type']
+            profile.diet = form.cleaned_data['diet']
+            profile.drink = form.cleaned_data['drink']
+            profile.drugs = form.cleaned_data['drugs']
+            profile.education = form.cleaned_data['education']
+            profile.location = form.cleaned_data['location']
+            profile.offspring = form.cleaned_data['offspring']
+            profile.enfant = form.cleaned_data['enfant']
+            profile.smokes = form.cleaned_data['smokes']
+            profile.religion = form.cleaned_data['religion']
+            profile.origin= form.cleaned_data['origin']
+            profile.langue = form.cleaned_data['langue']
+            profile.bio = form.cleaned_data['bio']
+            profile = form.save()
+            return redirect('next_step')  # Redirection vers l'étape suivante après l'enregistrement
+    else:
+        form = ProfileForm()
+    
+    return render(request, 'profile/profile_form.html', {'form': form})
+
+def next_step(request):
+    return render(request, 'profile/next_step.html')
+
+def preferences_form_view(request):
+    if request.method == 'POST':
+        form = PréférencesForm(request.POST)
+        if form.is_valid():
+            # Enregistrer le formulaire dans la base de données
+            preferences = form.save(commit=False)
+            # Si besoin, effectuer des manipulations supplémentaires avant l'enregistrement
+            preferences.user = request.user  # Exemple : lier les préférences à l'utilisateur connecté
+            preferences.save()
+            return redirect('suggestion_profiles')  # Redirection vers l'étape finale après l'enregistrement
+    else:
+        form = PréférencesForm()
+    
+    return render(request, 'profile/preferences_form.html', {'form': form})
 
 
 
@@ -97,29 +146,6 @@ def maj_profile(request):
         form = ProfileForm(instance=profile)
     
     return render(request, 'profile/maj_profile.html', {'form': form})
-
-
-def personality_test_view(request):
-    if request.method == 'POST':
-        form = PersonalityTestForm(request.POST)
-        preferences_form = PreferencesForm(request.POST)
-        if form.is_valid() and preferences_form.is_valid():
-            # Sauvegarder les données du test de personnalité dans la base de données
-            profile = form.save(commit=False)
-            profile.utilisateur = request.user
-            profile.save()
-            
-            # Sauvegarder les préférences dans la base de données
-            preferences = preferences_form.save(commit=False)
-            preferences.user = request.user
-            preferences.save()
-
-            return redirect('suggestion_profiles')  # Rediriger vers la page de profil de l'utilisateur
-    else:
-        form = PersonalityTestForm()
-        preferences_form = PreferencesForm()
-    
-    return render(request, 'profile/personality_test.html', {'form': form, 'preferences_form': preferences_form})
 
 
 # def views_profiles(request):
@@ -231,16 +257,16 @@ def suggestion_profiles(request):
     
 
 
-@login_required
-def recherche_profiles(request):
-    # if not request.user.is_active:
-    #     return redirect('connexion')
-    # current_user = request.user
-    # profile = Profile.objects.get(utilisateur=current_user)
-    utilisateurs = Profile.objects.all()
-    data_u = list(utilisateurs.values('id','age', 'height','sex', 'body_type', 'education', 'orientation', 'offspring', 'smokes', 'drugs', 'diet', 'location'))
-    context = {'form' : ProfileFilterForm(),
-               'profiles' : utilisateurs }
-    # query = request.GET.get('query', '')
-    # resultat = Utilisateur.objects.filter(profile__interests_icontains=query).exclude(id=request.user.id)
-    return render(request, 'profile/recherche_profiles.html', context) 
+# @login_required
+# def recherche_profiles(request):
+#     # if not request.user.is_active:
+#     #     return redirect('connexion')
+#     # current_user = request.user
+#     # profile = Profile.objects.get(utilisateur=current_user)
+#     utilisateurs = Profile.objects.all()
+#     data_u = list(utilisateurs.values('id','age', 'height','sex', 'body_type', 'education', 'orientation', 'offspring', 'smokes', 'drugs', 'diet', 'location'))
+#     context = {'form' : ProfileFilterForm(),
+#                'profiles' : utilisateurs }
+#     # query = request.GET.get('query', '')
+#     # resultat = Utilisateur.objects.filter(profile__interests_icontains=query).exclude(id=request.user.id)
+#     return render(request, 'profile/recherche_profiles.html', context) 
