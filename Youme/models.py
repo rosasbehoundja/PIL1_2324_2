@@ -62,6 +62,7 @@ class Profile(models.Model):
     religion = models.CharField(max_length=300, null=True)
     origin = models.CharField(max_length=255, null=True)
     langue = models.CharField(max_length=225, null=True)
+    hobbies = models.CharField(max_length=225, null=True, default= 'Lecture, Voyage')
     bio = models.TextField(max_length= 1000, null=True)
     photo = models.ImageField(upload_to='profile_pictures/', null=True)
 
@@ -77,4 +78,5 @@ class Préférences(models.Model):
     physique = models.CharField(max_length=50, blank=True, null=True)
     education = models.CharField(max_length=100, blank=True, null=True)
     lifestyle = models.CharField(max_length=100, blank=True, null=True)
+    hobbies = models.CharField(max_length=225, null=False, default= 'Lecture, Voyage')
     

@@ -42,7 +42,7 @@ def inscription(request):
             else:
                 messages.success(request, 'Votre compte a été créé avec succès!')
             # return redirect('maj_profile')
-            return redirect('profile_form')
+            return redirect('maj_profile')
     else:
         form = InscriptionForm()
     return render(request, 'registration/inscription.html', {'form': form})
@@ -87,23 +87,23 @@ def profile_form_view(request):
             profile = form.save(commit=False)
             # Si besoin, effectuer des manipulations supplémentaires avant l'enregistrement
             profile.user = request.user  # Exemple : lier le profil à l'utilisateur connecté
-            profile.age = form.cleaned_data['age']
-            profile.height = form.cleaned_data['height']
-            profile.sex = form.cleaned_data['sex']
-            profile.orientation = form.cleaned_data['orientation']
-            profile.body_type = form.cleaned_data['body_type']
-            profile.diet = form.cleaned_data['diet']
-            profile.drink = form.cleaned_data['drink']
-            profile.drugs = form.cleaned_data['drugs']
-            profile.education = form.cleaned_data['education']
-            profile.location = form.cleaned_data['location']
-            profile.offspring = form.cleaned_data['offspring']
-            profile.enfant = form.cleaned_data['enfant']
-            profile.smokes = form.cleaned_data['smokes']
-            profile.religion = form.cleaned_data['religion']
-            profile.origin= form.cleaned_data['origin']
-            profile.langue = form.cleaned_data['langue']
-            profile.bio = form.cleaned_data['bio']
+            # profile.age = form.cleaned_data['age']
+            # profile.height = form.cleaned_data['height']
+            # profile.sex = form.cleaned_data['sex']
+            # profile.orientation = form.cleaned_data['orientation']
+            # profile.body_type = form.cleaned_data['body_type']
+            # profile.diet = form.cleaned_data['diet']
+            # profile.drink = form.cleaned_data['drink']
+            # profile.drugs = form.cleaned_data['drugs']
+            # profile.education = form.cleaned_data['education']
+            # profile.location = form.cleaned_data['location']
+            # profile.offspring = form.cleaned_data['offspring']
+            # profile.enfant = form.cleaned_data['enfant']
+            # profile.smokes = form.cleaned_data['smokes']
+            # profile.religion = form.cleaned_data['religion']
+            # profile.origin= form.cleaned_data['origin']
+            # profile.langue = form.cleaned_data['langue']
+            # profile.bio = form.cleaned_data['bio']
             profile = form.save()
             return redirect('next_step')  # Redirection vers l'étape suivante après l'enregistrement
     else:
@@ -134,14 +134,22 @@ def preferences_form_view(request):
 @login_required
 def maj_profile(request):
     utilisateur = request.user
-    profile, created = Profile.objects.get_or_create(utilisateur=utilisateur)
-    
+    try:
+        profile, created = Profile.objects.get_or_create(utilisateur=utilisateur)
+    except Exception as e:
+        # Ajouter du logging ou imprimer l'erreur pour une meilleure compréhension
+        print(f"Erreur lors de la récupération ou de la création du profil: {e}")
+        # Vous pouvez également utiliser logging pour une meilleure pratique en production
+        # import logging
+        # logger = logging.getLogger(__name__)
+        # logger.error(f"Erreur lors de la récupération ou de la création du profil: {e}")
+        raise e
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
             messages.success(request, 'Profil mis à jour avec succès')
-            return redirect('view_profiles')
+            return redirect('suggestion_profiles')
     else:
         form = ProfileForm(instance=profile)
     
@@ -169,8 +177,13 @@ def suggestion_profiles(request):
     try:
         profile = Profile.objects.get(utilisateur=current_user)
         utilisateurs = Profile.objects.all()
+        user_id = current_user.id
         data_u = list(utilisateurs.values('id','age', 'height','sex', 'body_type', 'education', 'orientation', 'offspring', 'smokes', 'drugs', 'diet', 'location'))
-        data = data_u[:-1]
+        interval = len(data_u)-user_id
+        if interval != 2001:
+            comp = 2001 - interval
+            interval+=comp
+        data = data_u[-interval:]
         df = pd.DataFrame(data)
     except Profile.DoesNotExist:
         messages.error(request, "Votre profil n'existe pas. Veuillez le créer.")
@@ -179,8 +192,7 @@ def suggestion_profiles(request):
 
   
     features = ['id','age', 'height','sex','body_type', 'education', 'orientation', 'offspring', 'smokes', 'drugs', 'diet', 'location']
-
-    user_id = current_user.id
+    
     user_name = current_user.nom
     user_sex = profile.sex	
     user_orientation = profile.orientation	
@@ -207,6 +219,8 @@ def suggestion_profiles(request):
 
     # Ensure that the user's index is properly identified
     user_index_list = df.index[df['id'] == user_id].tolist()
+    print(user_index_list)
+    print(user_id)
     # print(user_index_list)
     if not user_index_list:
         raise ValueError(f"User name {user_name} not found in the DataFrame.")
