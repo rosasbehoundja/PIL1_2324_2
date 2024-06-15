@@ -74,7 +74,6 @@ class Préférences(models.Model):
     location = models.CharField(max_length=100, blank=True, null=True)
     religion = models.CharField(max_length=50, blank=True, null=True)
     origin = models.CharField(max_length=50, blank=True, null=True)
-    height = models.FloatField(blank=True, null=True)
     physique = models.CharField(max_length=50, blank=True, null=True)
     education = models.CharField(max_length=100, blank=True, null=True)
     lifestyle = models.CharField(max_length=100, blank=True, null=True)

@@ -59,8 +59,8 @@ def suggérer_matchs(nom, combined_similarity, df):
     similarity_scores = list(enumerate(combined_similarity[user_index]))
     similarity_scores = sorted(similarity_scores, key=lambda x: x[1], reverse=True)
     similar_users_indices = [i[0] for i in similarity_scores[1:]]
-    similar_users_emails = df.iloc[similar_users_indices]['nom'].values
-    return similar_users_emails
+    similar_users_noms = df.iloc[similar_users_indices]['nom'].values
+    return similar_users_noms
 
 def obtenir_recommandations(nom_nouvel_utilisateur):
     df = charger_donnees_profils()

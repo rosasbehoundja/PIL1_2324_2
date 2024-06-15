@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Détails du Profil</title>
+</head>
+<body>
+    <h2>Détails du Profil de {{ profile.utilisateur.nom }}</h2>
+    <p>Email: {{ profile.utilisateur.email }}</p>
+    <p>Âge: {{ profile.age }}</p>
+    <p>Taille: {{ profile.height }}</p>
+    <p>Sexe: {{ profile.sex }}</p>
+    <p>Orientation: {{ profile.orientation }}</p>
+    <p>Type de corps: {{ profile.body_type }}</p>
+    <p>Régime: {{ profile.diet }}</p>
+    <p>Boissons: {{ profile.drink }}</p>
+    <p>Drogues: {{ profile.drugs }}</p>
+    <p>Éducation: {{ profile.education }}</p>
+    <p>Location: {{ profile.location }}</p>
+    <p>Enfants: {{ profile.offspring }}</p>
+    <p>Fumeur: {{ profile.smokes }}</p>
+    <p>Religion: {{ profile.religion }}</p>
+    <p>Origine: {{ profile.origin }}</p>
+    <p>Langue: {{ profile.langue }}</p>
+    <p>Hobbies: {{ profile.hobbies }}</p>
+    <p>Bio: {{ profile.bio }}</p>
+    <img src="{{ profile.photo.url }}" alt="Photo de profil">
+</body>
+</html>
