@@ -25,7 +25,7 @@ class ConnexionForm(forms.Form):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['photo', 'age','height', 'sex', 'orientation', 'body_type', 'diet' , 'drink', 'drugs','education','location','offspring','enfant', 'smokes', 'religion','origin', 'langue', 'bio']
+        fields = ['age','height', 'sex', 'orientation', 'body_type', 'diet' , 'drink', 'drugs','education','location','offspring','enfant', 'smokes', 'religion','origin', 'langue', 'bio', 'photo']
 
 
 class PréférencesForm(forms.Form):
@@ -38,7 +38,7 @@ class PersonalityTestForm(forms.ModelForm):
         model = Profile
         fields = ['age', 'height', 'sex', 'orientation', 'body_type', 'diet', 'drink', 'drugs', 'education', 'location', 'offspring', 'smokes', 'religion', 'origin', 'langue', 'bio']
 
-    age = forms.IntegerField(label='Âge', min_value=18, max_value=100)
+    age = forms.IntegerField(label='Entrez votre âge ', min_value=18, max_value=100)
     height = forms.IntegerField(label='Taille (en cm)', min_value=100, max_value=250)
     sex = forms.ChoiceField(label='Sexe', choices=[('m', 'Homme'), ('f', 'Femme')])
     orientation = forms.ChoiceField(label='Orientation sexuelle', choices=[('Hétérosexuel', 'Hétérosexuel'), ('Homosexuel', 'Homosexuel'), ('Bisexuel', 'Bisexuel')])
@@ -48,7 +48,7 @@ class PersonalityTestForm(forms.ModelForm):
     drugs = forms.ChoiceField(label='Consommation de drogues', choices=[('Jamais', 'Jamais'), ('Parfois', 'Parfois'), ('Souvent', 'Souvent')])
     education = forms.ChoiceField(label='Niveau d\'éducation', choices=['École secondaire', 'Licence', 'Master', 'Doctorat'])
     location = forms.ChoiceField(label='Localisation', choices=[('Abidjan', 'Abidjan'), ('Dakar', 'Dakar'), ('Lomé', 'Lomé'), ('Bamako', 'Bamako'), ('Ouagadougou', 'Ouagadougou'), ('Accra', 'Accra'), ('Cotonou', 'Cotonou')])
-    offspring = forms.ChoiceField(label='Enfants', choices=[('Non', 'Non'), ('Oui, vivant avec moi', 'Oui, vivant avec moi'), ('Oui, ne vivant pas avec moi', 'Oui, ne vivant pas avec moi')])
+    offspring = forms.ChoiceField(label='Avez-vous des enfants?', choices=[('Non', 'Non'), ('Oui, vivant avec moi', 'Oui, vivant avec moi'), ('Oui, ne vivant pas avec moi', 'Oui, ne vivant pas avec moi')])
     smokes = forms.ChoiceField(label='Fumez-vous ?', choices=[('Non', 'Non'), ('Parfois', 'Parfois'), ('Tous les jours', 'Tous les jours')])
     religion = forms.ChoiceField(label='Religion', choices=[('Chrétien', 'Chrétien'), ('Musulman', 'Musulman'), ('Aucune', 'Aucune'), ('Autre', 'Autre')])
     origin = forms.ChoiceField(label='Pays d\'origine', choices=[('Côte d\'Ivoire', 'Côte d\'Ivoire'), ('Sénégal', 'Sénégal'), ('Togo', 'Togo'), ('Mali', 'Mali'), ('Burkina Faso', 'Burkina Faso'), ('Ghana', 'Ghana'), ('Bénin', 'Bénin')])

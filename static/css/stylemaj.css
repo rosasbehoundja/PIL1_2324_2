@@ -1,6 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #ea6d95;
     margin: 0;
     padding: 0;
 }
@@ -9,7 +9,7 @@ body {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #ea6d95;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -63,7 +63,7 @@ form input, form select, form textarea {
 
 form button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #ea6d95;
     border: none;
     border-radius: 5px;
     color: #fff;
@@ -71,5 +71,5 @@ form button {
 }
 
 form button:hover {
-    background-color: #0056b3;
+    background-color: #ea6d95;
 }

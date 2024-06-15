@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     {% load static %}
@@ -8,25 +8,25 @@
     <button type="submit"><a href='{% url "deconnexion" %}' style="color: inherit; text-decoration: none;">Poursuivre</a></button>
     {% for profile in suggested_profiles %}
         <h1>Profile de :  {{ profile.utilisateur.nom }}</h1>
-        <!-- <p>Email: {{ profile.utilisateur.email }}</p> -->
+        <p>Email: {{ profile.utilisateur.email }}</p>
         <p>Photo: <img src="#" alt="Photo de profil"></p>
         <p>Âge: {{ profile.age }}</p>
         <p>Taille: {{ profile.height }}</p>
         <p>Sexe: {{ profile.sex }}</p>
         <p>Orientation: {{ profile.orientation }}</p>
         <p>Type de corps: {{ profile.body_type }}</p>
-        <!-- <p>Régime: {{ profile.diet }}</p>
+        <p>Régime: {{ profile.diet }}</p>
         <p>Boissons: {{ profile.drink }}</p>
         <p>Drogues: {{ profile.drugs }}</p>
         <p>Éducation: {{ profile.education }}</p>
         <p>Localisation: {{ profile.location }}</p>
         <p>Enfants: {{ profile.offspring }}</p>
         <p>Fume: {{ profile.smokes }}</p>
-        <p>Bio: {{ profile.bio }}</p> -->
+        <p>Bio: {{ profile.bio }}</p>
     {% endfor %}
-    <button type="submit"><a href='{% url "recherche_profiles" %}' style="color: inherit; text-decoration: none;">Poursuivre</a></button>
+    <button type="submit"><a href='#' style="color: inherit; text-decoration: none;">Poursuivre</a></button>
 </body>
-</html>
+</html> -->
 
 <!-- <h1>Profils suggérés</h1>
 <ul>
@@ -34,3 +34,46 @@
     <li>{{ profile.utilisateur.email }} - {{ profile.age }} ans</li>
     {% endfor %}
 </ul> -->
+
+<!-- suggestion_profiles.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommandations de Profils</title>
+</head>
+<body>
+    <button type="submit"><a href='{% url "deconnexion" %}' style="color: inherit; text-decoration: none;">Poursuivre</a></button>
+    <h2>Recommandations de Profils</h2>
+    <ul>
+        {% for match in matchs %} 
+            <li>
+                <a href="#">
+                    {{ match }}
+                </a><br>
+                Âge: {{ info_profil.age }}<br>
+                Hobbies: {{ info_profil.hobbies }}<br>
+                Location: {{ info_profil.location }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+<!-- 
+<body>
+    <button type="submit"><a href='{% url "deconnexion" %}' style="color: inherit; text-decoration: none;">Poursuivre</a></button>
+    <h2>Recommandations de Profils</h2>
+    <ul>
+        {% for profile in match %}
+            <li>
+                <a href="#">
+                    {{ profile.utilisateur.nom }}
+                </a><br> -->
+                <!-- Âge: {{ profile }}<br>
+                Hobbies: {{ profile.hobbies }}<br>
+                Location: {{ profile.location }}
+            </li>
+        {% endfor %}
+    </ul>
+</body> -->
