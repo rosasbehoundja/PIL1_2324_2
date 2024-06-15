@@ -40,20 +40,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {% load static %}
     <title>Recommandations de Profils</title>
 </head>
 <body>
     <button type="submit"><a href='{% url "deconnexion" %}' style="color: inherit; text-decoration: none;">Poursuivre</a></button>
     <h2>Recommandations de Profils</h2>
+    <form method="GET" action="{% url 'suggestion_profiles'%}">
+        {{ form.as_p }}
+        <input type="submit" value="Rechercher">
+    </form>
     <ul>
-        {% for match in matchs %} 
+        {% for profile in recommended_profiles %}
             <li>
                 <a href="#">
-                    {{ match }}
+                    {{ profile.nom }}
                 </a><br>
-                Âge: {{ info_profil.age }}<br>
-                Hobbies: {{ info_profil.hobbies }}<br>
-                Location: {{ info_profil.location }}
+                <img src="{% static 'images/profile.png' %}" alt="Photo de {{ profile.nom }}" style="width:100px;height:auto;"><br>
+                <!-- Email: {{ profile.email }}<br> -->
+                Âge: {{ profile.age }}<br>
+                Hobbies: {{ profile.hobbies }}<br>
+                Location: {{ profile.location }}<br>
+                Orientation :{{ profile.orientation }}<br>
+                Silhouette : {{ profile.body_type }}
             </li>
         {% endfor %}
     </ul>

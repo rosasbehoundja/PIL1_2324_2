@@ -45,12 +45,27 @@ class Utilisateur(AbstractBaseUser):
 
 
 class Profile(models.Model):
+    class OrientationChoices(models.TextChoices):
+        Hétérosexuel = 'Hétérosexuel'
+        Homosexuel = 'Homosexuel'
+        Bisexuel = 'Bisexuel'
+    
+    class BodyTypeChoices(models.TextChoices):
+        Mince = 'Minces'
+        En_Surpoids = 'En surpoids'
+        Moyen = 'Moyen'
+        Athlétique = 'Athlétique'
+    
+    class SexeChoices(models.TextChoices):
+        Homme = 'm'
+        Femme = 'f'
+  
     utilisateur = models.OneToOneField(Utilisateur, on_delete=models.CASCADE)
     age = models.PositiveIntegerField(null=True, blank=True)
     height = models.PositiveIntegerField(null=True, blank=True)
-    sex = models.CharField(max_length=10, default='f')
-    orientation = models.CharField(max_length=255, default='Hétérosexuel')
-    body_type = models.CharField(max_length=255, unique=False, null=True)
+    sex = models.CharField(max_length=10, default='f', choices=SexeChoices.choices)
+    orientation = models.CharField(max_length=255, default='Hétérosexuel', choices=OrientationChoices.choices)
+    body_type = models.CharField(max_length=255, unique=False, null=True, choices=BodyTypeChoices.choices)
     diet = models.CharField(max_length=255, unique=False, null=True)
     drink = models.CharField(max_length=255, null=True)
     drugs = models.CharField(max_length=50, null=True)
@@ -64,12 +79,13 @@ class Profile(models.Model):
     langue = models.CharField(max_length=225, null=True)
     hobbies = models.CharField(max_length=225, null=True, default= 'Lecture, Voyage')
     bio = models.TextField(max_length= 1000, null=True)
-    photo = models.ImageField(upload_to='profile_pictures/', null=True)
+    photo = models.ImageField(upload_to='profile_pictures/', null=True, default='static/images/profile.png')
 
     def __str__(self):
         return self.utilisateur.nom
 
 class Préférences(models.Model):
+
     user = models.OneToOneField(Utilisateur, on_delete=models.CASCADE)
     location = models.CharField(max_length=100, blank=True, null=True)
     religion = models.CharField(max_length=50, blank=True, null=True)

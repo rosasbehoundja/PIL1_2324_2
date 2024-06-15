@@ -24,6 +24,7 @@ from django.utils import timezone
 import logging
 from .recommandations import obtenir_recommandations
 
+
 def accueil(request):
     return render(request, 'registration/accueil.html')
 
@@ -170,14 +171,40 @@ def suggestion_profiles(request):
 
     current_user = request.user
     user_nom = current_user.nom
-    # utilisateur = request.user
-    
+    user_id = current_user.id
+    print(user_id)
+
     # Appeler la fonction pour obtenir les recommandations
     matchs = obtenir_recommandations(user_nom)
-    
+
+    # Initialiser une liste pour stocker les informations des profils recommandés
+    recommended_profiles = []
+
+    for match in matchs:
+        utilisateurs = Utilisateur.objects.filter(nom=match)
+        for utilisateur in utilisateurs:
+            try:
+                profil = Profile.objects.get(utilisateur=utilisateur)
+                recommended_profiles.append({
+                    'nom': utilisateur.nom,
+                    #'email': utilisateur.email,
+                    'hobbies': profil.hobbies,
+                    'age': profil.age,
+                    'location': profil.location,
+                    'orientation': profil.orientation,
+                    'body_type': profil.body_type,
+                })
+            except Profile.DoesNotExist:
+                print(f"Profile for user {utilisateur.nom} does not exist")
+            except Préférences.DoesNotExist:
+                print(f"Preferences for user {utilisateur.nom} do not exist")
+    ################ FILTRES ##################
+    localisation = request.GET.get('Localisation')
     # Passer les recommandations au template
     context = {
-        'matchs': matchs
+        'form': SuggestionFilterForm(),
+        'matchs': matchs,
+        'recommended_profiles': recommended_profiles,
     }
     return render(request, 'profile/suggestion_profiles.html', context)
 

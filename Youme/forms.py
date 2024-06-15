@@ -31,7 +31,7 @@ class ProfileForm(forms.ModelForm):
 class PréférencesForm(forms.Form):
     class Meta:
         model = Préférences
-        fields = ['location', 'religion', 'origin', 'height', 'physique', 'education', 'lifestyle']
+        fields = ['location', 'religion', 'origin', 'physique', 'education', 'lifestyle']
 
 class PersonalityTestForm(forms.ModelForm):
     class Meta:
@@ -67,3 +67,8 @@ class PreferencesForm(forms.ModelForm):
     physique = forms.ChoiceField(label='Type de corps souhaité', choices=[('Athlétique', 'Athlétique'), ('Moyen', 'Moyen'), ('En surpoids', 'En surpoids'), ('Minces', 'Minces')])
     education = forms.ChoiceField(label='Niveau d\'éducation souhaité', choices=[('École secondaire', 'École secondaire'), ('Licence', 'Licence'), ('Master', 'Master'), ('Doctorat', 'Doctorat')])
     lifestyle = forms.ChoiceField(label='Mode de vie souhaité', choices=[('Actif', 'Actif'), ('Sédentaire', 'Sédentaire')])
+
+
+class SuggestionFilterForm(forms.Form):
+    Localisation = forms.CharField()
+    
