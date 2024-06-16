@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %}Personality Test{% endblock %}
+
+{% block content %}
+<div class="card mt-5">
+    <div class="card-body">
+        <h1 class="card-title">Informations Personnelles</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_age">Âge</label>
+                <input type="number" name="age" class="form-control" id="id_age" min="18" max="100">
+            </div>
+            <div class="form-group">
+                <label for="id_height">Taille (en cm)</label>
+                <input type="number" name="height" class="form-control" id="id_height" min="100" max="250">
+            </div>
+            <div class="form-group">
+                <label for="id_sex">Sexe</label>
+                <select name="sex" class="form-control" id="id_sex">
+                    <option value="m">Homme</option>
+                    <option value="f">Femme</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_orientation">Orientation sexuelle</label>
+                <select name="orientation" class="form-control" id="id_orientation">
+                    <option value="Hétérosexuel">Hétérosexuel</option>
+                    <option value="Homosexuel">Homosexuel</option>
+                    <option value="Bisexuel">Bisexuel</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_body_type">Type de corps</label>
+                <select name="body_type" class="form-control" id="id_body_type">
+                    <option value="Athlétique">Athlétique</option>
+                    <option value="Moyen">Moyen</option>
+                    <option value="En surpoids">En surpoids</option>
+                    <option value="Minces">Minces</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_diet">Régime alimentaire</label>
+                <select name="diet" class="form-control" id="id_diet">
+                    <option value="Végétalien">Végétalien</option>
+                    <option value="Végétarien">Végétarien</option>
+                    <option value="Omnivore">Omnivore</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_drink">Consommation d'alcool</label>
+                <select name="drink" class="form-control" id="id_drink">
+                    <option value="Jamais">Jamais</option>
+                    <option value="Socialement">Socialement</option>
+                    <option value="Régulièrement">Régulièrement</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_drugs">Consommation de drogues</label>
+                <select name="drugs" class="form-control" id="id_drugs">
+                    <option value="Jamais">Jamais</option>
+                    <option value="Parfois">Parfois</option>
+                    <option value="Souvent">Souvent</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_education">Niveau d'éducation</label>
+                <select name="education" class="form-control" id="id_education">
+                    <option value="École secondaire">École secondaire</option>
+                    <option value="Licence">Licence</option>
+                    <option value="Master">Master</option>
+                    <option value="Doctorat">Doctorat</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_location">Localisation</label>
+                <select name="location" class="form-control" id="id_location">
+                    <option value="Abidjan">Abidjan</option>
+                    <option value="Dakar">Dakar</option>
+                    <option value="Lomé">Lomé</option>
+                    <option value="Bamako">Bamako</option>
+                    <option value="Ouagadougou">Ouagadougou</option>
+                    <option value="Accra">Accra</option>
+                    <option value="Cotonou">Cotonou</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_offspring">Enfants</label>
+                <select name="offspring" class="form-control" id="id_offspring">
+                    <option value="Non">Non</option>
+                    <option value="Oui, vivant avec moi">Oui, vivant avec moi</option>
+                    <option value="Oui, ne vivant pas avec moi">Oui, ne vivant pas avec moi</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_smokes">Fumez-vous ?</label>
+                <select name="smokes" class="form-control" id="id_smokes">
+                    <option value="Non">Non</option>
+                    <option value="Parfois">Parfois</option>
+                    <option value="Tous les jours">Tous les jours</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_religion">Religion</label>
+                <select name="religion" class="form-control" id="id_religion">
+                    <option value="Chrétien">Chrétien</option>
+                    <option value="Musulman">Musulman</option>
+                    <option value="Aucune">Aucune</option>
+                    <option value="Autre">Autre</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_origin">Pays d'origine</label>
+                <select name="origin" class="form-control" id="id_origin">
+                    <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                    <option value="Sénégal">Sénégal</option>
+                    <option value="Togo">Togo</option>
+                    <option value="Mali">Mali</option>
+                    <option value="Burkina Faso">Burkina Faso</option>
+                    <option value="Ghana">Ghana</option>
+                    <option value="Bénin">Bénin</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_langue">Langue parlée</label>
+                <select name="langue" class="form-control" id="id_langue">
+                    <option value="Français">Français</option>
+                    <option value="Anglais">Anglais</option>
+                    <option value="Portugais">Portugais</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_bio">Bio</label>
+                <textarea name="bio" class="form-control" id="id_bio" maxlength="1000"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Suivant</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

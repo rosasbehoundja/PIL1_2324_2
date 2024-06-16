@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Preferences Introduction{% endblock %}
+
+{% block content %}
+<div class="jumbotron mt-5">
+    <h1 class="display-4">Préférences de Partenaire</h1>
+    <p class="lead">Maintenant que nous avons recueilli des informations sur vous, nous allons vous demander de décrire votre partenaire idéal.</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-lg">Continuer</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Partner Preferences{% endblock %}
+
+{% block content %}
+<div class="card mt-5">
+    <div class="card-body">
+        <h1 class="card-title">Préférences de Partenaire</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_location">Localisation souhaitée</label>
+                <select name="location" class="form-control" id="id_location">
+                    <option value="Abidjan">Abidjan</option>
+                    <option value="Dakar">Dakar</option>
+                    <option value="Lomé">Lomé</option>
+                    <option value="Bamako">Bamako</option>
+                    <option value="Ouagadougou">Ouagadougou</option>
+                    <option value="Accra">Accra</option>
+                    <option value="Cotonou">Cotonou</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_religion">Religion souhaitée</label>
+                <select name="religion" class="form-control" id="id_religion">
+                    <option value="Chrétien">Chrétien</option>
+                    <option value="Musulman">Musulman</option>
+                    <option value="Aucune">Aucune</option>
+                    <option value="Autre">Autre</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_origin">Origine souhaitée</label>
+                <select name="origin" class="form-control" id="id_origin">
+                    <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                    <option value="Sénégal">Sénégal</option>
+                    <option value="Togo">Togo</option>
+                    <option value="Mali">Mali</option>
+                    <option value="Burkina Faso">Burkina Faso</option>
+                    <option value="Ghana">Ghana</option>
+                    <option value="Bénin">Bénin</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_physique">Type de corps souhaité</label>
+                <select name="physique" class="form-control" id="id_physique">
+                    <option value="Athlétique">Athlétique</option>
+                    <option value="Moyen">Moyen</option>
+                    <option value="En surpoids">En surpoids</option>
+                    <option value="Minces">Minces</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_education">Niveau d'éducation souhaité</label>
+                <select name="education" class="form-control" id="id_education">
+                    <option value="École secondaire">École secondaire</option>
+                    <option value="Licence">Licence</option>
+                    <option value="Master">Master</option>
+                    <option value="Doctorat">Doctorat</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_lifestyle">Mode de vie souhaité</label>
+                <select name="lifestyle" class="form-control" id="id_lifestyle">
+                    <option value="Actif">Actif</option>
+                    <option value="Sédentaire">Sédentaire</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Suivant</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

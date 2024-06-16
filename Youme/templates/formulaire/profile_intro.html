@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Introduction{% endblock %}
+
+{% block content %}
+<div class="jumbotron mt-5">
+    <h1 class="display-4">Bienvenue sur notre site de rencontre !</h1>
+    <p class="lead">Nous allons recueillir des informations sur vous afin de vous proposer les meilleurs profils.</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-lg">Commencer</button>
+    </form>
+</div>
+{% endblock %}

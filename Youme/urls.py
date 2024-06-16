@@ -15,9 +15,10 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name='password_reset_complete'),
     path('deconnexion/', deconnexion, name= 'deconnexion'),
     ################ FORMULAIRES DE PROFILS ET PREFERENCES ###################
-    path('profile_form/', profile_form_view, name='profile_form'),
-    path('next_step/', next_step, name='next_step'),
-    path('preferences_form/', preferences_form_view, name='preferences_form'),
+    path('profile_intro/', user_profile_intro, name='profile_intro'),
+    path('personality_test/', personality_test, name='personality_test'),
+    path('preferences_intro/', preferences_intro, name='preferences_intro'),
+    path('preferences_form/', preferences_form, name='preferences_form'),
     path('maj_profile/', maj_profile, name='maj_profile'),
     ######################## SUGGESTIONS ET RECHERCHES #########################
     path('suggestion_profiles/', suggestion_profiles, name='suggestion_profiles'),

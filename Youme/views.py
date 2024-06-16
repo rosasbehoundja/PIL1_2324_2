@@ -34,7 +34,7 @@ def inscription(request):
             else:
                 messages.success(request, 'Votre compte a été créé avec succès!')
             # return redirect('maj_profile')
-            return redirect('maj_profile')
+            return redirect('profile_intro')
     else:
         form = InscriptionForm()
     return render(request, 'registration/inscription.html', {'form': form})
@@ -67,57 +67,42 @@ def deconnexion(request):
     messages.success(request, 'Vous avez été déconnecté')
     return redirect('accueil')
 ########################################### FORMULAIRES PROFILS & PREFERENCES ###############################################
-def profile_form_view(request):
+def user_profile_intro(request):
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
+        return redirect('personality_test')
+    return render(request, 'formulaire/profile_intro.html')
+
+def personality_test(request):
+    if request.method == 'POST':
+        form = PersonalityTestForm(request.POST)
         if form.is_valid():
-            # Enregistrer le formulaire dans la base de données
             profile = form.save(commit=False)
-            # Si besoin, effectuer des manipulations supplémentaires avant l'enregistrement
-            profile.user = request.user  # Exemple : lier le profil à l'utilisateur connecté
-            # profile.age = form.cleaned_data['age']
-            # profile.height = form.cleaned_data['height']
-            # profile.sex = form.cleaned_data['sex']
-            # profile.orientation = form.cleaned_data['orientation']
-            # profile.body_type = form.cleaned_data['body_type']
-            # profile.diet = form.cleaned_data['diet']
-            # profile.drink = form.cleaned_data['drink']
-            # profile.drugs = form.cleaned_data['drugs']
-            # profile.education = form.cleaned_data['education']
-            # profile.location = form.cleaned_data['location']
-            # profile.offspring = form.cleaned_data['offspring']
-            # profile.enfant = form.cleaned_data['enfant']
-            # profile.smokes = form.cleaned_data['smokes']
-            # profile.religion = form.cleaned_data['religion']
-            # profile.origin= form.cleaned_data['origin']
-            # profile.langue = form.cleaned_data['langue']
-            # profile.bio = form.cleaned_data['bio']
-            profile = form.save()
-            return redirect('next_step')  # Redirection vers l'étape suivante après l'enregistrement
+            profile.utilisateur = request.user
+            profile.save()
+            return redirect('preferences_intro')
     else:
-        form = ProfileForm()
-    
-    return render(request, 'profile/profile_form.html', {'form': form})
+        form = PersonalityTestForm()
+    return render(request, 'formulaire/personality_test.html', {'form': form})
 
-def next_step(request):
-    return render(request, 'profile/next_step.html')
-
-def preferences_form_view(request):
+def preferences_intro(request):
     if request.method == 'POST':
-        form = PréférencesForm(request.POST)
+        return redirect('preferences_form')
+    return render(request, 'formulaire/preferences_intro.html')
+
+def preferences_form(request):
+    if request.method == 'POST':
+        form = PreferencesForm(request.POST)
         if form.is_valid():
-            # Enregistrer le formulaire dans la base de données
             preferences = form.save(commit=False)
-            # Si besoin, effectuer des manipulations supplémentaires avant l'enregistrement
-            preferences.user = request.user  # Exemple : lier les préférences à l'utilisateur connecté
+            preferences.user = request.user
             preferences.save()
-            return redirect('suggestion_profiles')  # Redirection vers l'étape finale après l'enregistrement
+            return redirect('connexion')
     else:
-        form = PréférencesForm()
-    
-    return render(request, 'profile/preferences_form.html', {'form': form})
+        form = PreferencesForm()
+    return render(request, 'formulaire/preferences_form.html', {'form': form})
 
 
+#####################################################################################################
 
 @login_required
 def maj_profile(request):
