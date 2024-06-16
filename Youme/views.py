@@ -118,13 +118,13 @@ def maj_profile(request):
         # logger.error(f"Erreur lors de la récupération ou de la création du profil: {e}")
         raise e
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        form = PersonalityTestForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
             messages.success(request, 'Profil mis à jour avec succès')
             return redirect('suggestion_profiles')
     else:
-        form = ProfileForm(instance=profile)
+        form = PersonalityTestForm(instance=profile)
     
     return render(request, 'profile/maj_profile.html', {'form': form})
 

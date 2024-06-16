@@ -131,6 +131,17 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="id_hobbies">Hobbies</label>
+                <div id="id_hobbies" class="form-check">
+                    {% for hobby in form.hobbies.field.choices %}
+                    <div class="form-check">
+                        <input type="checkbox" name="hobbies" value="{{ hobby.0 }}" class="form-check-input" id="id_hobbies_{{ forloop.counter }}">
+                        <label for="id_hobbies_{{ forloop.counter }}" class="form-check-label">{{ hobby.1 }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="id_bio">Bio</label>
                 <textarea name="bio" class="form-control" id="id_bio" maxlength="1000"></textarea>
             </div>

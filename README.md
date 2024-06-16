@@ -1,1 +1,1 @@
-# DJANGO DATING APP USING DJANGO - HTML - CSS & JS
+# Build a DATING APP using Django - HTML - CSS & JavaScript

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire</title>
+    <link rel="stylesheet" href="C:\Users\ALLOGNON Gabin\OneDrive\Bureau\Projet-Int-grateur\FrontEnd\css\stylesq.css">
+    <link rel="icon" type="image/svg" href="C:\Users\ALLOGNON Gabin\OneDrive\Bureau\Projet-Int-grateur\static\images\favicon.svg">
+</head>
+
+<body>
+
+
+    <div class="container">
+
+
+        <div id="coverImage" class="cover-image">
+            <img src="C:\Users\ALLOGNON Gabin\OneDrive\Bureau\Projet-Int-grateur\FrontEnd\img\imgs2.jpg" alt="Cover Image">
+        </div>
+
+        <div id="section1" class="section active">
+            <div class="form-container">
+                <h2>Questionnaire</h2>
+
+
+
+                <div class="form-group">
+                    <label for="height">Taille souhaitée (cm):</label>
+                    <input type="number" id="height" name="height" min="100">
+                </div>
+                <div class="dropdown">
+                    <label for="localisation">Localisation:</label>
+                    <input type="text" id="location" placeholder="Où vivez vous?" readonly>
+                    <button id="dropdownButton">▼</button>
+                    <div id="dropdownContent" class="dropdown-content">
+                        <div class="dropdown-item">Cotonou</div>
+
+                        <div class="dropdown-item">Lagos</div>
+                        <div class="dropdown-item">Ouagadougou</div>
+                        <div class="dropdown-item">Lomé</div>
+                        <div class="dropdown-item">Dakar</div>
+                        <div class="dropdown-item">Abidjan</div>
+                        <div class="dropdown-item">Accra</div>
+
+
+                    </div>
+                </div>
+            </div>
+            <button class="nextButton1" style="position: absolute; bottom: 1px;width:45%;">Suivant</button>
+
+
+        </div>
+
+
+
+        <div id="section2" class="section hidden ">
+            <div class="form-container ">
+                <h2>Questions à choix multiple</h2>
+
+                <div class="form-group ">
+
+
+
+                    <div class="multi-select-content">
+                        <Label for="centre d'intêrêt">Centre d'intêrêt:</Label><br>
+                        <input type="text" id="multiSelectInput" placeholder="Vous pouvez choisir plusieurs options" readonly>
+                        <button id="multiSelectButton">▼</button>
+                        <div id="multiSelectDropdown" class="multi-select-dropdown ">
+                            <div class="multi-select-item ">Lecture</div>
+                            <div class="multi-select-item ">Cinéma</div>
+                            <div class="multi-select-item ">Voyages</div>
+                            <div class="multi-select-item ">Cuisine</div>
+                            <div class="multi-select-item ">Sport</div>
+                            <div class="multi-select-item ">Randonnée</div>
+                            <div class="multi-select-item ">Musique</div>
+                            <div class="multi-select-item ">Photographie</div>
+                            <div class="multi-select-item ">Dessin</div>
+                            <div class="multi-select-item ">Ecriture</div>
+                            <div class="multi-select-item ">Jardinage</div>
+                            <div class="multi-select-item ">Pêche</div>
+                            <div class="multi-select-item ">Chasse</div>
+                            <div class="multi-select-item ">Collection</div>
+                            <div class="multi-select-item ">Jeux vidéo</div>
+                            <div class="multi-select-item ">Bricolage</div>
+                            <div class="multi-select-item ">Danse</div>
+                            <div class="multi-select-item ">Théatre</div>
+                            <div class="multi-select-item ">Astronomie</div>
+                            <div class="multi-select-item ">Yoga</div>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <button class="nextButton2 ">Suivant</button>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <script src="C:\Users\ALLOGNON Gabin\OneDrive\Bureau\Projet-Int-grateur\FrontEnd\js\scriptq3.js"></script>
+</body>
+
+</html>

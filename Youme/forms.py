@@ -22,30 +22,40 @@ class ConnexionForm(forms.Form):
     email = forms.EmailField(widget=forms.EmailInput)
     password = forms.CharField(widget=forms.PasswordInput)
 
-class ProfileForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ['age','height', 'sex', 'orientation', 'body_type', 'diet' , 'drink', 'drugs','education','location','offspring','enfant', 'smokes', 'religion','origin', 'langue', 'bio', 'photo']
 
+hobbies_list = [
+    "Lecture", "Cinéma", "Voyages", "Cuisine", "Sport", "Randonnée",
+    "Musique", "Photographie", "Dessin", "Écriture", "Jardinage", 
+    "Pêche", "Chasse", "Collection", "Jeux vidéo", "Bricolage", 
+    "Danse", "Théâtre", "Astronomie", "Yoga"
+]
 
-class PréférencesForm(forms.Form):
-    class Meta:
-        model = Préférences
-        fields = ['location', 'religion', 'origin', 'physique', 'education', 'lifestyle']
 
 class PersonalityTestForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['age','height', 'sex', 'orientation', 'body_type', 'diet', 'drink', 'drugs', 'education', 'location', 'offspring', 'smokes', 'religion', 'origin', 'langue', 'bio']
+        fields = ['age','height', 'sex', 'orientation', 'body_type', 'diet', 'drink', 'drugs', 'education', 'location', 'offspring', 'smokes', 'religion', 'origin', 'langue', 'hobbies', 'bio']
 
     age = forms.IntegerField(label='Entrez votre âge ', min_value=18, max_value=100)
     sex = forms.ChoiceField(label='Votre sexe ', choices=[('m', 'Homme'), ('f', 'Femme')])
     bio = forms.CharField(label="", widget=forms.Textarea(attrs={'max_length': 1000}))
+    hobbies = forms.MultipleChoiceField(
+        label='Hobbies',
+        choices=[(hobby, hobby) for hobby in hobbies_list],
+        widget=forms.CheckboxSelectMultiple,
+        required=True
+    )
+
+    def clean_hobbies(self):
+        data = self.cleaned_data['hobbies']
+        if len(data) != 3:
+            raise forms.ValidationError("Veuillez sélectionner trois hobbies.")
+        return data
 
 class PreferencesForm(forms.ModelForm):
     class Meta:
         model = Préférences
-        fields = ['location', 'religion', 'origin', 'physique', 'education', 'lifestyle']
+        fields = ['location', 'religion', 'origin', 'physique', 'education', 'lifestyle', 'hobbies']
 
     location = forms.ChoiceField(label='Localisation souhaitée', choices=[('Abidjan', 'Abidjan'), ('Dakar', 'Dakar'), ('Lomé', 'Lomé'), ('Bamako', 'Bamako'), ('Ouagadougou', 'Ouagadougou'), ('Accra', 'Accra'), ('Cotonou', 'Cotonou')])
     religion = forms.ChoiceField(label='Religion souhaitée', choices=[('Chrétien', 'Chrétien'), ('Musulman', 'Musulman'), ('Aucune', 'Aucune'), ('Autre', 'Autre')])
@@ -53,7 +63,18 @@ class PreferencesForm(forms.ModelForm):
     physique = forms.ChoiceField(label='Type de corps souhaité', choices=[('Athlétique', 'Athlétique'), ('Moyen', 'Moyen'), ('En surpoids', 'En surpoids'), ('Minces', 'Minces')])
     education = forms.ChoiceField(label='Niveau d\'éducation souhaité', choices=[('École secondaire', 'École secondaire'), ('Licence', 'Licence'), ('Master', 'Master'), ('Doctorat', 'Doctorat')])
     lifestyle = forms.ChoiceField(label='Mode de vie souhaité', choices=[('Actif', 'Actif'), ('Sédentaire', 'Sédentaire')])
+    hobbies = forms.MultipleChoiceField(
+        label='Hobbies souhaités',
+        choices=[(hobby, hobby) for hobby in hobbies_list],
+        widget=forms.CheckboxSelectMultiple,
+        required=True
+    )
 
+    def clean_hobbies(self):
+        data = self.cleaned_data['hobbies']
+        if len(data) != 3:
+            raise forms.ValidationError("Veuillez sélectionner trois hobbies.")
+        return data
 
 class SuggestionFilterForm(forms.Form):
     Localisation = forms.CharField(required=False)
