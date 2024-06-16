@@ -149,3 +149,6 @@ AUTH_USER_MODEL = 'Youme.Utilisateur'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+MEDIA_URL = ''
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

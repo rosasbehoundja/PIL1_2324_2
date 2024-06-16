@@ -7,7 +7,7 @@ from Youme.models import Profile, Préférences
 
 def charger_donnees_profils():
     profiles = Profile.objects.all().select_related('utilisateur')
-    data = []
+    data = [] 
     for profile in profiles:
         try:
             preferences = Préférences.objects.get(user=profile.utilisateur)

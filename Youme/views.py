@@ -7,23 +7,14 @@ from django.core.mail import send_mail
 from .forms import *
 from .models import *
 from PIL1_2324_2.settings import EMAIL_HOST_USER
-import joblib
-import os
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
-from sklearn.preprocessing import OneHotEncoder
-import numpy as np
-import pandas as pd
-from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import KMeans
-from kneed import KneeLocator
-from django.apps import apps
-import pickle
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 import logging
 from .recommandations import obtenir_recommandations
 
+########################################################## ACCUEIL #################################################################
 def accueil(request):
     return render(request, 'registration/accueil.html')
 
@@ -75,11 +66,7 @@ def deconnexion(request):
     logout(request)
     messages.success(request, 'Vous avez été déconnecté')
     return redirect('accueil')
-######################################### PROFILS DES UTILISATEURS  - RECHERCHE & SUGGESTIONS ###########################################
-
-# def info_profil(request):
-#     user = request.user
-#     return render(request, 'profile/info_profil.html', {'user': user})
+########################################### FORMULAIRES PROFILS & PREFERENCES ###############################################
 def profile_form_view(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
@@ -156,11 +143,7 @@ def maj_profile(request):
     
     return render(request, 'profile/maj_profile.html', {'form': form})
 
-
-# def views_profiles(request):
-#     utilisateurs= Utilisateur.objects.exclude(id = request.user.id)
-#     return render(request, 'profile/view_profiles.html', {'utilisateurs':utilisateurs})
-
+####################################################### SUGGESTIONS & RECHERCHES DE PROFILS #########################################
 
 @login_required
 def suggestion_profiles(request):
@@ -170,17 +153,67 @@ def suggestion_profiles(request):
 
     current_user = request.user
     user_nom = current_user.nom
-    # utilisateur = request.user
-    
+    user_id = current_user.id
+    print(user_id)
+
     # Appeler la fonction pour obtenir les recommandations
     matchs = obtenir_recommandations(user_nom)
-    
+
+    # Initialiser une liste pour stocker les informations des profils recommandés
+    recommended_profiles = []
+
+    for match in matchs:
+        utilisateurs = Utilisateur.objects.filter(nom=match)
+        for utilisateur in utilisateurs:
+            try:
+                profil = Profile.objects.get(utilisateur=utilisateur)
+                recommended_profiles.append({
+                    'nom': utilisateur.nom,
+                    'sex': profil.sex,
+                    'hobbies': profil.hobbies,
+                    'age': profil.age,
+                    'location': profil.location,
+                    'orientation': profil.orientation,
+                    'body_type': profil.body_type,
+                })
+            except Profile.DoesNotExist:
+                print(f"Profile for user {utilisateur.nom} does not exist")
+            except Préférences.DoesNotExist:
+                print(f"Preferences for user {utilisateur.nom} do not exist")
+    ################ FILTRES ##################
+    user_profile = Profile.objects.get(utilisateur=current_user)
+    user_age = user_profile.age
+    age_range_min = user_age - 5
+    age_range_max = user_age + 5
+    if user_profile.sex == 'm' and user_profile.orientation == 'Hétérosexuel':
+        recommended_profiles = [profile for profile in recommended_profiles if profile['sex'] == 'f' and profile['age'] is not None and age_range_min <= profile['age'] <= age_range_max]
+    elif user_profile.sex == 'f' and user_profile.orientation == 'Hétérosexuel':
+        recommended_profiles = [profile for profile in recommended_profiles if profile['sex'] == 'm' and profile['age'] is not None and age_range_min <= profile['age'] <= age_range_max]
+    elif user_profile.orientation == 'Homosexuel':
+        recommended_profiles = [profile for profile in recommended_profiles if profile['sex'] == user_profile.sex and profile['age'] is not None and age_range_min <= profile['age'] <= age_range_max]
+    elif user_profile.orientation == 'Bisexuel':
+        recommended_profiles = [profile for profile in recommended_profiles if profile['age'] is not None and age_range_min <= profile['age'] <= age_range_max]
+
+    ################ FILTRES ##################
+    localisation = request.GET.get('Localisation')
+    age_min = request.GET.get('age_min')
+    age_max = request.GET.get('age_max')
+
+    if age_min:
+        recommended_profiles = [profile for profile in recommended_profiles if profile['age'] is not None and profile['age'] >= int(age_min)]
+    if age_max:
+        recommended_profiles = [profile for profile in recommended_profiles if profile['age'] is not None and profile['age'] <= int(age_max)]
+    if localisation:
+        recommended_profiles = [profile for profile in recommended_profiles if profile['location'] == localisation]
+
+
     # Passer les recommandations au template
     context = {
-        'matchs': matchs
+        'form': SuggestionFilterForm(),
+        'matchs': matchs,
+        'recommended_profiles': recommended_profiles,
     }
     return render(request, 'profile/suggestion_profiles.html', context)
-
 
 # @login_required
 # def recherche_profiles(request):
