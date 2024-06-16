@@ -169,6 +169,7 @@ def suggestion_profiles(request):
                 profil = Profile.objects.get(utilisateur=utilisateur)
                 recommended_profiles.append({
                     'nom': utilisateur.nom,
+                    'image': profil.photo,
                     'sex': profil.sex,
                     'hobbies': profil.hobbies,
                     'age': profil.age,
@@ -184,7 +185,7 @@ def suggestion_profiles(request):
     user_profile = Profile.objects.get(utilisateur=current_user)
     user_age = user_profile.age
     age_range_min = user_age - 5
-    age_range_max = user_age + 5
+    age_range_max = user_age + 10
     if user_profile.sex == 'm' and user_profile.orientation == 'Hétérosexuel':
         recommended_profiles = [profile for profile in recommended_profiles if profile['sex'] == 'f' and profile['age'] is not None and age_range_min <= profile['age'] <= age_range_max]
     elif user_profile.sex == 'f' and user_profile.orientation == 'Hétérosexuel':
@@ -198,6 +199,7 @@ def suggestion_profiles(request):
     localisation = request.GET.get('Localisation')
     age_min = request.GET.get('age_min')
     age_max = request.GET.get('age_max')
+    hobbies_filter = request.GET.get('hobbies')
 
     if age_min:
         recommended_profiles = [profile for profile in recommended_profiles if profile['age'] is not None and profile['age'] >= int(age_min)]
@@ -205,6 +207,9 @@ def suggestion_profiles(request):
         recommended_profiles = [profile for profile in recommended_profiles if profile['age'] is not None and profile['age'] <= int(age_max)]
     if localisation:
         recommended_profiles = [profile for profile in recommended_profiles if profile['location'] == localisation]
+    if hobbies_filter:
+        hobbies_filter_set = set(hobbies_filter.split(', '))
+        recommended_profiles = [profile for profile in recommended_profiles if hobbies_filter_set & set(profile['hobbies'].split(', '))]
 
 
     # Passer les recommandations au template
