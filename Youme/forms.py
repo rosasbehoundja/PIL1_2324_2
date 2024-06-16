@@ -39,8 +39,8 @@ class PersonalityTestForm(forms.ModelForm):
         fields = ['age','height', 'sex', 'orientation', 'body_type', 'diet', 'drink', 'drugs', 'education', 'location', 'offspring', 'smokes', 'religion', 'origin', 'langue', 'bio']
 
     age = forms.IntegerField(label='Entrez votre âge ', min_value=18, max_value=100)
-    sex = forms.ChoiceField(label='Sexe', choices=[('m', 'Homme'), ('f', 'Femme')])
-    bio = forms.CharField(label='Bio', widget=forms.Textarea(attrs={'max_length': 1000}))
+    sex = forms.ChoiceField(label='Votre sexe ', choices=[('m', 'Homme'), ('f', 'Femme')])
+    bio = forms.CharField(label="", widget=forms.Textarea(attrs={'max_length': 1000}))
 
 class PreferencesForm(forms.ModelForm):
     class Meta:
@@ -59,4 +59,4 @@ class SuggestionFilterForm(forms.Form):
     Localisation = forms.CharField(required=False)
     age_min = forms.IntegerField(required=False)
     age_max = forms.IntegerField(required=False)
-    
+    hobbies = forms.CharField(required=False, help_text="Séparez les centres d'intérêts par des virgules")

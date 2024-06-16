@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     {% load static %}
@@ -28,4 +28,205 @@
         {% endfor %}
     </ul>
 </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommandations de Profils</title>
+    <style>
+        /* Ajouter ici le CSS pour styliser la page */
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: right;
+}
+
+.logout-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.container {
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+}
+
+.filter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+}
+
+.profile-image img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.profile-info {
+    margin-bottom: 20px;
+}
+
+.profile-actions {
+    display: flex;
+    justify-content: space-around;
+}
+
+.reject-button, .like-button, .superlike-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 18px;
+    width: 50px;
+    height: 50px;
+}
+
+.reject-button {
+    background-color: #ff4d4d;
+}
+
+.like-button {
+    background-color: #28a745;
+}
+
+.superlike-button {
+    background-color: #ffc107;
+}
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button type="submit" class="logout-button"><a href='{% url "deconnexion" %}' style="color: inherit; text-decoration: none;">Poursuivre</a></button>
+    </div>
+    <div class="container">
+        <h2>Recommandations de Profils</h2>
+        <form method="GET" action="{% url 'suggestion_profiles'%}" id="filter-form" class="filter-form">
+            {{ form.as_p }}
+            <input type="submit" value="Rechercher" class="search-button">
+        </form>
+        <div id="profile-container" class="profile-container">
+            {% for profile in recommended_profiles %}
+            <div class="profile-card">
+                <div class="profile-image">
+                    <img src="{{ profile.image.url }}" alt="Photo de {{ profile.nom }}">
+                </div>
+                <div class="profile-info">
+                    <h3>{{ profile.nom }} , {{ profile.age }}</h3>
+                    <!-- <p><strong>Sexe:</strong> {{ profile.sex }}</p> -->
+                    <p><strong>Hobbies:</strong> {{ profile.hobbies }}</p>
+                    <p><strong>Location:</strong> {{ profile.location }}</p>
+                    <p><strong>Orientation:</strong> {{ profile.orientation }}</p>
+                    <p><strong>Silhouette:</strong> {{ profile.body_type }}</p>
+                </div>
+                <div class="profile-actions">
+                    <button class="reject-button">✖</button>
+                    <button class="like-button">❤</button>
+                    <button class="superlike-button">★</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        // Ajouter ici le JS pour rendre la page interactive
+        document.addEventListener('DOMContentLoaded', function() {
+    const filterForm = document.getElementById('filter-form');
+        filterForm.reset();
+    const profileContainer = document.getElementById('profile-container');
+    const profiles = document.querySelectorAll('.profile-card');
+    let currentIndex = 0;
+
+    function showProfile(index) {
+        profiles.forEach((profile, i) => {
+            profile.style.display = i === index ? 'block' : 'none';
+        });
+    }
+
+    function nextProfile() {
+        if (currentIndex < profiles.length - 1) {
+            currentIndex++;
+            showProfile(currentIndex);
+        }
+    }
+
+    function prevProfile() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            showProfile(currentIndex);
+        }
+    }
+
+    document.querySelectorAll('.reject-button').forEach(button => {
+        button.addEventListener('click', nextProfile);
+    });
+
+    document.querySelectorAll('.like-button').forEach(button => {
+        button.addEventListener('click', nextProfile);
+    });
+
+    document.querySelectorAll('.superlike-button').forEach(button => {
+        button.addEventListener('click', nextProfile);
+    });
+
+    showProfile(currentIndex);
+});
+
+    </script>
+</body>
 </html>
+

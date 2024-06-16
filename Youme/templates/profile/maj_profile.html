@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
     {% load static %}
+    {% load widget_tweaks %}
     <meta charset="UTF-8">
     <title>Créer/Mettre à jour le Profil</title>
     <link rel="stylesheet" href="{% static 'css/stylemaj.css' %}">
@@ -18,7 +19,7 @@
         </div>
         {% endif %}
         
-        <form method="post" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn btn-primary">Enregistrer</button>
