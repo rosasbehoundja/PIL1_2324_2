@@ -1,160 +1,166 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    {% load static %}
-    <title>Recommandations de Profils</title>
-</head>
-<body>
-    <button type="submit"><a href='{% url "deconnexion" %}' style="color: inherit; text-decoration: none;">Poursuivre</a></button>
-    <h2>Recommandations de Profils</h2>
-    <form method="GET" action="{% url 'suggestion_profiles'%}">
-        {{ form.as_p }}
-        <input type="submit" value="Rechercher">
-    </form>
-    <ul>
-        {% for profile in recommended_profiles %}
-            <li>
-                <a href="#">
-                    {{ profile.nom }}
-                </a><br>
-                <img src="{% static 'images/profile.png' %}" alt="Photo de {{ profile.nom }}" style="width:100px;height:auto;"><br>
-                Sexe: {{ profile.sex }}<br>
-                Âge: {{ profile.age }}<br>
-                Hobbies: {{ profile.hobbies }}<br>
-                Location: {{ profile.location }}<br>
-                Orientation :{{ profile.orientation }}<br>
-                Silhouette : {{ profile.body_type }}
-            </li>
-        {% endfor %}
-    </ul>
-</body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    {% load widget_tweaks %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recommandations de Profils</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
     <style>
-        /* Ajouter ici le CSS pour styliser la page */
+        /* CSS pour styliser la page */
         body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f5;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.header {
-    width: 100%;
-    padding: 10px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: right;
-}
+        .header {
+            width: 100%;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.logout-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-}
+        .header .user-info {
+            display: flex;
+            align-items: center;
+        }
 
-.container {
-    max-width: 600px;
-    width: 100%;
-    padding: 20px;
-}
+        .header .user-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
 
-.filter-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
+        .logout-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+        }
 
-.search-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
-}
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+        }
 
-.profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .filter-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
 
-.profile-card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    padding: 20px;
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-    position: relative;
-}
+        .search-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
 
-.profile-image img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.profile-info {
-    margin-bottom: 20px;
-}
+        .profile-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+        }
 
-.profile-actions {
-    display: flex;
-    justify-content: space-around;
-}
+        .profile-image img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
 
-.reject-button, .like-button, .superlike-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 50%;
-    font-size: 18px;
-    width: 50px;
-    height: 50px;
-}
+        .profile-info {
+            margin-bottom: 20px;
+        }
 
-.reject-button {
-    background-color: #ff4d4d;
-}
+        .profile-actions {
+            display: flex;
+            justify-content: space-around;
+        }
 
-.like-button {
-    background-color: #28a745;
-}
+        .reject-button, .like-button, .superlike-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 18px;
+            width: 50px;
+            height: 50px;
+        }
 
-.superlike-button {
-    background-color: #ffc107;
-}
+        .reject-button {
+            background-color: #ff4d4d;
+        }
 
+        .like-button {
+            background-color: #28a745;
+        }
+
+        .superlike-button {
+            background-color: #ffc107;
+        }
+
+        .navbar {
+            position: relative;
+            left: 190px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <button type="submit" class="logout-button"><a href='{% url "deconnexion" %}' style="color: inherit; text-decoration: none;">Poursuivre</a></button>
+        <!-- <div class="user-info">
+            <img src="{{ user.profile_picture.url }}" alt="Photo de {{ user.username }}">
+            <span>{{ user.username }}</span>
+        </div> -->
+        <a href="{% url 'deconnexion' %}" class="logout-button">Déconnexion</a>
     </div>
+
+    <div class="navbar col-md-6">
+        <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-light rounded-5 shadow-sm" id="pillNav2" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link rounded-5" id="search-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false"><a href="{% url 'recherche_profiles' %}">Recherche</a></button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active rounded-5" id="suggestion-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true"><a href="{% url 'suggestion_profiles' %}">Suggestions</a></button>
+            </li>
+        </ul>
+    </div>
+
     <div class="container">
         <h2>Recommandations de Profils</h2>
         <form method="GET" action="{% url 'suggestion_profiles'%}" id="filter-form" class="filter-form">
+            {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="Rechercher" class="search-button">
         </form>
@@ -162,11 +168,14 @@
             {% for profile in recommended_profiles %}
             <div class="profile-card">
                 <div class="profile-image">
-                    <img src="{{ profile.image.url }}" alt="Photo de {{ profile.nom }}">
+                    {% if profile.photo %}
+                    <img src="{{ profile.photo.url }}" alt="Photo de {{ profile.nom }}" style="width:100px;height:auto;">
+                    {% else %}
+                    <img src="{% static 'images/profile.png' %}" alt="Photo de {{ profile.nom }}" style="width:100px;height:auto;">
+                    {% endif %}
                 </div>
                 <div class="profile-info">
-                    <h3>{{ profile.nom }} , {{ profile.age }}</h3>
-                    <!-- <p><strong>Sexe:</strong> {{ profile.sex }}</p> -->
+                    <h3>{{ profile.nom }}, {{ profile.age }}</h3>
                     <p><strong>Hobbies:</strong> {{ profile.hobbies }}</p>
                     <p><strong>Location:</strong> {{ profile.location }}</p>
                     <p><strong>Orientation:</strong> {{ profile.orientation }}</p>
@@ -182,51 +191,50 @@
         </div>
     </div>
 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js"></script>
     <script>
         // Ajouter ici le JS pour rendre la page interactive
         document.addEventListener('DOMContentLoaded', function() {
-    const filterForm = document.getElementById('filter-form');
-        filterForm.reset();
-    const profileContainer = document.getElementById('profile-container');
-    const profiles = document.querySelectorAll('.profile-card');
-    let currentIndex = 0;
+            const filterForm = document.getElementById('filter-form');
+            filterForm.reset();
+            const profileContainer = document.getElementById('profile-container');
+            const profiles = document.querySelectorAll('.profile-card');
+            let currentIndex = 0;
 
-    function showProfile(index) {
-        profiles.forEach((profile, i) => {
-            profile.style.display = i === index ? 'block' : 'none';
+            function showProfile(index) {
+                profiles.forEach((profile, i) => {
+                    profile.style.display = i === index ? 'block' : 'none';
+                });
+            }
+
+            function nextProfile() {
+                if (currentIndex < profiles.length - 1) {
+                    currentIndex++;
+                    showProfile(currentIndex);
+                }
+            }
+
+            function prevProfile() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    showProfile(currentIndex);
+                }
+            }
+
+            document.querySelectorAll('.reject-button').forEach(button => {
+                button.addEventListener('click', nextProfile);
+            });
+
+            document.querySelectorAll('.like-button').forEach(button => {
+                button.addEventListener('click', nextProfile);
+            });
+
+            document.querySelectorAll('.superlike-button').forEach(button => {
+                button.addEventListener('click', nextProfile);
+            });
+
+            showProfile(currentIndex);
         });
-    }
-
-    function nextProfile() {
-        if (currentIndex < profiles.length - 1) {
-            currentIndex++;
-            showProfile(currentIndex);
-        }
-    }
-
-    function prevProfile() {
-        if (currentIndex > 0) {
-            currentIndex--;
-            showProfile(currentIndex);
-        }
-    }
-
-    document.querySelectorAll('.reject-button').forEach(button => {
-        button.addEventListener('click', nextProfile);
-    });
-
-    document.querySelectorAll('.like-button').forEach(button => {
-        button.addEventListener('click', nextProfile);
-    });
-
-    document.querySelectorAll('.superlike-button').forEach(button => {
-        button.addEventListener('click', nextProfile);
-    });
-
-    showProfile(currentIndex);
-});
-
     </script>
 </body>
 </html>
-

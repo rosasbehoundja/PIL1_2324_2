@@ -22,7 +22,7 @@ urlpatterns = [
     path('maj_profile/', maj_profile, name='maj_profile'),
     ######################## SUGGESTIONS ET RECHERCHES #########################
     path('suggestion_profiles/', suggestion_profiles, name='suggestion_profiles'),
-    #path('recherche_profiles/', recherche_profiles, name='recherche_profiles'),
+    path('recherche_profiles/', recherche_profiles, name='recherche_profiles'),
     ############## PAGES D'AFFICHAGE DE PROFIL DES UTILISATEURS ################
     #path('info_profil/', info_profil,name='info_profil'),
     #path('personality_test/', personality_test_view, name='personality_test'),

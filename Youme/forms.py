@@ -81,3 +81,13 @@ class SuggestionFilterForm(forms.Form):
     age_min = forms.IntegerField(required=False)
     age_max = forms.IntegerField(required=False)
     hobbies = forms.CharField(required=False, help_text="Séparez les centres d'intérêts par des virgules")
+
+
+class SearchFilterForm(forms.Form):
+    Localisation = forms.CharField(required=False)
+    sex = forms.ChoiceField(choices=[('m', 'Homme'), ('f', 'Femme')])
+    age_min = forms.IntegerField(required=False)
+    age_max = forms.IntegerField(required=False)
+    silhouette = forms.ChoiceField(choices=[('Athlétique', 'Athlétique'), ('Moyen', 'Moyen'), ('En surpoids', 'En surpoids'), ('Minces', 'Minces')])
+    hobbies = forms.CharField(required=False, help_text="Séparez les centres d'intérêts par des virgules")
+

@@ -13,6 +13,7 @@ from django.shortcuts import get_object_or_404
 from django.utils import timezone
 import logging
 from .recommandations import obtenir_recommandations
+from .filters import *
 
 ########################################################## ACCUEIL #################################################################
 def accueil(request):
@@ -74,12 +75,12 @@ def user_profile_intro(request):
 
 def personality_test(request):
     if request.method == 'POST':
-        form = PersonalityTestForm(request.POST)
+        form = PersonalityTestForm(request.POST, request.FILES)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.utilisateur = request.user
             profile.save()
-            return redirect('preferences_intro')
+            return redirect('preferences_intro')  
     else:
         form = PersonalityTestForm()
     return render(request, 'formulaire/personality_test.html', {'form': form})
@@ -91,7 +92,7 @@ def preferences_intro(request):
 
 def preferences_form(request):
     if request.method == 'POST':
-        form = PreferencesForm(request.POST)
+        form = PreferencesForm(request.POST, request.FILES)
         if form.is_valid():
             preferences = form.save(commit=False)
             preferences.user = request.user
@@ -169,7 +170,7 @@ def suggestion_profiles(request):
     ################ FILTRES ##################
     user_profile = Profile.objects.get(utilisateur=current_user)
     user_age = user_profile.age
-    age_range_min = user_age - 5
+    age_range_min = user_age - 2
     age_range_max = user_age + 10
     if user_profile.sex == 'm' and user_profile.orientation == 'Hétérosexuel':
         recommended_profiles = [profile for profile in recommended_profiles if profile['sex'] == 'f' and profile['age'] is not None and age_range_min <= profile['age'] <= age_range_max]
@@ -205,16 +206,14 @@ def suggestion_profiles(request):
     }
     return render(request, 'profile/suggestion_profiles.html', context)
 
-# @login_required
-# def recherche_profiles(request):
-#     # if not request.user.is_active:
-#     #     return redirect('connexion')
-#     # current_user = request.user
-#     # profile = Profile.objects.get(utilisateur=current_user)
-#     utilisateurs = Profile.objects.all()
-#     data_u = list(utilisateurs.values('id','age', 'height','sex', 'body_type', 'education', 'orientation', 'offspring', 'smokes', 'drugs', 'diet', 'location'))
-#     context = {'form' : ProfileFilterForm(),
-#                'profiles' : utilisateurs }
-#     # query = request.GET.get('query', '')
-#     # resultat = Utilisateur.objects.filter(profile__interests_icontains=query).exclude(id=request.user.id)
-#     return render(request, 'profile/recherche_profiles.html', context) 
+@login_required
+def recherche_profiles(request):
+    if not request.user.is_active:
+        return redirect('connexion')
+    utilisateurs = Profile.objects.all()
+
+    utilisateurs_filter = UserFilter(request.GET, queryset=utilisateurs)
+
+    context = {'form' : utilisateurs_filter.form,
+               'profiles' : utilisateurs_filter.qs }
+    return render(request, 'profile/recherche_profiles.html', context)

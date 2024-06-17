@@ -6,7 +6,7 @@
 <div class="card mt-5">
     <div class="card-body">
         <h1 class="card-title">Informations Personnelles</h1>
-        <form method="post">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">
                 <label for="id_age">Âge</label>
