@@ -1,0 +1,47 @@
+.photo-input-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  footer div ul li:hover
+  {
+   color: #FF5757;
+  }
+  
+  .bon
+  {
+   border-radius: 10px; box-shadow: 3px 3px 5px  ;
+   
+  }
+  .photo-input-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .photo-input-label svg {
+    width: 400px;
+    height: 400px;
+    
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .testimonials-label {
+        background-color: #333;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        border-radius: 0 0 10px 10px;
+        display: inline-block;
+        margin-bottom: 2rem;
+      }
+  
+  .photo-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }

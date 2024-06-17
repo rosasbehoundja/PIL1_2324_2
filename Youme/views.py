@@ -129,6 +129,41 @@ def maj_profile(request):
     
     return render(request, 'profile/maj_profile.html', {'form': form})
 
+# @login_required
+# def profile(request):
+#     profile = Profile.objects.get(utilisateur=request.user)
+    
+#     if request.method == 'POST':
+#         form = ProfileForm(request.POST, request.FILES, instance=profile)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('profile')
+#     else:
+#         form = ProfileForm(instance=profile)
+
+#     return render(request, 'profile/profile.html', {'form': form})
+@login_required
+def profile(request):
+    profile = Profile.objects.get(utilisateur=request.user)
+    preferences = Préférences.objects.get(user=request.user)
+    
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = ProfileForm(instance=profile)
+
+    context = {
+        'form': form,
+        'user_profile': profile,
+        'preferences': preferences,
+    }
+
+    return render(request, 'profile/profile.html', context)
+
+
 ####################################################### SUGGESTIONS & RECHERCHES DE PROFILS #########################################
 
 @login_required
@@ -217,3 +252,5 @@ def recherche_profiles(request):
     context = {'form' : utilisateurs_filter.form,
                'profiles' : utilisateurs_filter.qs }
     return render(request, 'profile/recherche_profiles.html', context)
+
+

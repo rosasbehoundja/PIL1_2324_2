@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
     {% load widget_tweaks %}
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recommandations de Profils</title>
@@ -153,6 +154,9 @@
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link active rounded-5" id="suggestion-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true"><a href="{% url 'suggestion_profiles' %}">Suggestions</a></button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active rounded-5" id="suggestion-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true"><a href="{% url 'profile' %}">Profil</a></button>
             </li>
         </ul>
     </div>

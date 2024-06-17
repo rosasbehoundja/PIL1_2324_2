@@ -1,0 +1,247 @@
+<!-- user_profile.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+    <link rel="icon" type="image/svg" href="{% static 'images/favicon.svg' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/styleprofil.css' %}">
+    <style>
+        .photo-input-label svg {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .photo-input-label img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .form-group img {
+            max-width: 100%;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .photo-input-label svg, .photo-input-label img {
+                width: 75px;
+                height: 75px;
+            }
+        }
+    </style>
+</head>
+<body class="container-fluid justify-content-center" style="background-image: linear-gradient(45deg, white, #FF5757);">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <img src="{% static 'images/logomoise.svg' %}" class="img-fluid d-block mx-auto my-4" style="max-width: 200px;">
+            <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-light rounded-5 shadow-sm mb-4" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-dark); --bs-nav-pills-link-active-color: var(--bs-light); --bs-nav-pills-link-active-bg: var(--bs-red);">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active rounded-5" href="#">Accueil</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link rounded-5" href="#">Chats</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link rounded-5" href="#">Profil</a>
+                </li>
+            </ul>
+
+            <div class="card shadow-sm p-4">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4">Votre Profil</h1>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group text-center mb-4">
+                            <label for="photo-input" class="photo-input-label">
+                                {% if form.photo.value %}
+                                    <img src="{{ form.photo.value.url }}" alt="Photo de profil">
+                                {% else %}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#FF5757" class="bi bi-person" viewBox="0 0 16 16">
+                                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                                    </svg>
+                                {% endif %}
+                            </label>
+                            <input type="file" id="photo-input" class="photo-input d-none" name="photo" accept="image/*" onchange="previewImage(this)">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="id_age" class="form-label">Âge</label>
+                                <input type="number" class="form-control" id="id_age" name="age" value="{{ form.age.value }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="id_height" class="form-label">Taille</label>
+                                <input type="number" class="form-control" id="id_height" name="height" value="{{ form.height.value }}">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="id_sex" class="form-label">Sexe</label>
+                                <select class="form-select" id="id_sex" name="sex">
+                                    {% for choice in form.sex.field.choices %}
+                                        <option value="{{ choice.0 }}" {% if form.sex.value == choice.0 %} selected {% endif %}>{{ choice.1 }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="id_orientation" class="form-label">Orientation</label>
+                                <select class="form-select" id="id_orientation" name="orientation">
+                                    {% for choice in form.orientation.field.choices %}
+                                        <option value="{{ choice.0 }}" {% if form.orientation.value == choice.0 %} selected {% endif %}>{{ choice.1 }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="id_body_type" class="form-label">Type de corps</label>
+                                <select class="form-select" id="id_body_type" name="body_type">
+                                    {% for choice in form.body_type.field.choices %}
+                                        <option value="{{ choice.0 }}" {% if form.body_type.value == choice.0 %} selected {% endif %}>{{ choice.1 }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="id_diet" class="form-label">Régime alimentaire</label>
+                                <input type="text" class="form-control" id="id_diet" name="diet" value="{{ form.diet.value }}">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="id_drink" class="form-label">Consommation d'alcool</label>
+                                <input type="text" class="form-control" id="id_drink" name="drink" value="{{ form.drink.value }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="id_drugs" class="form-label">Consommation de drogues</label>
+                                <input type="text" class="form-control" id="id_drugs" name="drugs" value="{{ form.drugs.value }}">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="id_education" class="form-label">Éducation</label>
+                                <input type="text" class="form-control" id="id_education" name="education" value="{{ form.education.value }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="id_location" class="form-label">Localisation</label>
+                                <input type="text" class="form-control" id="id_location" name="location" value="{{ form.location.value }}">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="id_offspring" class="form-label">Descendance</label>
+                                <input type="text" class="form-control" id="id_offspring" name="offspring" value="{{ form.offspring.value }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="id_smokes" class="form-label">Fume</label>
+                                <input type="text" class="form-control" id="id_smokes" name="smokes" value="{{ form.smokes.value }}">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="id_religion" class="form-label">Religion</label>
+                                <input type="text" class="form-control" id="id_religion" name="religion" value="{{ form.religion.value }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="id_origin" class="form-label">Origine</label>
+                                <input type="text" class="form-control" id="id_origin" name="origin" value="{{ form.origin.value }}">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="id_langue" class="form-label">Langue</label>
+                                <input type="text" class="form-control" id="id_langue" name="langue" value="{{ form.langue.value }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="id_hobbies" class="form-label">Hobbies</label>
+                                <input type="text" class="form-control" id="id_hobbies" name="hobbies" value="{{ form.hobbies.value }}">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_bio" class="form-label">Bio</label>
+                            <textarea class="form-control" id="id_bio" name="bio" rows="4">{{ form.bio.value }}</textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card shadow-sm p-4 mt-4">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Vos Préférences</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="id_location" class="form-label">Localisation préférée</label>
+                            <input type="text" class="form-control" id="id_location" name="location" value="{{ preferences.location }}">
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="id_religion_pref" class="form-label">Religion préférée</label>
+                            <input type="text" class="form-control" id="id_religion_pref" name="religion" value="{{ preferences.religion }}">
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="id_origin_pref" class="form-label">Origine préférée</label>
+                            <input type="text" class="form-control" id="id_origin_pref" name="origin" value="{{ preferences.origin }}">
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="id_physique_pref" class="form-label">Type physique préféré</label>
+                            <input type="text" class="form-control" id="id_physique_pref" name="physique" value="{{ preferences.physique }}">
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="id_education_pref" class="form-label">Niveau d'éducation préféré</label>
+                            <input type="text" class="form-control" id="id_education_pref" name="education" value="{{ preferences.education }}">
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="id_lifestyle_pref" class="form-label">Style de vie préféré</label>
+                            <input type="text" class="form-control" id="id_lifestyle_pref" name="lifestyle" value="{{ preferences.lifestyle }}">
+                        </div>
+            
+                        <div class="mb-3">
+                            <label for="id_hobbies_pref" class="form-label">Hobbies préférés</label>
+                            <input type="text" class="form-control" id="id_hobbies_pref" name="hobbies" value="{{ preferences.hobbies }}">
+                        </div>
+            
+                        <button type="submit" class="btn btn-primary">Enregistrer les Préférences</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('.photo-input-label img').attr('src', e.target.result);
+                    $('.photo-input-label svg').css('display', 'none');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.12.1/dist/umd/popper.min.js" integrity="sha384-xx4AMFen1b2CTj7SNci5yebK4fsa5JDI1mcGtGO2AGGiPrjH5p0lL3ZmxWbg3q0P" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-rU6aZ6ZcC0FLJOZUiJDFbUpzrGimUvOxQC61rFf1l8IbtmXcFhDRJz22ITmQNwlQ" crossorigin="anonymous"></script>
+</body>
+</html>
