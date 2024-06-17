@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YouMe - Recherche</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+      body {
+        background-color: #000;
+        color: #fff;
+      }
+      /* barre de nav */
+      header {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      header .navigate {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      header .navigate ul li button:hover {
+        color: red;
+      }
+  
+      header ul {
+        list-style: none;
+        transform: translateY(-5px);
+      }
+  
+      header .youme {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      border-radius: 150px;
+      overflow: hidden;
+      transition: 0.5s;
+      }
+  
+      header .youme img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 110%;
+          object-fit: cover;
+      }
+  
+      header .filterBx {
+      background: whitesmoke;
+      position: relative;
+      width: 50px;
+      height: 50px;
+      border-radius: 150px;
+      transition: 0.5s;
+      cursor: pointer;
+      transition: 0.3s;
+      transform: translateY(-10px);
+      }
+  
+      header .filterBx p {
+        margin-top: 25px;
+        transform: translateY(50px);
+  
+      }
+  
+      header .filterBx:hover {
+      transform: translateY(-5px);
+      background: red;
+      font-size: larger;
+      }
+  
+      header .filterBx img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      }
+  
+      .profile-dropdown {
+        position: relative;
+        width: fit-content;
+        margin-left: 10px;
+        transform: translateY(-5px);
+        transition: 0.3s;
+        z-index: 1;
+      }
+  
+      .profile-dropdown:hover {
+        transform: translateY(0px);
+      }
+  
+      .profile-dropdown .profile-img {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        cursor: pointer;
+      }
+  
+      .profile-dropdown .profile-img img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        overflow: hidden;
+      }
+  
+      .profile-dropdown .menu {
+        position: absolute;
+        background: gray;
+        right: 0;
+        transform: translateX(69px);
+        top: 79px;
+        width: 220px;
+        border-radius: 20px;
+        font-size: 1.1rem;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.5s;
+      }
+  
+      .profile-dropdown .menu.active {
+        visibility: visible;
+        opacity: 1;
+      }
+  
+      .profile-dropdown .menu::before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        width: 20px;
+        height: 20px;
+        background: gray;
+        transform: rotate(45deg);
+  
+      }
+  
+      .profile-dropdown .menu h3 {
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+        padding: 15px 0;
+        font-weight: 600;
+        line-height: 1.2em;
+      }
+  
+      .profile-dropdown menu ul {
+        padding: 0.5rem 0 0.5rem 1rem;
+      }
+  
+      .profile-dropdown menu ul:hover {
+        padding-left: 1.5rem;
+        background: grey;
+      }
+  
+      .profile-dropdown li {
+        list-style: none;
+        padding: 10px 0;
+        border-top: 1px solid rgba(0,0,0,0.05);
+        display: flex;
+        align-items: center;
+      }
+  
+      .profile-dropdown a {
+        display: flex;
+        text-decoration: none;
+        color: black;
+        font-weight: 500;
+      }
+  
+      .profile-dropdown li:hover a {
+        color: #ff5d94;
+      }
+  
+      .profile-dropdown .icon {
+      position: absolute;
+      left: 10px;
+      display: flex;
+      justify-content:baseline;
+      align-items: center;
+      min-width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      box-shadow: 0 15px 50px rgb(0, 0, 0, 0.35);
+      overflow: hidden;
+      transition: all 0.3s;
+      opacity: 0.5;
+      }
+  
+      .profile-dropdown .icon img {
+      top: 0;
+      left: 0;
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      }
+  
+      .profile-dropdown li:hover .icon {
+        opacity: 1;
+      }
+  
+      /*ESPACE FILTRAGE*/
+  
+      @keyframes slideUp {
+      from {
+          transform: translateY(100%);
+          opacity: 0;
+          filter: blur(5px);
+      }
+  
+  
+      to {
+          transform: translateY(0);
+          opacity: 1;
+          filter: blur(0);
+      }
+      }
+  
+      .overlay-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100000000000;
+      
+      transform: translateY(100%);
+      }
+  
+      .overlay-container.visible {
+      transform: translateY(0);
+      }
+  
+      .overlay-container.hidden {
+      display: none;
+      }
+    
+      .overlay {
+      background-color: gray;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 90%;
+      animation: slideUp 1s;
+      }
+    
+      .filter-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: slideUp 1s;
+      }
+    
+      .filter-container h2 {
+      margin-top: 0;
+      }
+    
+      .form-group {
+      width: 100%;
+      margin-bottom: 1.5rem;
+      }
+    
+      .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      }
+    
+      .form-group input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      }
+    
+      .form-group input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 8px;
+      background-color: #ddd;
+      border-radius: 4px;
+      outline: none;
+      padding: 0;
+      margin: 0.5rem 0;
+      }
+    
+      .form-group input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      background-color: #4CAF50;
+      border-radius: 50%;
+      cursor: pointer;
+      }
+    
+      button[type="submit"] {
+      background-color: bisque;
+      color: black;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      }
+  
+      /* resultats recherches*/
+      .card {
+        background-color: #fff;
+        color: #000;
+      }
+      .card:hover {
+        background-color: #f8f9fa;
+      }  
+    </style>
+  </head>
+  <body>
+
+    <!-- Header -->
+    <header class="bg-transparent text-center py-3">
+
+      <div class="youme">
+      <img src="logo moïse.svg" alt="you&Me">
+      </div>
+
+      <div class="navigate">
+        <ul class="nav nav-pills nav-fill gap-2 p-1 small rounded-5 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-black); --bs-nav-pills-link-active-bg: var(--bs-red);">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active rounded-5" id="home-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true">Recherche</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link rounded-5" id="profile-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Suggestions</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Contact</button>
+        </li>
+        </ul>  
+
+        <div class="profile-dropdown">
+
+        <div class="profile-img">
+        <img src="profile.jpg" alt="">
+        </div>
+
+        <div class="menu">
+        <h3>Someone Famous</h3>
+        <ul>
+          <li>
+            <span class="icon">
+              <img src="id-card-outline.svg" alt="">
+            </span>
+            <a href="#">My Profile</a>
+          </li>
+
+          <li>
+            <span class="icon">
+              <img src="chatbubble-ellipses-outline.svg" alt="">
+            </span>
+            <a href="#">Inbox</a>
+          </li>
+
+          <li>
+            <span class="icon">
+              <img src="settings-outline.svg" alt="">
+            </span>
+            <a href="#">Settings</a>
+          </li>
+          <li>
+            <span class="icon">
+              <img src="log-out-outline.svg" alt="">
+            </span>
+            <a href="#">Logout</a>
+          </li>
+        </ul>
+        </div>
+
+        </div>
+      </div>
+    
+      <ul>
+      <div class="filterBx">
+          <li class="list filter-button"><img src="filter-circle-outline.svg" alt="filter-button"></li>
+          <p>filtrer</p>
+      </div>
+      </ul>
+
+    </header>
+
+    <!-- RESULTATS RECHERCHES -->
+    <div class="container mt-5">
+
+
+      <h2 class="text-center mt-4">Recherche de profils</h2>
+  
+      <!-- Profils correspondant à la recherche -->
+      <div class="row mt-4">
+        <!-- Profil 1 -->
+        <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="profile.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Alice Doe</h5>
+            <p class="card-text">Age: 28</p>
+            <p class="card-text">Localisation: New York, USA</p>
+            <p class="card-text">Centres d'intérêts: Yoga, Musique, Voyages</p>
+          </div>
+        </div>
+        </div>
+        <!-- Profil 2 -->
+        <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="profile2.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">John Smith</h5>
+            <p class="card-text">Age: 32</p>
+            <p class="card-text">Localisation: London, UK</p>
+            <p class="card-text">Centres d'intérêts: Cinéma, Cuisine, Sports</p>
+          </div>
+        </div>
+        </div>
+        <!-- Profil 3 -->
+        <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="profile3.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Emily Johnson</h5>
+            <p class="card-text">Age: 25</p>
+            <p class="card-text">Localisation: Paris, France</p>
+            <p class="card-text">Centres d'intérêts: Art, Lecture, Danse</p>
+          </div>
+        </div>
+        </div>
+        <!-- Profil 4 -->
+        <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="profile4.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Michael Brown</h5>
+            <p class="card-text">Age: 30</p>
+            <p class="card-text">Localisation: Sydney, Australia</p>
+            <p class="card-text">Centres d'intérêts: Photographie, Nature, Technologie</p>
+          </div>
+        </div>
+        </div>
+        <!-- Profil 5 -->
+        <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="profile5.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Sophia Lee</h5>
+            <p class="card-text">Age: 27</p>
+            <p class="card-text">Localisation: Tokyo, Japan</p>
+            <p class="card-text">Centres d'intérêts: Anime, Jeux vidéo, Technologie</p>
+          </div>
+        </div>
+        </div>
+        <!-- Profil 6 -->
+        <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="profile6.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Daniel Garcia</h5>
+            <p class="card-text">Age: 29</p>
+            <p class="card-text">Localisation: Barcelona, Spain</p>
+            <p class="card-text">Centres d'intérêts: Cuisine, Musique, Voyages</p>
+          </div>
+        </div>
+        </div>
+        <!-- Profil 7 -->
+        <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="profile7.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Maria Martinez</h5>
+            <p class="card-text">Age: 31</p>
+            <p class="card-text">Localisation: Mexico City, Mexico</p>
+            <p class="card-text">Centres d'intérêts: Danse, Musique, Cinéma</p>
+          </div>
+        </div>
+        </div>
+        <!-- Profil 8 -->
+        <div class="col-md-3 mb-4">
+        <div class="card">
+          <img src="profile8.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Alexandra White</h5>
+            <p class="card-text">Age: 26</p>
+            <p class="card-text">Localisation: Rome, Italy</p>
+            <p class="card-text">Centres d'intérêts: Voyages, Art, Cuisine</p>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ONGLET FILTRAGE -->
+    <div class="overlay-container hidden">
+    <div class="overlay">
+      <div class="filter-container">
+        <h2>Filtrer les résultats</h2>
+        <form>
+          <div class="form-group">
+            <label for="age-range">Tranche d'âge :</label>
+            <input type="range" id="age-range" min="18" max="100" value="25">
+            <p id="age-value">25 ans</p>
+
+          </div>
+          <div class="form-group">
+            <label for="location">Localisation :</label>
+            <input type="text" id="location" placeholder="Entrez une ville">
+          </div>
+          <div class="form-group">
+            <label for="interests">Centres d'intérêt :</label>
+            <input type="text" id="interests" placeholder="Entrez vos centres d'intérêt">
+          </div>
+          <div class="form-group">
+            <button id="apply-filters">Appliquer les filtres</button>
+            <button id="reset-filters">Réinitialiser</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+
+      /*APPARITION USER */
+  
+      const userToggle = document.querySelector('.profile-img');
+      const dropdown = document.querySelector('.menu');
+  
+      userToggle.addEventListener('click', () => {
+      if (dropdown.classList.contains('active')) {
+      dropdown.classList.remove('active');
+      document.removeEventListener('click', handleClickOutside);
+      } else {
+      dropdown.classList.add('active');
+      document.addEventListener('click', handleClickOutside);
+      }
+      });
+  
+      function handleClickOutside(event) {
+      if (!event.target.closest('.profile-dropdown')) {
+      menu.classList.remove('active');
+      document.removeEventListener('click', handleClickOutside);
+      }
+      }
+  
+      /*APPARITION DE L'ONGLET FILTRAGE*/
+  
+      const filterButton = document.querySelector('.filter-button');
+      const overlayContainer = document.querySelector('.overlay-container');
+  
+      filterButton.addEventListener('click', () => {
+      overlayContainer.classList.add('visible');
+      overlayContainer.classList.remove('hidden');
+      });
+  
+      overlayContainer.addEventListener('click', (event) => {
+      if (event.target === overlayContainer) {
+          overlayContainer.classList.add('hidden');
+          overlayContainer.classList.remove('visible');
+      }
+      });
+  
+      const ageInput = document.getElementById('age-range'); //FAIRE DEFILER L'AGE
+      const ageValue = document.getElementById('age-value');
+      ageInput.addEventListener('input', function() {
+      ageValue.textContent = ageInput.value + ' ans';
+      });
+  
+    </script>
+  </body>
+</html>
