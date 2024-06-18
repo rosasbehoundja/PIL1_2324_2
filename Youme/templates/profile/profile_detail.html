@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Match Info</title>
-    <link rel="stylesheet" href="card.css">
+    <link rel="stylesheet" href='{% static "css/profile_detail.css" %}'>
 </head>
 <body>
     <div class="card">
@@ -13,52 +14,44 @@
         <div class="content">
             
             <div class="imgBox">
-            <img src="herisson.jpg" alt="">
+                {% if profile.photo %}
+                <img src="{{ profil.photo.url }}" alt="Photo de {{ profil.nom }}" style="width: 200px;height:auto;">
+                {% else %}
+                <img src="{% static 'images/profile.png' %}" alt="Photo de {{ profil.nom }}" style="width:100px;height:auto;">
+                {% endif %}
             </div>
 
             <div class="header">
-            <h3>Petit Herisson Tout Mignon,<span> 30ans</span></h3>
+            <h3>{{ profil.utilisateur.nom }}<span>, {{ profil.age }}</span></h3>
             </div>
 
             <div class="details">
                 <div class="info">
                     <div class="block">
                             <p>
-                                <strong>Height:</strong> 185cm <br>
-                                <strong>Sex:</strong> Female <br>
-                                <strong>Orientation:</strong> Homosexual <br>
-                                <strong>Body Type:</strong> Average <br>
-                                <strong>Diet:</strong> Vegan <br>
-                                <strong>Drink:</strong> Rarely <br>
-                                <strong>Drugs:</strong> Sometimes
+                                <strong>Height:</strong> {{ profil.height }} <br>
+                                <strong>Sex:</strong> {{ profil.sex }} <br>
+                                <strong>Orientation:</strong> {{ profil.orientation }} <br>
+                                <strong>Body Type:</strong> {{ profil.body_type }} <br>
+                                <strong>Diet:</strong> {{ profil.diet }} <br>
+                                <strong>Drink:</strong> {{profil.drink}} <br>
+                                <strong>Drugs:</strong> {{ profil.drugs }}
                             </p>
                     </div>
                     <div class="block">
                             <p>
-                                <strong>Education:</strong> Master's Degree <br>
-                                <strong>Location:</strong> London, United Kingdom <br>
-                                <strong>Offspring:</strong> Does not have kids <br>
-                                <strong>Smokes:</strong> No <br>
-                                <strong>Religion:</strong> Atheist <br>
-                                <strong>Origin:</strong> British <br>
-                                <strong>Language:</strong> English <br>
-                                <strong>Hobbies:</strong> Traveling, Photography <br>
+                                <strong>Education:</strong> {{ profil.education }} <br>
+                                <strong>Location:</strong> {{ profil.location }} <br>
+                                <strong>Offspring:</strong> {{ profil.offspring}} <br>
+                                <strong>Smokes:</strong> {{ profil.smokes }} <br>
+                                <strong>Religion:</strong> {{ profil.religion }} <br>
+                                <strong>Origin:</strong> {{profil.origin}} <br>
+                                <strong>Language:</strong> {{profil.langue}}<br>
+                                <strong>Hobbies:</strong> {{profil.hobbies}} <br>
                             </p>
                     </div>
                     <div class="bio">
-                        <p><strong>Bio:</strong> <br> sortons ensemble, je veux me perdre dans tes yeux UwU.</p>
-                    </div>
-
-                    <div class="preferences">
-                        <h3>Préferences</h3>
-                        <div class="block">
-                            <p>
-                                <strong>Education:</strong> Master's Degree <br>
-                                <strong>Location:</strong> London, United Kingdom <br>
-                                <strong>Language:</strong> English <br>
-                                <strong>Hobbies:</strong> Traveling, Photography <br>
-                            </p>
-                    </div>
+                        <p><strong>Bio:</strong> <br> {{profil.bio}}</p>
                     </div>
                 </div>
             </div>

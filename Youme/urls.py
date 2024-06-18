@@ -19,14 +19,12 @@ urlpatterns = [
     path('personality_test/', personality_test, name='personality_test'),
     path('preferences_intro/', preferences_intro, name='preferences_intro'),
     path('preferences_form/', preferences_form, name='preferences_form'),
-    path('maj_profile/', maj_profile, name='maj_profile'),
     ######################## SUGGESTIONS ET RECHERCHES #########################
     path('suggestion_profiles/', suggestion_profiles, name='suggestion_profiles'),
     path('recherche_profiles/', recherche_profiles, name='recherche_profiles'),
     ############## PAGES D'AFFICHAGE DE PROFIL DES UTILISATEURS ################
     path('profile/', profile ,name='profile'),
-    #path('personality_test/', personality_test_view, name='personality_test'),
-    #path('view_profiles/', view_profiles, name='view_profiles'),
+    path('profile_detail/<int:pk>/', profile_detail, name='profile_detail')
     ########################### MESSAGERIE INSTANTANEE & CHATBOT ################
 ]
 

@@ -34,7 +34,6 @@ def inscription(request):
                 messages.error(request, 'Cet email est déjà utilisé')
             else:
                 messages.success(request, 'Votre compte a été créé avec succès!')
-            # return redirect('maj_profile')
             return redirect('profile_intro')
     else:
         form = InscriptionForm()
@@ -106,30 +105,6 @@ def preferences_form(request):
 #####################################################################################################
 
 @login_required
-def maj_profile(request):
-    utilisateur = request.user
-    try:
-        profile, created = Profile.objects.get_or_create(utilisateur=utilisateur)
-    except Exception as e:
-        # Ajouter du logging ou imprimer l'erreur pour une meilleure compréhension
-        print(f"Erreur lors de la récupération ou de la création du profil: {e}")
-        # Vous pouvez également utiliser logging pour une meilleure pratique en production
-        # import logging
-        # logger = logging.getLogger(__name__)
-        # logger.error(f"Erreur lors de la récupération ou de la création du profil: {e}")
-        raise e
-    if request.method == 'POST':
-        form = PersonalityTestForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Profil mis à jour avec succès')
-            return redirect('suggestion_profiles')
-    else:
-        form = PersonalityTestForm(instance=profile)
-    
-    return render(request, 'profile/maj_profile.html', {'form': form})
-
-@login_required
 def profile(request):
     profile = Profile.objects.get(utilisateur=request.user)
     preferences = Préférences.objects.get(user=request.user)
@@ -151,9 +126,11 @@ def profile(request):
     return render(request, 'profile/profile.html', context)
 
 def profile_detail(request, pk):
-    info = Profile.objects.get(pk=pk)
+    info_profil = Profile.objects.get(pk=pk)
+    info_preferences = Préférences.objects.get(pk=pk)
     context = {
-        "info": info
+        "profil": info_profil,
+        "preferences" : info_preferences,
     }
     return render(request, "profile/profile_detail.html", context)
 
