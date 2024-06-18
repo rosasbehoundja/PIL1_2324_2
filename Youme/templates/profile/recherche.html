@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YouMe - Recherche</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href='{% static "css/recherche.css" %}'>
+    <style>
+        .dropdown-menu {
+            padding: 20px;
+            width: 300px;
+        }
+
+        .profile-img img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .menu {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            background: gray;
+            width: 220px;
+            border-radius: 10px;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.5s, opacity 0.5s;
+        }
+
+        .menu.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .menu::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            width: 20px;
+            height: 20px;
+            background: gray;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+
+<header class="header bg-transparent text-center py-3">
+    <div class="youme">
+        <img src='{% static "images/logomoise.svg" %}' alt="you&Me">
+    </div>
+    <div class="navigate" id="navbar">
+        <ul class="nav nav-pills nav-fill gap-2 p-1 small rounded-5 shadow-sm" id="pillNav2" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active rounded-5" id="home-tab2" href="{% url 'recherche_profiles' %}" role="tab" aria-selected="true">Recherche</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link rounded-5" id="profile-tab2" href="{% url 'suggestion_profiles' %}" role="tab" aria-selected="false">Suggestions</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link rounded-5" id="contact-tab2" href="#" role="tab" aria-selected="false">Messagerie</a>
+            </li>
+        </ul>
+    </div>
+    <div class="profile-dropdown">
+        <div class="profile-img">
+          {% if user.photo.value %}
+          <img src="{{ profile.photo.url }}" alt="Photo de profil">
+          {% else %}
+          <img src="{% static 'images/profile.png' %}" alt="">
+          {% endif %}
+        </div>
+        <div class="menu">
+            <ul>
+                <li>
+                    <a href="{% url 'profile' %}">Mon Profil</a>
+                </li>
+                <li>
+                    <a href="{% url 'deconnexion' %}">Déconnexion</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<!-- RESULTATS RECHERCHES -->
+<div class="container mt-5">
+
+    <h2 class="text-center mt-4">Recherche de profils</h2>
+
+    <!-- Bouton de filtres -->
+    <div class="dropdown text-center mb-4">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownFilterButton" data-bs-toggle="dropdown" aria-expanded="false">
+            Filtres
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownFilterButton">
+            <form method="GET" action="{% url 'recherche_profiles' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary w-100">Appliquer</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Profils correspondant à la recherche -->
+    <div class="row mt-4">
+        <!-- Profil 1 -->
+        {% for profile in profiles %}
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                {% if profile.photo %}
+                <img src="{{ profile.photo.url }}" alt="Photo de {{ profile.nom }}" style="width:100px;height:auto;">
+                {% else %}
+                <img src="{% static 'images/profile.png' %}" alt="Photo de {{ profile.nom }}" style="width:100px;height:auto;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'profile_detail' profile.pk %}">{{ profile.utilisateur.nom }}</a>, {{ profile.age }}</h5>
+                    <p class="card-text">Sexe : {{ profile.sex }} </p>
+                    <p class="card-text">Localisation: {{ profile.location }}</p>
+                    <p class="card-text">Centres d'intérêts: {{ profile.hobbies }}</p>
+                    <p class="card-text">Orientation: {{ profile.orientation }}</p>
+                    <p class="card-text">Silhouette: {{ profile.body_type }}</p>
+                </div>
+                <a href="#" class="btn btn-primary">Envoyer un message</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+
+    /*APPARITION USER */
+    const userToggle = document.querySelector('.profile-img');
+    const dropdown = document.querySelector('.menu');
+
+    userToggle.addEventListener('click', () => {
+        if (dropdown.classList.contains('active')) {
+            dropdown.classList.remove('active');
+            document.removeEventListener('click', handleClickOutside);
+        } else {
+            dropdown.classList.add('active');
+            document.addEventListener('click', handleClickOutside);
+        }
+    });
+
+    function handleClickOutside(event) {
+        if (!event.target.closest('.profile-dropdown')) {
+            dropdown.classList.remove('active');
+            document.removeEventListener('click', handleClickOutside);
+        }
+    }
+</script>
+</body>
+</html>

@@ -75,6 +75,17 @@ class PreferencesForm(forms.ModelForm):
         if len(data) != 3:
             raise forms.ValidationError("Veuillez sélectionner trois hobbies.")
         return data
+    
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['photo', 'age', 'height', 'sex', 'orientation', 'body_type', 'diet', 'drink', 'drugs', 'education', 'location', 'offspring', 'smokes', 'religion', 'origin', 'langue', 'hobbies', 'bio']
+        widgets = {
+            'bio': forms.Textarea(attrs={'rows': 4}),
+            'hobbies': forms.CheckboxSelectMultiple,
+        }
+
 
 class SuggestionFilterForm(forms.Form):
     Localisation = forms.CharField(required=False)

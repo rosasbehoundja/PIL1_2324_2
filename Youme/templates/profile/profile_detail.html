@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Info</title>
+    <link rel="stylesheet" href='{% static "css/profile_detail.css" %}'>
+</head>
+<body>
+    <div class="card">
+
+        
+        <div class="content">
+            
+            <div class="imgBox">
+                {% if profile.photo %}
+                <img src="{{ profil.photo.url }}" alt="Photo de {{ profil.nom }}" style="width: 200px;height:auto;">
+                {% else %}
+                <img src="{% static 'images/profile.png' %}" alt="Photo de {{ profil.nom }}" style="width:100px;height:auto;">
+                {% endif %}
+            </div>
+
+            <div class="header">
+            <h3>{{ profil.utilisateur.nom }}<span>, {{ profil.age }}</span></h3>
+            </div>
+
+            <div class="details">
+                <div class="info">
+                    <div class="block">
+                            <p>
+                                <strong>Height:</strong> {{ profil.height }} <br>
+                                <strong>Sex:</strong> {{ profil.sex }} <br>
+                                <strong>Orientation:</strong> {{ profil.orientation }} <br>
+                                <strong>Body Type:</strong> {{ profil.body_type }} <br>
+                                <strong>Diet:</strong> {{ profil.diet }} <br>
+                                <strong>Drink:</strong> {{profil.drink}} <br>
+                                <strong>Drugs:</strong> {{ profil.drugs }}
+                            </p>
+                    </div>
+                    <div class="block">
+                            <p>
+                                <strong>Education:</strong> {{ profil.education }} <br>
+                                <strong>Location:</strong> {{ profil.location }} <br>
+                                <strong>Offspring:</strong> {{ profil.offspring}} <br>
+                                <strong>Smokes:</strong> {{ profil.smokes }} <br>
+                                <strong>Religion:</strong> {{ profil.religion }} <br>
+                                <strong>Origin:</strong> {{profil.origin}} <br>
+                                <strong>Language:</strong> {{profil.langue}}<br>
+                                <strong>Hobbies:</strong> {{profil.hobbies}} <br>
+                            </p>
+                    </div>
+                    <div class="bio">
+                        <p><strong>Bio:</strong> <br> {{profil.bio}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actionBtn">
+                <button>Like</button>
+                <button>Chat</button>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
