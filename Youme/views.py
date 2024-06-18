@@ -228,3 +228,8 @@ def recherche_profiles(request):
     return render(request, 'profile/recherche.html', context)
 
 
+
+########################################### MESSAGERIE #########################################################
+
+
+
