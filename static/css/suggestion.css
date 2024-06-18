@@ -1,0 +1,168 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(-45deg, white, #e36f6f);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  width: 100%;
+  background-color: transparent;
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.youme img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.profile-img img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  top: 70px;
+  right: 0;
+  background: gray;
+  width: 220px;
+  border-radius: 10px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s;
+}
+
+.menu.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.menu::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  background: gray;
+  transform: rotate(45deg);
+}
+
+.menu h3 {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.menu ul {
+  padding: 0;
+  list-style: none;
+}
+
+.menu li {
+  padding: 10px 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.menu li:hover {
+  background: #FF5757;
+  color: white;
+}
+
+.menu li:hover a {
+  color: white;
+}
+
+.menu a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  flex-grow: 1;
+}
+
+.menu .icon {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.profile-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.profile-image img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.profile-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+}
+
+.profile-actions button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 18px;
+  width: 50px;
+  height: 50px;
+}
+
+.profile-actions .reject-button {
+  background-color: #ff4d4d;
+}
+
+.profile-actions .like-button {
+  background-color: #28a745;
+}
+
+.profile-actions .superlike-button {
+  background-color: #ffc107;
+}

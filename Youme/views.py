@@ -129,19 +129,6 @@ def maj_profile(request):
     
     return render(request, 'profile/maj_profile.html', {'form': form})
 
-# @login_required
-# def profile(request):
-#     profile = Profile.objects.get(utilisateur=request.user)
-    
-#     if request.method == 'POST':
-#         form = ProfileForm(request.POST, request.FILES, instance=profile)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('profile')
-#     else:
-#         form = ProfileForm(instance=profile)
-
-#     return render(request, 'profile/profile.html', {'form': form})
 @login_required
 def profile(request):
     profile = Profile.objects.get(utilisateur=request.user)
@@ -162,6 +149,13 @@ def profile(request):
     }
 
     return render(request, 'profile/profile.html', context)
+
+def profile_detail(request, pk):
+    info = Profile.objects.get(pk=pk)
+    context = {
+        "info": info
+    }
+    return render(request, "profile/profile_detail.html", context)
 
 
 ####################################################### SUGGESTIONS & RECHERCHES DE PROFILS #########################################
@@ -246,11 +240,14 @@ def recherche_profiles(request):
     if not request.user.is_active:
         return redirect('connexion')
     utilisateurs = Profile.objects.all()
+    profile = Profile.objects.get(utilisateur=request.user)
 
     utilisateurs_filter = UserFilter(request.GET, queryset=utilisateurs)
 
     context = {'form' : utilisateurs_filter.form,
-               'profiles' : utilisateurs_filter.qs }
-    return render(request, 'profile/recherche_profiles.html', context)
+               'profiles' : utilisateurs_filter.qs,
+                'user' : profile
+             }
+    return render(request, 'profile/recherche.html', context)
 
 

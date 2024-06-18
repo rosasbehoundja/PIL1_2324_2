@@ -13,7 +13,7 @@ class UserFilter(django_filters.FilterSet):
             'age': ['lt', 'gt'],
             'sex': ['exact'],
             'orientation': ['exact'],
-            # 'body_type':['exact'],
-            'location' : ['istartswith'],
-            'hobbies': ['istartswith'],
+            # 'body_type':['exact'],  
+            'location' : ['icontains'],
+            'hobbies': ['icontains'],
         }

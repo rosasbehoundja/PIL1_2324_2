@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You&Me-Suggestions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="Projet-Int-grateur\FrontEnd\gedeon\css\suggestion.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="bg-transparent text-center py-3">
+
+        <div class="youme">
+        <img src="Projet-Int-grateur\FrontEnd\gedeon\img\logo moïse.svg" alt="you&Me">
+        </div>
+  
+        <div class="navigate">
+          <ul class="nav nav-pills nav-fill gap-2 p-1 small rounded-5 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-black); --bs-nav-pills-link-active-bg: var(--bs-red);">
+            <li class="nav-item" role="presentation">
+            <button class="nav-link rounded-5" id="home-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true">Recherche</button>
+            </li>
+            <li class="nav-item" role="presentation">
+            <button class="nav-link active rounded-5" id="profile-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Suggestions</button>
+            </li>
+            <li class="nav-item" role="presentation">
+            <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false">Contact</button>
+            </li>
+          </ul>  
+  
+          <div class="profile-dropdown">
+  
+                <div class="profile-img">
+                <img src="Projet-Int-grateur\FrontEnd\gedeon\img\profile.jpg" alt="">
+                </div>
+  
+                <div class="menu">
+                <h3>Someone Famous</h3>
+                <ul>
+            <li>
+              <span class="icon">
+                <img src="Projet-Int-grateur\FrontEnd\gedeon\img\id-card-outline.svg" alt="">
+              </span>
+              <a href="#">My Profile</a>
+            </li>
+  
+            <li>
+              <span class="icon">
+                <img src="Projet-Int-grateur\FrontEnd\gedeon\img\chatbubble-ellipses-outline.svg" alt="">
+              </span>
+              <a href="#">Inbox</a>
+            </li>
+  
+            <li>
+              <span class="icon">
+                <img src="Projet-Int-grateur\FrontEnd\gedeon\img\settings-outline.svg" alt="">
+              </span>
+              <a href="#">Settings</a>
+            </li>
+            <li>
+              <span class="icon">
+                <img src="Projet-Int-grateur\FrontEnd\gedeon\img\log-out-outline.svg" alt="">
+              </span>
+              <a href="#">Logout</a>
+            </li>
+                </ul>
+                </div>
+  
+          </div>
+        </div>
+      
+    </header>
+    
+    <div class="main-contenter">
+        <div class="filter">
+            <input type="checkbox" id="nouveaux" name="nouveaux">
+            <label for="nouveaux">Nouveaux</label>
+            <input type="checkbox" id="photo" name="photo">
+            <label for="photo">Avec photo</label>
+            <input type="checkbox" id="favoris" name="favoris">
+            <label for="favoris">Favoris</label>
+        </div>
+        <div class="notification">
+            Profils compatibles sélectionnés pour vous aujourd'hui. <br> Consultez chaque jour cette liste pour en découvrir de nouveaux !
+        </div>
+        <div class="profile-list2">
+            <div class="profile2" id="profile-1">
+                <div class="profile-header">
+                    <span class="new">NOUVEAU</span>
+                    <span class="age">74</span>
+                </div>
+                <div class="profile-info">
+                    <div class="profile-image">
+                        <img src="Projet-Int-grateur\FrontEnd\gedeon\img\herisson.jpgg" alt="Nathalie">
+                    </div>
+                    <div class="profile-details">
+                        <h2>Nathalie, 20</h2>
+                        <p>Étudiante</p>
+                        <p>Jaunde (Yaoundé)</p>
+                    </div>
+                    <div class="profile-actions">
+                        <button onclick="sendMessage('profile-1')">Envoyer un message</button>
+                    </div>
+                </div>
+            </div>
+            <div class="profile2" id="profile-2">
+                <div class="profile-header">
+                    <span class="new">NOUVEAU</span>
+                    <span class="age">74</span>
+                </div>
+                <div class="profile-info">
+                    <div class="profile-image">
+                        <img src="Projet-Int-grateur\FrontEnd\gedeon\img\herisson.jpg" alt="Nathalie">
+                    </div>
+                    <div class="profile-details">
+                        <h2 id="Nom">Nathalie, 20</h2>
+                        <p id="profession">Étudiante</p>
+                        <p id="localisation">Jaunde (Yaoundé)</p>
+                    </div>
+                    <div class="profile-actions">
+                        <button onclick="sendMessage('profile-1')">Envoyer un message</button>
+                    </div>
+                </div>
+            </div>
+            <div class="profile2" id="profile-2">
+                <div class="profile-header">
+                    <span class="new">NOUVEAU</span>
+                    <span class="age">74</span>
+                </div>
+                <div class="profil-info">
+                    <div class="profile-image">
+                        <img src="Projet-Int-grateur\FrontEnd\gedeon\img\herisson.jpg" alt="Nathalie">
+                    </div>
+                    <div class="profile-details">
+                        <h2 id="Nom">Nathalie, 20</h2>
+                        <p id="profession">Étudiante</p>
+                        <p id="localisation">Jaunde (Yaoundé)</p>
+                    </div>
+                    <div class="profile-actions">
+                        <button onclick="sendMessage('profile-1')">Envoyer un message</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="Projet-Int-grateur\FrontEnd\gedeon\js\suggestion.js"></script>
+</body>
+
+</html>

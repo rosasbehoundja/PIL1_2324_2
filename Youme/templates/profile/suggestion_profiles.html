@@ -6,176 +6,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recommandations de Profils</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
-    <style>
-        /* CSS pour styliser la page */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f5;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .header {
-            width: 100%;
-            padding: 10px;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header .user-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .header .user-info img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .logout-button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-
-        .container {
-            max-width: 600px;
-            width: 100%;
-            padding: 20px;
-        }
-
-        .filter-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .search-button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        .profile-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .profile-card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-            padding: 20px;
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            position: relative;
-        }
-
-        .profile-image img {
-            width: 100%;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
-        .profile-info {
-            margin-bottom: 20px;
-        }
-
-        .profile-actions {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .reject-button, .like-button, .superlike-button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 50%;
-            font-size: 18px;
-            width: 50px;
-            height: 50px;
-        }
-
-        .reject-button {
-            background-color: #ff4d4d;
-        }
-
-        .like-button {
-            background-color: #28a745;
-        }
-
-        .superlike-button {
-            background-color: #ffc107;
-        }
-
-        .navbar {
-            position: relative;
-            left: 190px;
-            margin-bottom: 20px;
-        }
-    </style>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href='{% static "css/suggestion.css" %}'>
 </head>
 <body>
-    <div class="header">
-        <!-- <div class="user-info">
-            <img src="{{ user.profile_picture.url }}" alt="Photo de {{ user.username }}">
-            <span>{{ user.username }}</span>
-        </div> -->
-        <a href="{% url 'deconnexion' %}" class="logout-button">Déconnexion</a>
-    </div>
-
-    <div class="navbar col-md-6">
-        <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-light rounded-5 shadow-sm" id="pillNav2" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link rounded-5" id="search-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false"><a href="{% url 'recherche_profiles' %}">Recherche</a></button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active rounded-5" id="suggestion-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true"><a href="{% url 'suggestion_profiles' %}">Suggestions</a></button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active rounded-5" id="suggestion-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true"><a href="{% url 'profile' %}">Profil</a></button>
-            </li>
-        </ul>
-    </div>
+    <header class="header bg-transparent text-center py-3">
+        <div class="youme">
+            <img src='{% static "images/logomoise.svg" %}' alt="you&Me">
+        </div>
+        <div class="navigate" id="navbar">
+            <ul class="nav nav-pills nav-fill gap-2 p-1 small rounded-5 shadow-sm" id="pillNav2" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active rounded-5" id="home-tab2" href="{% url 'recherche_profiles' %}" role="tab" aria-selected="true">Recherche</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link rounded-5" id="profile-tab2" href="{% url 'suggestion_profiles' %}" role="tab" aria-selected="false">Suggestions</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link rounded-5" id="contact-tab2" href="#" role="tab" aria-selected="false">Messagerie</a>
+                </li>
+            </ul>
+        </div>
+        <div class="profile-dropdown">
+            <div class="profile-img">
+                <img src="profile.jpg" alt="Profile Image">
+            </div>
+            <div class="menu">
+                <ul>
+                    <li>
+                        <a href="{% url 'profile' %}">Mon Profil</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'deconnexion' %}">Déconnexion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
     <div class="container">
-        <h2>Recommandations de Profils</h2>
-        <form method="GET" action="{% url 'suggestion_profiles'%}" id="filter-form" class="filter-form">
+        <h2 class="text-center">Recommandations de Profils</h2>
+        <form method="GET" action="{% url 'suggestion_profiles'%}" id="filter-form" class="filter-form mb-4">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" value="Rechercher" class="search-button">
+            <button type="submit" class="btn btn-primary search-button w-100">Rechercher</button>
         </form>
+
         <div id="profile-container" class="profile-container">
             {% for profile in recommended_profiles %}
             <div class="profile-card">
                 <div class="profile-image">
                     {% if profile.photo %}
-                    <img src="{{ profile.photo.url }}" alt="Photo de {{ profile.nom }}" style="width:100px;height:auto;">
+                    <img src="{{ profile.photo.url }}" alt="Photo de {{ profile.nom }}">
                     {% else %}
-                    <img src="{% static 'images/profile.png' %}" alt="Photo de {{ profile.nom }}" style="width:100px;height:auto;">
+                    <img src="{% static 'images/profile.png' %}" alt="Photo de {{ profile.nom }}">
                     {% endif %}
                 </div>
                 <div class="profile-info">
@@ -195,50 +80,7 @@
         </div>
     </div>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js"></script>
-    <script>
-        // Ajouter ici le JS pour rendre la page interactive
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterForm = document.getElementById('filter-form');
-            filterForm.reset();
-            const profileContainer = document.getElementById('profile-container');
-            const profiles = document.querySelectorAll('.profile-card');
-            let currentIndex = 0;
-
-            function showProfile(index) {
-                profiles.forEach((profile, i) => {
-                    profile.style.display = i === index ? 'block' : 'none';
-                });
-            }
-
-            function nextProfile() {
-                if (currentIndex < profiles.length - 1) {
-                    currentIndex++;
-                    showProfile(currentIndex);
-                }
-            }
-
-            function prevProfile() {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                    showProfile(currentIndex);
-                }
-            }
-
-            document.querySelectorAll('.reject-button').forEach(button => {
-                button.addEventListener('click', nextProfile);
-            });
-
-            document.querySelectorAll('.like-button').forEach(button => {
-                button.addEventListener('click', nextProfile);
-            });
-
-            document.querySelectorAll('.superlike-button').forEach(button => {
-                button.addEventListener('click', nextProfile);
-            });
-
-            showProfile(currentIndex);
-        });
-    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src='{% static "js/suggestion.js" %}'></script>
 </body>
 </html>
