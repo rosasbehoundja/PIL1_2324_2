@@ -38,17 +38,17 @@
       width: 110px;
       height: 110px;
       border-radius: 150px;
-      overflow: hidden;
+      
       transition: 0.5s;
       }
   
       header .youme img {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 110%;
-          object-fit: cover;
+          position: relative;
+          width: 500px;
+          height: 500px;
+          bottom:160px;
+          right:250px;
+          
       }
   
       header .filterBx {
@@ -71,7 +71,7 @@
   
       header .filterBx:hover {
       transform: translateY(-5px);
-      background: red;
+      
       font-size: larger;
       }
   
@@ -182,7 +182,7 @@
       }
   
       .profile-dropdown li:hover a {
-        color: #ff5d94;
+        color: white;
       }
   
       .profile-dropdown .icon {
@@ -360,7 +360,7 @@
         </div>
 
         <div class="menu">
-        <h3>Someone Famous</h3>
+        
         <ul>
           <li>
             <span class="icon">
@@ -369,19 +369,6 @@
             <a href="#">My Profile</a>
           </li>
 
-          <li>
-            <span class="icon">
-              <img src="C:\Users\ALLOGNON Gabin\OneDrive\Bureau\Projet-Int-grateur\FrontEnd\gedeon\img\chatbubble-ellipses-outline.svg" alt="">
-            </span>
-            <a href="#">Inbox</a>
-          </li>
-
-          <li>
-            <span class="icon">
-              <img src="C:\Users\ALLOGNON Gabin\OneDrive\Bureau\Projet-Int-grateur\FrontEnd\gedeon\img\settings-outline.svg" alt="">
-            </span>
-            <a href="#">Settings</a>
-          </li>
           <li>
             <span class="icon">
               <img src="C:\Users\ALLOGNON Gabin\OneDrive\Bureau\Projet-Int-grateur\FrontEnd\gedeon\img\log-out-outline.svg" alt="">
@@ -407,7 +394,7 @@
     <div class="container mt-5">
 
 
-      <h2 class="text-center mt-4">Recherche de profils</h2>
+      <h2 class="text-center mt-4 text-dark">Recherche de profils</h2>
   
       <!-- Profils correspondant à la recherche -->
       <div class="row mt-4">
@@ -422,6 +409,7 @@
             <p class="card-text">Centres d'intérêts: Yoga, Musique, Voyages</p>
           </div>
         </div>
+        <button class="col-md-3" style="background-color: #FF5757;">Message</button>
         </div>
         <!-- Profil 2 -->
         <div class="col-md-3 mb-4">
@@ -434,6 +422,7 @@
             <p class="card-text">Centres d'intérêts: Cinéma, Cuisine, Sports</p>
           </div>
         </div>
+        <button class="col-md-3" style="background-color: #FF5757;">Message</button>
         </div>
         <!-- Profil 3 -->
         <div class="col-md-3 mb-4">
@@ -443,9 +432,10 @@
             <h5 class="card-title">Emily Johnson</h5>
             <p class="card-text">Age: 25</p>
             <p class="card-text">Localisation: Paris, France</p>
-            <p class="card-text">Centres d'intérêts: Art, Lecture, Danse</p>
+            <p class="card-text">Centres d'intérêts: Art, Lecture, Danse, faire la vaisselle</p>
           </div>
         </div>
+        <button class="col-md-3" style="background-color: #FF5757;">Message</button>
         </div>
         <!-- Profil 4 -->
         <div class="col-md-3 mb-4">
@@ -458,6 +448,7 @@
             <p class="card-text">Centres d'intérêts: Photographie, Nature, Technologie</p>
           </div>
         </div>
+        <button class="col-md-3" style="background-color: #FF5757;">Message</button>
         </div>
         <!-- Profil 5 -->
         <div class="col-md-3 mb-4">
@@ -470,6 +461,7 @@
             <p class="card-text">Centres d'intérêts: Anime, Jeux vidéo, Technologie</p>
           </div>
         </div>
+        <button class="col-md-3" style="background-color: #FF5757;">Message</button>
         </div>
         <!-- Profil 6 -->
         <div class="col-md-3 mb-4">
@@ -482,6 +474,7 @@
             <p class="card-text">Centres d'intérêts: Cuisine, Musique, Voyages</p>
           </div>
         </div>
+        <button class="col-md-3" style="background-color: #FF5757;">Message</button>
         </div>
         <!-- Profil 7 -->
         <div class="col-md-3 mb-4">
@@ -494,6 +487,7 @@
             <p class="card-text">Centres d'intérêts: Danse, Musique, Cinéma</p>
           </div>
         </div>
+        <button class="col-md-3" style="background-color: #FF5757;">Message</button>
         </div>
         <!-- Profil 8 -->
         <div class="col-md-3 mb-4">
@@ -506,6 +500,7 @@
             <p class="card-text">Centres d'intérêts: Voyages, Art, Cuisine</p>
           </div>
         </div>
+        <button class="col-md-3" style="background-color: #FF5757;">Message</button>
         </div>
       </div>
     </div>
