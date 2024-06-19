@@ -18,14 +18,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 #Add email_sending configuration
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 # EMAIL_HOST_USER = 'youme@gmail.com'
 EMAIL_HOST_USER = 'pil1.youme@gmail.com'
-EMAIL_HOST_PASSWORD = '20077'
+EMAIL_HOST_PASSWORD = 'arkkdsgcnfyjsrlw'
+DEFAULT_FROM_MAIL = 'pil1.youme@gmail.com'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -42,6 +43,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'django_cleanup.apps.CleanupConfig',
+    'django_htmx', 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,11 +53,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
+    'channels',
     #'accounts',
     'Youme',
     'crispy_forms',
     'crispy_bootstrap5',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -63,6 +70,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_htmx.middleware.HtmxMiddleware',
 ]
 
 ROOT_URLCONF = 'PIL1_2324_2.urls'
@@ -84,6 +92,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'PIL1_2324_2.wsgi.application'
+ASGI_APPLICATION = 'PIL1_2324_2.asgi.application'
+
+CHANNELS_LAYERS = {
+    'default' : {
+        "BACKEND" : "channels.layers.InMemoryChannelLayer",
+    }
+}
 
 
 # Database

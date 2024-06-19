@@ -1,0 +1,6 @@
+<h2>Conversations</h2>
+<ul>
+    {% for conversation in conversations %}
+        <li><a href="{% url 'conversation_detail' conversation.pk %}">{{ conversation }}</a></li>
+    {% endfor %}
+</ul>

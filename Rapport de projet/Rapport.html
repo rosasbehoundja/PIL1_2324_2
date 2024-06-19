@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,17 +10,19 @@
 <body>
     <div class="container">
     <header>
-    <h1>Rapport de projet-Groupe2</h1>
+    <h1>Rapport de projet : PIL1_2324_2</h1>
     </header>
-    <section>
-        <h2>Introduction</h2>
-        <p>Ce document rapporte la conception, le developpement et la mise en oeuvre du Projet de site web de rencontre réalisé par le groupe 2</p>
-    </section>
+ 
     <section>
         <h2>Objectifs du Projet</h2>
         <ul>
-
+               <strong>
+                Réalisation d'un service de rencontres en ligne (à l’instar de Meetic, Tinder, Happn ou Hinge) sous la forme d’une application web.
+               </strong>        
         </ul>
+    </section>
+    <section>
+        <p>Ce document rapporte la conception, le developpement et la mise en oeuvre du Projet de site web de rencontre réalisé par le groupe 2</p>
     </section>
     <section>
         <h2>Equipe de projets</h2>
@@ -82,5 +84,239 @@
     <p>Nous tenons à remercier tous les membres du groupe pour leur travail acharné et leur dévouement tout au long du projet. Un merci spécial à l'administration de l'IFRI et aux professeurs pour leur soutien et leurs accompagnement.</p>
 </section>
 </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport de Projet - Service de Rencontres en Ligne</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .subsection {
+            margin-bottom: 15px;
+        }
+        .list {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rapport de Projet - PIL1_2324_2</h1>
+        
+        <div class="section">
+            <p><strong>Nom du Groupe:</strong> PIL1_2324_2</p>
+            <p><strong>L'équipe étant constituée de 10 membres, nous avons opté dès l'entame du projet pour une approche assez particulière du projet.</strong></p>
+            <p>Nous avons constitué 3 sous-groupes :</p>
+            <ul class="list">
+                <li>Equipe Front-end: Chargée de la rédaction du code source de l’interface web, côté client</li>
+                <li>Equipe Back-end: Chargée du développement de l'architecture serveur du projet ainsi que de la structure de la base de données</li>
+                <li>Equipe multimedia: Chargée de définir une mini charte graphique ainsi que de la collecte et la définition de profils fictifs à intégrer dans la base de données</li>
+            </ul>
+            <p>La tâche de l'équipe multimedia étant exécutée au bout de 10 jours, ces derniers ont rejoint l'équipe Front-end afin d'accélérer la réalisation des pages.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Mode de Fonctionnement Interne du Groupe</h2>
+            <p>Chaque membre de notre équipe a joué un rôle crucial dans la réalisation de ce projet :</p>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nom et Prénom</th>
+                                <th scope="col">Filière</th>
+                                <th scope="col">Equipe</th>
+                                <th scope="col">Tâches réalisées</th>
+                                <th scope="col">Pourcentage de contribution</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ALLOGNON Moise</td>
+                                <td>IA</td>
+                                <td>Equipe Front-End</td>
+                                <td>
+                                    <ul>
+                                        <li>Développement de l'interface de la page d'accueil en HTML, CSS et JavaScript</li>
+                                        <li>Moise a veillé à l'application de la charte graphique sur toutes les pages</li>
+                                        <li>Hébergement du code source sur Git</li>
+                                    </ul>
+                                </td>
+                                <td>12%</td>
+                            </tr>
+                            <tr>
+                                <td>ADEOTI Abdoul</td>
+                                <td>SEIoT</td>
+                                <td>Equipe Front-end</td>
+                                <td>
+                                    <ul>
+                                        <li>Développement de l'interface des pages de connexion, d'inscription & des formulaires de soumission des informations personnelles des utilisateurs en HTML, CSS et JavaScript</li>
+                                    </ul>
+                                </td>
+                                <td>12%</td>
+                            </tr>
+                            <tr>
+                                <td>GODONOU Gedeon</td>
+                                <td>SEIoT</td>
+                                <td>Equipe Front-end</td>
+                                <td>
+                                    <ul>
+                                        <li>Développement de l'interface des pages de suggestions de profil et de consultation du profil utilisateur en HTML, CSS et JavaScript</li>
+                                        <li>Gedeon a veillé à ce que l'architecture des pages soit modulaire et extensible à l'avenir</li>
+                                    </ul>
+                                </td>
+                                <td>12%</td>
+                            </tr>
+                            <tr>
+                                <td>BOUNDA Nedh</td>
+                                <td>SI</td>
+                                <td>Equipe Back-end / Front-End</td>
+                                <td>
+                                    <ul>
+                                        <li>Mise en place de la messagerie instantanée</li>
+                                        <li>Base de données - Messagerie instantanée</li>
+                                        <li>Développement de l'interface de la page de messagerie instantée en HTML, CSS et JavaScript</li>
+                                    </ul>
+                                </td>
+                                <td>12%</td>
+                            </tr>
+                            <tr>
+                                <td>GBEDAGBE Honorat</td>
+                                <td>SEIoT</td>
+                                <td>Equipe Back-End</td>
+                                <td>
+                                    <ul>
+                                        <li>Fonctionnalité de récupération de mot de passe avec mail</li>
+                                        <li>Personnalisation du Dashboard Administrateur</li>
+                                    </ul>
+                                </td>
+                                <td>10%</td>
+                            </tr>
+                            <tr>
+                                <td>ASSOGBA Coraçon</td>
+                                <td>IM</td>
+                                <td>Equipe multimedia / Front-end</td>
+                                <td>
+                                    <ul>
+                                        <li>Création de maquettes et prototypes, design de l'interface utilisateur</li>
+                                        <li>Développement de l'interface de la page de recherche de profils en HTML & CSS</li>
+                                    </ul>
+                                </td>
+                                <td>8%</td>
+                            </tr>
+                            <tr>
+                                <td>SAGBO Guillaume</td>
+                                <td>GL</td>
+                                <td>Equipe multimedia / Front-end</td>
+                                <td>
+                                    <ul>
+                                        <li>Collecte des informations sur les profils fictifs intégrés dans la base de données</li>
+                                        <li>Création du squelette en HTML de la page de messagerie</li>
+                                    </ul>
+                                </td>
+                                <td>7%</td>
+                            </tr>
+                            <tr>
+                                <td>HOUMENOU Colombe</td>
+                                <td>GL</td>
+                                <td>Equipe multimedia / Front-end</td>
+                                <td>
+                                    <ul>
+                                        <li>Collecte des informations sur les profils fictifs intégrés dans la base de données</li>
+                                        <li>Développement du prototype en HTML et CSS de la page d'affichage et de modification de profil</li>
+                                    </ul>
+                                </td>
+                                <td>7%</td>
+                            </tr>
+                            <tr>
+                                <td>LADJOUAN Faridath</td>
+                                <td>SI</td>
+                                <td>Equipe multimedia</td>
+                                <td>
+                                    <ul>
+                                        <li>Collecte des informations sur les profils fictifs intégrés dans la base de données</li>
+                                    </ul>
+                                </td>
+                                <td>4%</td>
+                            </tr>
+                            <tr>
+                                <td>BEHOUNDJA Rosas</td>
+                                <td>IA</td>
+                                <td>Equipe Back-End / Front-end - Responsable du groupe</td>
+                                <td>
+                                    <ul>
+                                        <li>Coordination du projet, gestion des échéances</li>
+                                        <li>Développement des fonctionnalités serveur avec Python (Django) et intégration avec la base de données</li>
+                                        <li>Conception et gestion de la base de données MySQL</li>
+                                        <li>Rédaction de l'algorithme de suggestions de profils avec sklearn</li>
+                                        <li>Instructions de déploiement</li>
+                                        <li>Manuel d'utilisation de l'application</li>
+                                        <li>Rapport de projet</li>
+                                        <li>Hébergement du code source sur Git</li>
+                                    </ul>
+                                </td>
+                                <td>16%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Technologies utilisées</h2>
+            <ul class="list">
+                <li>Développement d'une application web utilisant HTML5, CSS3 et JavaScript pour le frontend.</li>
+                <li>Développement d'un backend avec Python et Django pour la logique métier.</li>
+                <li>Utilisation de MySQL pour la gestion de la base de données.</li>
+                <li>Utilisation de Git pour le versionnement du projet</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Instructions de Déploiement</h2>
+            <p>Pour déployer notre application, suivez ces étapes :</p>
+            <ol class="list">
+                <li>Téléchargez les fichiers du projet depuis notre dépôt GitHub.</li>
+                <li>Configurez votre environnement de développement avec Python, Flask et MySQL.</li>
+                <li>Importez la structure de la base de données fournie.</li>
+                <li>Modifiez les paramètres de configuration selon votre environnement (par exemple, les identifiants de la base de données).</li>
+                <li>Exécutez l'application en utilisant la commande <code>python app.py</code>.</li>
+            </ol>
+        </div>
+        
+        <div class="section">
+            <h2>Manuel d'Utilisation</h2>
+            <p>Notre application permet aux utilisateurs de :</p>
+            <ul class="list">
+                <li>Créer un profil et gérer leurs informations personnelles.</li>
+                <li>Parcourir les profils d'autres utilisateurs et interagir via des fonctionnalités de like et de chat.</li>
+                <li>Recevoir des suggestions de profils basées sur des algorithmes de matchmaking.</li>
+                <li>Configurer leurs préférences de recherche et de confidentialité.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -84,7 +84,7 @@
                     <img src="{% static 'images/profile.png' %}" alt="Photo de {{ profile.nom }}" style="width:100px;height:auto;">
                     {% endif %}
                     <div class="card-body">
-                        <h5 class="card-title"><a href="{% url 'profile_detail' profile.pk %}" style="color: #FF5757; text-decoration: none;">{{ profile.utilisateur.nom }}</a>, {{ profile.age }}</h5>
+                        <h5 class="card-title"><a href="{% url 'profile_detail' profile.id %}" style="color: #FF5757; text-decoration: none;">{{ profile.utilisateur.nom }}</a>, {{ profile.age }}</h5>
                         <p class="card-text">Sexe : {{ profile.sex }} </p>
                         <p class="card-text">Localisation: {{ profile.location }}</p>
                         <p class="card-text">Centres d'intérêts: {{ profile.hobbies }}</p>

@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 import datetime
+import shortuuid
+from django.conf import settings
 
 class UtilisateurManager(BaseUserManager):
     def create_user(self, email, nom, password=None):
@@ -95,3 +97,22 @@ class Préférences(models.Model):
     lifestyle = models.CharField(max_length=100, blank=True, null=True)
     hobbies = models.CharField(max_length=225, null=False, default= 'Lecture, Voyage')
     
+#################################################### MESSAGERIE ####################################################################
+
+class Conversation(models.Model):
+    participants = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='conversations')
+
+    def __str__(self):
+        return ", ".join([user.email for user in self.participants.all()])
+
+class Message(models.Model):
+    conversation = models.ForeignKey(Conversation, related_name='messages', on_delete=models.CASCADE)
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='messages', on_delete=models.CASCADE)
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.content
+
+    class Meta:
+        ordering = ['timestamp']

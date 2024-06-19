@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.contrib.auth import authenticate, login , logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -9,7 +9,6 @@ from .models import *
 from PIL1_2324_2.settings import EMAIL_HOST_USER
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
-from django.shortcuts import get_object_or_404
 from django.utils import timezone
 import logging
 from .recommandations import obtenir_recommandations
@@ -231,5 +230,14 @@ def recherche_profiles(request):
 
 ########################################### MESSAGERIE #########################################################
 
+@login_required
+def conversation_list(request):
+    conversations = request.user.conversations.all()
+    return render(request, 'chat/conversation_list.html', {'conversations': conversations})
 
-
+@login_required
+def conversation_detail(request, pk):
+    conversation = get_object_or_404(Conversation, pk=pk)
+    if request.user not in conversation.participants.all():
+        return redirect('conversation_list')
+    return render(request, 'chat/conversation_detail.html', {'conversation': conversation})

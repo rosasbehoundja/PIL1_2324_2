@@ -86,7 +86,7 @@ class ProfileForm(forms.ModelForm):
             'hobbies': forms.CheckboxSelectMultiple,
         }
 
-
+############################################### FILTRES ###############################################
 class SuggestionFilterForm(forms.Form):
     Localisation = forms.CharField(required=False)
     age_min = forms.IntegerField(required=False)
@@ -102,4 +102,4 @@ class SearchFilterForm(forms.Form):
     silhouette = forms.ChoiceField(choices=[('Athlétique', 'Athlétique'), ('Moyen', 'Moyen'), ('En surpoids', 'En surpoids'), ('Minces', 'Minces')])
     hobbies = forms.CharField(required=False, help_text="Séparez les centres d'intérêts par des virgules")
 
-################################################# MESSAGERIE #####################################################
+################################################# MESSAGERIE ##########################################################
