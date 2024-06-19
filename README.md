@@ -12,6 +12,4 @@
     - Se connecter à un dashboard personnalisé s'ils y sont autorisés
 
   Le développement de cette application nous a permis de mettre en oeuvre et d'étendre nos connaissances du framework Django et de sa logique. Le style de l'application a été fait à l'aide de Bootstrap5.
-Afin de la rendre plus facilement testable, le repository contient la base de données, la Secret Key Django, ainsi que des informations de connexions. Les instructions ont été rajoutées.
-    
-
+Afin de la rendre plus facilement testable, le repository contient la base de données, la Secret Key Django, ainsi que des informations de connexions. Les instructions de déploiement ont été rajoutées dans une documentation sur le dépôt.
