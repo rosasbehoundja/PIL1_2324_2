@@ -1,0 +1,44 @@
+<!-- templates/discussion_detail.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h2>Discussion avec 
+    {% if discussion.user1 != request.user %}
+        {{ discussion.user1.nom }}
+    {% else %}
+        {{ discussion.user2.nom }}
+    {% endif %}
+</h2>
+<div id="chat-log">
+    {% for message in messages %}
+    <p><strong>{{ message.sender }}:</strong> {{ message.text }}</p>
+    {% endfor %}
+</div>
+
+<form id="chat-message-form">
+    <input type="text" id="chat-message-input" autocomplete="off">
+    <input type="submit" value="Envoyer">
+</form>
+
+<script>
+    const discussionId = "{{ discussion.id }}";
+    const chatSocket = new WebSocket(
+        'ws://' + window.location.host + '/ws/chat/' + discussionId + '/'
+    );
+
+    chatSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        document.querySelector('#chat-log').innerHTML += ('<p><strong>' + data.sender + ':</strong> ' + data.message + '</p>');
+    };
+
+    document.querySelector('#chat-message-form').onsubmit = function(e) {
+        e.preventDefault();
+        const messageInputDom = document.querySelector('#chat-message-input');
+        const message = messageInputDom.value;
+        chatSocket.send(JSON.stringify({
+            'message': message
+        }));
+        messageInputDom.value = '';
+    };
+</script>
+{% endblock %}

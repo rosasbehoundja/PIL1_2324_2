@@ -1,0 +1,21 @@
+<!-- templates/discussion_list.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h2>Discussions</h2>
+<ul>
+    {% for discussion in discussions %}
+    <li>
+        <a href="{% url 'discussion_detail' discussion.id %}">
+            <h2>Discussion avec 
+                {% if discussion.user1 != request.user %}
+                    {{ discussion.user1.nom }}
+                {% else %}
+                    {{ discussion.user2.nom }}
+                {% endif %}
+            </h2>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

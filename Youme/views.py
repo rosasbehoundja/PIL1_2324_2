@@ -15,6 +15,7 @@ import logging
 from .recommandations import obtenir_recommandations
 from .filters import *
 from django.http import Http404
+from django.db.models import Q
 
 
 
@@ -229,3 +230,33 @@ def recherche_profiles(request):
                 'user' : profile
              }
     return render(request, 'profile/recherche.html', context)
+
+
+########################################## MESSAGERIE #######################################
+@login_required
+def discussion_list(request):
+    discussions = Discussion.objects.filter(user1=request.user) | Discussion.objects.filter(user2=request.user)
+    return render(request, 'chat/discussion_list.html', {'discussions': discussions})
+
+@login_required
+def discussion_detail(request, discussion_id):
+    discussion = get_object_or_404(Discussion, id=discussion_id)
+    messages = Message.objects.filter(discussion=discussion)
+    return render(request, 'chat/discussion_detail.html', {'discussion': discussion, 'messages': messages})
+
+@login_required
+def start_chat(request, user_id):
+    user1 = request.user
+    user2 = get_object_or_404(Utilisateur, id=user_id)
+
+    if user1 == user2:
+        return redirect('recherche_profiles')  # Empêcher un utilisateur de discuter avec lui-même
+
+    discussion = Discussion.objects.filter(
+        (Q(user1=user1) & Q(user2=user2)) | (Q(user1=user2) & Q(user2=user1))
+    ).first()
+
+    if not discussion:
+        discussion = Discussion.objects.create(user1=user1, user2=user2)
+
+    return redirect('discussion_detail', discussion_id=discussion.id)

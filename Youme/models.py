@@ -100,3 +100,22 @@ class Préférences(models.Model):
     lifestyle = models.CharField(max_length=100, blank=True, null=True)
     hobbies = models.CharField(max_length=225, null=False, default= 'Lecture, Voyage')
     
+
+
+################################# MESSAGERIE ##############################
+class Discussion(models.Model):
+    user1 = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='discussion_user1')
+    user2 = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='discussion_user2')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user1} - {self.user2}"
+
+class Message(models.Model):
+    discussion = models.ForeignKey(Discussion, on_delete=models.CASCADE)
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    text = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.sender}: {self.text[:20]}"
