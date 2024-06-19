@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'Youme',
     'crispy_forms',
     'crispy_bootstrap5',
-    'messagerie',
+    # 'messagerie',
 ]
 
 SITE_ID = 1
