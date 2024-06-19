@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'Youme',
     'crispy_forms',
     'crispy_bootstrap5',
+    'messagerie',
 ]
 
 SITE_ID = 1
@@ -94,10 +95,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'PIL1_2324_2.wsgi.application'
 ASGI_APPLICATION = 'PIL1_2324_2.asgi.application'
 
-CHANNELS_LAYERS = {
-    'default' : {
-        "BACKEND" : "channels.layers.InMemoryChannelLayer",
-    }
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+    },
 }
 
 

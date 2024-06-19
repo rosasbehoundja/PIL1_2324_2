@@ -91,7 +91,7 @@
                         <p class="card-text">Orientation: {{ profile.orientation }}</p>
                         <p class="card-text">Silhouette: {{ profile.body_type }}</p>
                     </div>
-                    <a href="#" class="btn" style="background-color: #FF5757; text-decoration: none">Envoyer un message</a>                
+                    <a href="{% url 'start_conversation' profile.utilisateur.id %}" class="btn" style="background-color: #FF5757; text-decoration: none">Envoyer un message</a>                
             </div>
         </div>
         {% endfor %}

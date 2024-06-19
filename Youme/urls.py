@@ -25,9 +25,5 @@ urlpatterns = [
     ############## PAGES D'AFFICHAGE DE PROFIL DES UTILISATEURS ################
     path('profile/', profile ,name='profile'),
     path('profile_detail/<int:pk>/', profile_detail, name='profile_detail'),
-    ########################### MESSAGERIE INSTANTANEE & CHATBOT ################
-    path('conversations/', conversation_list, name='conversation_list'),
-    path('conversation_detail/<int:pk>/', conversation_detail, name='conversation_detail'),
-
 ]
 

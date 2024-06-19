@@ -101,5 +101,3 @@ class SearchFilterForm(forms.Form):
     age_max = forms.IntegerField(required=False)
     silhouette = forms.ChoiceField(choices=[('Athlétique', 'Athlétique'), ('Moyen', 'Moyen'), ('En surpoids', 'En surpoids'), ('Minces', 'Minces')])
     hobbies = forms.CharField(required=False, help_text="Séparez les centres d'intérêts par des virgules")
-
-################################################# MESSAGERIE ##########################################################
