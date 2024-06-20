@@ -16,4 +16,4 @@ Afin de la rendre plus facilement testable, le repository contient la base de do
 
 # You_Me App
 
-![Logo du Projet](./You_me.jpg)
+![Logo du Projet](./You_Me.jpg)
