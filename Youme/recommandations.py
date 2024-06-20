@@ -68,6 +68,7 @@ def obtenir_recommandations(nom_nouvel_utilisateur):
     combined_similarity = calculer_similarites(df)
     # Suggérer des matchs pour le nouvel utilisateur
     matchs = suggérer_matchs(nom_nouvel_utilisateur, combined_similarity, df)
+    matchs = matchs[:100]
     return matchs
 
     

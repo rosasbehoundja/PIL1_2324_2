@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<head>
+    {% load static %}
+    {% load widget_tweaks %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/navbar.css">
+    <!-- <link rel="stylesheet" href="/static/images/elements_shape.css"> -->
+    <link rel="stylesheet" href='{% static "css/suggestion.css" %}'>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-transparent text-center py-3">
+
+      <div class="youme">
+      <img src="static/images/logo moïse.svg" alt="you&Me">
+      </div>
+
+      <div class="navigate">
+        <ul class="nav nav-pills nav-fill gap-2 p-1 small rounded-5 bg-light shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-dark); --bs-nav-pills-link-active-color: var(--bs-white); --bs-nav-pills-link-active-bg: var(--bs-red);">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active rounded-5" id="home-tab2" href="{% url 'recherche_profiles' %}" role="tab" aria-selected="true">Recherche</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link rounded-5" id="profile-tab2" href="{% url 'suggestion_profiles' %}" role="tab" aria-selected="false">Suggestions</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link rounded-5" id="contact-tab2" href="#" role="tab" aria-selected="false">Messagerie</a>
+        </li>
+        </ul>  
+
+        <div class="profile-dropdown">
+
+        <div class="profile-img">
+        <img src="/static/images/profile.jpg" alt="">
+        </div>
+
+        <div class="menu">
+        <ul>
+          <li>
+            <!-- <span class="icon">
+              <img src="/static/images/id-card-outline.svg" alt="">
+            </span> -->
+            <a href="{% url 'profile' %}">Mon Profil</a>
+          </li>
+          <li>
+            <!-- <span class="icon">
+              <img src="img/log-out-outline.svg" alt="">
+            </span> -->
+            <a href="{% url 'deconnexion' %}">Déconnexion</a>
+          </li>
+        </ul>
+        </div>
+
+        </div>
+      </div>
+    
+      <ul>
+      <div class="filterBx">
+          <li class="list filter-button">
+            <img src="/static/images/filter-circle-outline.svg" alt="filter-button">
+          </li>
+          <p class="moyen">Filtres</p>
+      </div>
+      </ul>
+
+    </header>
+
+    <!-- ONGLET FILTRAGE -->
+    <!-- <div class="overlay-container hidden">
+        <div class="overlay">
+          <div class="filter-container">
+            <h2>Filtrer les résultats</h2>
+            <form>
+              <div class="form-group">
+                <label for="age-range">Tranche d'âge :</label>
+                <input type="range" id="age-range" min="18" max="100" value="25">
+                <p id="age-value">25 ans</p>
+    
+              </div>
+              <div class="form-group">
+                <label for="location">Localisation :</label>
+                <input type="text" id="location" placeholder="Entrez une ville">
+              </div>
+              <div class="form-group">
+                <label for="interests">Centres d'intérêt :</label>
+                <input type="text" id="interests" placeholder="Entrez vos centres d'intérêt">
+              </div>
+              <div class="form-group">
+                <button class="moyen" id="apply-filters">Appliquer les filtres</button>
+                <button class="moyen" id="reset-filters">Réinitialiser</button>
+              </div>
+            </form>
+          </div>
+        </div>
+    </div> -->
+    {% block content %}
+    {% endblock %}
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="static/js/navbar.js"></script>
+    <script src='{% static "js/suggestion.js" %}'></script>
+</body>
+</html>

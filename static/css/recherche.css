@@ -1,5 +1,6 @@
 body {
-  background-image: linear-gradient(45deg, white, );
+  /* background: linear-gradient(45deg, white, #FF5757); */
+  background: mistyrose;
   /* color: #fff; */
 }
 /* barre de nav */
@@ -25,20 +26,21 @@ header ul {
 }
 
 header .youme {
-position: relative;
-width: 110px;
-height: 110px;
-border-radius: 150px;
-
-transition: 0.5s;
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 150px;
+  overflow: hidden;
+  transition: 0.5s;
 }
 
 header .youme img {
-    position: relative;
-    width: 500px;
-    height: 500px;
-    bottom: 160px;
-    right: 250px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110%;
+  object-fit: cover;
 }
 
 header .filterBx {

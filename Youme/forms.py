@@ -34,7 +34,7 @@ hobbies_list = [
 class PersonalityTestForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['age','height', 'sex', 'orientation', 'body_type', 'diet', 'drink', 'drugs', 'education', 'location', 'offspring', 'smokes', 'religion', 'origin', 'langue', 'hobbies', 'bio']
+        fields = ['age','height', 'sex', 'orientation', 'body_type', 'diet', 'drink', 'drugs', 'education', 'location', 'offspring', 'smokes', 'religion', 'origin', 'langue', 'hobbies', 'bio', 'photo']
 
     age = forms.IntegerField(label='Entrez votre âge ', min_value=18, max_value=100)
     sex = forms.ChoiceField(label='Votre sexe ', choices=[('m', 'Homme'), ('f', 'Femme')])

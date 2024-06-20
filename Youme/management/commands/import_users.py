@@ -9,7 +9,7 @@ class Command(BaseCommand):
     help = 'Import users and profiles from CSV file'
 
     def handle(self, *args, **kwargs):
-        sample_path = "C:\\Users\\perri\\Desktop\\WORKSPACE\\Django app\\PIL1_2324_2\\Youme\\data\\youme-cleaned.csv"
+        sample_path = "PIL1_2324_2\\Youme\\data\\youme-cleaned.csv"
         
         features = ['age', 'height', 'status', 'sex', 'orientation', 'body_type', 'diet', 'drink', 'drugs', 'education', 'location', 'offspring', 'smokes', 'bio']
         sample = pd.read_csv(sample_path)

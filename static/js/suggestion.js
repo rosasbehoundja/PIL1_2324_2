@@ -30,24 +30,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
     showProfile(currentIndex);
 });
-
-// Apparition User
-const userToggle = document.querySelector('.profile-img');
-const dropdown = document.querySelector('.menu');
-
-userToggle.addEventListener('click', () => {
-    if (dropdown.classList.contains('active')) {
-        dropdown.classList.remove('active');
-        document.removeEventListener('click', handleClickOutside);
-    } else {
-        dropdown.classList.add('active');
-        document.addEventListener('click', handleClickOutside);
-    }
-});
-
-function handleClickOutside(event) {
-    if (!event.target.closest('.profile-dropdown')) {
-        dropdown.classList.remove('active');
-        document.removeEventListener('click', handleClickOutside);
-    }
-}

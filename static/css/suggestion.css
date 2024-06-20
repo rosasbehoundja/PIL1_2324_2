@@ -1,13 +1,14 @@
 body {
   font-family: Arial, sans-serif;
-  background: linear-gradient(-45deg, white, #e36f6f);
+  /* background: linear-gradient(-45deg, white, #e36f6f); */
+  background: mistyrose;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
+/* 
 .header {
   width: 100%;
   background-color: transparent;
@@ -16,7 +17,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
+} */
 
 .youme img {
   width: 110px;
@@ -80,7 +81,7 @@ body {
 
 .menu li {
   padding: 10px 20px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(255, 249, 249, 0.148);
   display: flex;
   align-items: center;
 }

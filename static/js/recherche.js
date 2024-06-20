@@ -36,9 +36,3 @@
         overlayContainer.classList.remove('visible');
     }
     });
-
-    const ageInput = document.getElementById('age-range'); //FAIRE DEFILER L'AGE
-    const ageValue = document.getElementById('age-value');
-    ageInput.addEventListener('input', function() {
-    ageValue.textContent = ageInput.value + ' ans';
-    });

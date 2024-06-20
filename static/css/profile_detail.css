@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 body {
@@ -10,7 +10,8 @@ body {
     justify-content: center;
     align-items: center ;
     min-height: 100vh;
-    background: linear-gradient(45deg, white, #FF5757);
+    /* background: linear-gradient(45deg, white, #FF5757); */
+    background: mistyrose;
 }
 
 .card {
