@@ -26,34 +26,33 @@ Afin de la rendre plus facilement testable, le repository contient la base de do
 - Autres dépendances listées dans `requirements.txt`
 
   ### Installation
-1- Créer un dossier puis ouvrez le dans votre éditeur de code : 
-2- Créer votre environnement virtuel : 
-    ```bash
-    python -m venv mon_env 
-    ```
-3- Activez votre environnement virtuel : 
-  - Sur Windows : 
-      ```bash
-      $ mon_env\Scripts\activate
-      ```
-  - Sur Linux :
-     ```
-      $ source mon_env/Scripts/activate
-     ```
-4. Clonez le dépôt :
+1. Créer un dossier puis y accéder dans l'éditeur de code : 
+
+2. Créer et Activer un environnement virtuel : 
+  - Sous Windows :
+        ```sh
+        python -m venv mon_env
+        .\mon_env\Scripts\activate
+        ```
+    - Sous Linux :
+        ```sh
+        python3 -m venv mon_env
+        source mon_env/bin/activate
+        ```
+3. Cloner le dépôt :
     ```bash
     (mon_env) git clone https://github.com/rosasbehoundja/PIL1_2324_2.git
     ```
-5. Naviguez dans le répertoire du projet :
+4. Naviguer dans le répertoire du projet :
     ```bash
     (mon_env) cd PIL1_2324_2
     ```
-6. Installez les dépendances :
+5. Installer les dépendances :
     ```bash
     (mon_env) pip install -r requirements.txt
     ```
-7- Configurez votre base de données dans le fichier [settings.py](PIL1_2324_2/settings.py) :
-    . Utilisation de SQLite :
+6. Configurer la base de données dans le fichier [settings.py](PIL1_2324_2/settings.py) :
+    - Utilisation de SQLite :
       ```bash 
        DATABASES = {
           'default': {
@@ -62,7 +61,7 @@ Afin de la rendre plus facilement testable, le repository contient la base de do
       }
     }
       ```
-    . Utilisation de MySQL : 
+  - Utilisation de MySQL : 
       ```bash
       DATABASES = {
         'default': {
@@ -75,21 +74,21 @@ Afin de la rendre plus facilement testable, le repository contient la base de do
           }
     }
         ```
-8. Appliquez les migrations :
+7. Appliquez les migrations :
     ```bash
     (mon_env) python manage.py makemigrations
     (mon_env) python manage.py migrate
     ```
-9- (Optionnel) Importez dans votre base de données les infos de 2000 utilisateurs prédéfinis : 
+8. (Optionnel) Importez dans votre base de données les infos de 2000 utilisateurs prédéfinis : 
     ```bash
     (mon_env) python manage.py import_users
     (mon_env) python manage.py import_hobbies
     ```
-5. Créez un superutilisateur :
+9. Créez un superutilisateur :
     ```bash
     (mon_env) python manage.py createsuperuser
     ```
-5. Démarrez le serveur de développement :
+10. Démarrez le serveur de développement :
     ```bash
     (mon_env) python manage.py runserver
     ```
