@@ -29,7 +29,7 @@ Afin de la rendre plus facilement testable, le repository contient la base de do
 1. Créer un dossier puis y accéder dans l'éditeur de code : 
 
 2. Créer et Activer un environnement virtuel : 
-  - Sous Windows :
+    - Sous Windows :
         ```sh
         python -m venv mon_env
         .\mon_env\Scripts\activate
@@ -74,21 +74,64 @@ Afin de la rendre plus facilement testable, le repository contient la base de do
           }
     }
         ```
-7. Appliquez les migrations :
+7. AppliqueR les migrations :
     ```bash
     (mon_env) python manage.py makemigrations
     (mon_env) python manage.py migrate
     ```
-8. (Optionnel) Importez dans votre base de données les infos de 2000 utilisateurs prédéfinis : 
+8. (Optionnel) ImporteR dans la base de données les infos de 2000 utilisateurs prédéfinis : 
     ```bash
     (mon_env) python manage.py import_users
     (mon_env) python manage.py import_hobbies
     ```
-9. Créez un superutilisateur :
+9. Créer un superutilisateur :
     ```bash
     (mon_env) python manage.py createsuperuser
     ```
-10. Démarrez le serveur de développement :
+10. Démarrer le serveur de développement :
     ```bash
     (mon_env) python manage.py runserver
     ```
+
+## Utilisation
+
+L'application est facile d'utilisation.
+
+### Inscription et Connexion
+
+Pour vous inscrire, cliquez sur le bouton "S'inscrire" sur la page d'accueil. Remplissez le formulaire et soumettez-le. Une fois inscrit, utilisez vos identifiants pour vous connecter.
+
+### Profil Utilisateur
+
+Accédez à votre profil en cliquant sur votre photo de profil en haut à droite. Ici, vous pouvez mettre à jour vos informations personnelles et changer votre photo de profil.
+
+### Messagerie Instantanée
+
+1. **Accéder à une discussion** : Cliquez sur une discussion dans la liste des discussions pour ouvrir la boîte de messagerie.
+2. **Envoyer un message** : Tapez votre message dans le champ de saisie et cliquez sur "Envoyer".
+
+### Liste des Discussions
+
+Visualisez toutes vos discussions en cours dans la liste des discussions à gauche. Cliquez sur une discussion pour l'ouvrir.
+
+### Suggestions de Profils
+
+Découvrez de nouveaux utilisateurs en naviguant dans la section "Suggestions". Utilisez la barre de filtres pour trouver des utilisateurs spécifiques.
+
+### Recherche de profils 
+
+Recherchez et entamez des discussions en naviguant dans la section "Recherche". Servez vous du filtre pour affiner vos recherches.
+
+### Récupération de mot de passe 
+
+Cliquez sur le lien <Avez-vous oublié votre mot de passe> sur la page de connexion et recevez un mail de récupération.
+
+## Interface
+
+[Cliquez sur lien pour acceder aux photos de l'interface](./interface/)
+
+## Déploiement sur Heroku
+
+[Article 1](https://devcenter.heroku.com/articles/getting-started-with-python)
+
+[Article 2](https://realpython.com/django-hosting-on-heroku/)
