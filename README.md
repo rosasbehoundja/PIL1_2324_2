@@ -132,6 +132,6 @@ Cliquez sur le lien <Avez-vous oublié votre mot de passe> sur la page de connex
 
 ## Déploiement sur Heroku
 
-[Article 1](https://devcenter.heroku.com/articles/getting-started-with-python)
+[https://devcenter.heroku.com/articles/getting-started-with-python](https://devcenter.heroku.com/articles/getting-started-with-python)
 
-[Article 2](https://realpython.com/django-hosting-on-heroku/)
+[https://realpython.com/django-hosting-on-heroku](https://realpython.com/django-hosting-on-heroku/)
