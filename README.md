@@ -128,7 +128,7 @@ Cliquez sur le lien <Avez-vous oublié votre mot de passe> sur la page de connex
 
 ## Interface
 
-[Cliquez sur lien pour acceder aux photos de l'interface](./interface/)
+[Cliquez sur lien pour acceder aux photos de l'interface](./Interface/)
 
 ## Déploiement sur Heroku
 
