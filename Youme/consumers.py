@@ -32,7 +32,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
         user_id = self.scope["user"].id
-
+        
         discussion = await sync_to_async(Discussion.objects.get)(id=self.discussion_id)
         sender = await sync_to_async(User.objects.get)(id=user_id)
 

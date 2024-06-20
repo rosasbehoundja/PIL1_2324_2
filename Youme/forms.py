@@ -34,7 +34,7 @@ hobbies_list = [
 class PersonalityTestForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['age','height', 'sex', 'orientation', 'body_type', 'diet', 'drink', 'drugs', 'education', 'location', 'offspring', 'smokes', 'religion', 'origin', 'langue', 'hobbies', 'bio', 'photo']
+        fields = ['age','height', 'sex', 'orientation', 'body_type', 'diet', 'drink', 'drugs', 'education', 'location', 'offspring', 'smokes', 'religion', 'origin', 'langue', 'hobbies', 'bio']
 
     age = forms.IntegerField(label='Entrez votre âge ', min_value=18, max_value=100)
     sex = forms.ChoiceField(label='Votre sexe ', choices=[('m', 'Homme'), ('f', 'Femme')])
@@ -57,12 +57,12 @@ class PreferencesForm(forms.ModelForm):
         model = Préférences
         fields = ['location', 'religion', 'origin', 'physique', 'education', 'lifestyle', 'hobbies']
 
-    location = forms.ChoiceField(label='Localisation souhaitée', choices=[('Abidjan', 'Abidjan'), ('Dakar', 'Dakar'), ('Lomé', 'Lomé'), ('Bamako', 'Bamako'), ('Ouagadougou', 'Ouagadougou'), ('Accra', 'Accra'), ('Cotonou', 'Cotonou')])
-    religion = forms.ChoiceField(label='Religion souhaitée', choices=[('Chrétien', 'Chrétien'), ('Musulman', 'Musulman'), ('Aucune', 'Aucune'), ('Autre', 'Autre')])
-    origin = forms.ChoiceField(label='Origine souhaitée', choices=[('Côte d\'Ivoire', 'Côte d\'Ivoire'), ('Sénégal', 'Sénégal'), ('Togo', 'Togo'), ('Mali', 'Mali'), ('Burkina Faso', 'Burkina Faso'), ('Ghana', 'Ghana'), ('Bénin', 'Bénin')])
-    physique = forms.ChoiceField(label='Type de corps souhaité', choices=[('Athlétique', 'Athlétique'), ('Moyen', 'Moyen'), ('En surpoids', 'En surpoids'), ('Minces', 'Minces')])
-    education = forms.ChoiceField(label='Niveau d\'éducation souhaité', choices=[('École secondaire', 'École secondaire'), ('Licence', 'Licence'), ('Master', 'Master'), ('Doctorat', 'Doctorat')])
-    lifestyle = forms.ChoiceField(label='Mode de vie souhaité', choices=[('Actif', 'Actif'), ('Sédentaire', 'Sédentaire')])
+    location = forms.ChoiceField(label='Où souhaitez vous rencontrer votre partenaire ?', choices=[('Abidjan', 'Abidjan'), ('Dakar', 'Dakar'), ('Lomé', 'Lomé'), ('Bamako', 'Bamako'), ('Ouagadougou', 'Ouagadougou'), ('Accra', 'Accra'), ('Cotonou', 'Cotonou')])
+    religion = forms.ChoiceField(label="Quelle religion préferez-vous ?", choices=[('Chrétien', 'Chrétien'), ('Musulman', 'Musulman'), ('Aucune', 'Aucune'), ('Autre', 'Autre')])
+    origin = forms.ChoiceField(label='Avez-vous un pays préféré parmi ceux-ci ?', choices=[('Côte d\'Ivoire', 'Côte d\'Ivoire'), ('Sénégal', 'Sénégal'), ('Togo', 'Togo'), ('Mali', 'Mali'), ('Burkina Faso', 'Burkina Faso'), ('Ghana', 'Ghana'), ('Bénin', 'Bénin')])
+    physique = forms.ChoiceField(label='Quel est la physique idéal pour vous ?', choices=[('Athlétique', 'Athlétique'), ('Moyen', 'Moyen'), ('En surpoids', 'En surpoids'), ('Minces', 'Minces')])
+    education = forms.ChoiceField(label="Quel est le niveau d'étude normal pour vous ?", choices=[('École secondaire', 'École secondaire'), ('Licence', 'Licence'), ('Master', 'Master'), ('Doctorat', 'Doctorat')])
+    lifestyle = forms.ChoiceField(label='Vous préférez être actif ou sédimentaire ?', choices=[('Actif', 'Actif'), ('Sédentaire', 'Sédentaire')])
     hobbies = forms.MultipleChoiceField(
         label='Hobbies souhaités',
         choices=[(hobby, hobby) for hobby in hobbies_list],

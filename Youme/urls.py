@@ -26,7 +26,7 @@ urlpatterns = [
     path('profile/', profile ,name='profile'),
     path('profile_detail/<int:pk>/', profile_detail, name='profile_detail'),
     ################################ MESSAGERIE ###############################
-    path('discussions/', discussion_list, name='discussion_list'),
+    path('discussion_list/', discussion_list, name='discussion_list'),
     path('discussions/<int:discussion_id>/', discussion_detail, name='discussion_detail'),
     path('start_chat/<int:user_id>/', start_chat, name='start_chat'),
 ]

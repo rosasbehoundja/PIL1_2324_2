@@ -164,6 +164,7 @@ def suggestion_profiles(request):
             try:
                 profil = Profile.objects.get(utilisateur=utilisateur)
                 recommended_profiles.append({
+                    'id' : utilisateur.id,
                     'nom': utilisateur.nom,
                     'image': profil.photo,
                     'sex': profil.sex,

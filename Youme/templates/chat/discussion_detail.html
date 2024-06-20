@@ -2,6 +2,68 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+<style>
+  body {
+    background-color: #f8f9fa;
+  }
+  .chat-container {
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+    padding: 15px;
+    background-color: #e5ddd5;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  .chat-log p {
+    margin: 5px 0;
+  }
+  .message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .message.sent .text {
+    background-color: #dcf8c6;
+    margin-left: auto;
+  }
+  .message.received .text {
+    background-color: #fff;
+  }
+  .message .text {
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 60%;
+    word-wrap: break-word;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  }
+  .chat-message-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+  }
+  .chat-message-input {
+    flex-grow: 1;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin-right: 10px;
+    outline: none;
+  }
+  .chat-message-submit {
+    border: none;
+    background-color: #075e54;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+</style>
+
 <h2>Discussion avec 
     {% if discussion.user1 != request.user %}
         {{ discussion.user1.nom }}
@@ -9,15 +71,19 @@
         {{ discussion.user2.nom }}
     {% endif %}
 </h2>
-<div id="chat-log">
+<div id="chat-log" class="chat-container">
     {% for message in messages %}
-    <p><strong>{{ message.sender }}:</strong> {{ message.text }}</p>
+    <div class="message {% if message.sender == request.user %}sent{% else %}received{% endif %}">
+        <div class="text">
+            <strong>{{ message.sender }}:</strong> {{ message.text }}
+        </div>
+    </div>
     {% endfor %}
 </div>
 
-<form id="chat-message-form">
-    <input type="text" id="chat-message-input" autocomplete="off">
-    <input type="submit" value="Envoyer">
+<form id="chat-message-form" class="chat-message-form">
+    <input type="text" id="chat-message-input" class="chat-message-input form-control" autocomplete="off" placeholder="Type a message...">
+    <input type="submit" class="chat-message-submit btn" value="Envoyer">
 </form>
 
 <script>
@@ -28,7 +94,10 @@
 
     chatSocket.onmessage = function(e) {
         const data = JSON.parse(e.data);
-        document.querySelector('#chat-log').innerHTML += ('<p><strong>' + data.sender + ':</strong> ' + data.message + '</p>');
+        const messageClass = data.sender === "{{ request.user }}" ? 'sent' : 'received';
+        document.querySelector('#chat-log').innerHTML += (
+            '<div class="message ' + messageClass + '"><div class="text"><strong>' + data.sender + ':</strong> ' + data.message + '</div></div>'
+        );
     };
 
     document.querySelector('#chat-message-form').onsubmit = function(e) {

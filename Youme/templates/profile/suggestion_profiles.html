@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="/static/css/navbar.css">
     <link rel="icon" type="image/svg" href='{% static "images/favicon.svg" %}'>
     <!-- <link rel="stylesheet" href='{% static "css/recherche.css" %}'> -->
+     <style>
+        strong{
+            font-family:cursive;
+        }
+     </style>
 </head>
 <body>
     <header class="bg-transparent text-center py-3">
@@ -29,7 +34,7 @@
           <button class="nav-link rounded-5" id="profile-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false"><a href="{% url 'recherche_profiles' %}"  style="color: inherit; text-decoration: none;">Recherche</a></button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false" ><a href="#"  style="color: inherit; text-decoration: none;">Chats</a></button>
+          <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false" ><a href="{% url 'discussion_list' %}"  style="color: inherit; text-decoration: none;">Chats</a></button>
         </li>
         </ul>  
 
@@ -78,16 +83,18 @@
                     {% endif %}
                 </div>
                 <div class="profile-info">
-                    <h3>{{ profile.nom }}, {{ profile.age }}</h3>
-                    <p><strong>Hobbies:</strong> {{ profile.hobbies }}</p>
-                    <p><strong>Location:</strong> {{ profile.location }}</p>
-                    <p><strong>Orientation:</strong> {{ profile.orientation }}</p>
-                    <p><strong>Silhouette:</strong> {{ profile.body_type }}</p>
+                    <h3><a href="{% url 'profile_detail' profile.id %}" style="color: #FF5757; text-decoration: none;">{{ profile.nom }}</a>, {{ profile.age }}</h3>
+                    <p>
+                        <strong>Location:</strong> {{ profile.location }}<br>
+                        <strong>Orientation:</strong> {{ profile.orientation }}<br>
+                        <strong>Silhouette:</strong> {{ profile.body_type }}<br>
+                        <strong>Hobbies:</strong> {{ profile.hobbies }}<br>
+                    </p>
                 </div>
                 <div class="profile-actions">
                     <button class="reject-button">✖</button>
-                    <button class="like-button">❤</button>
-                    <button class="superlike-button">★</button>
+                    <!-- <button class="like-button">❤</button> -->
+                    <button class="superlike-button"><a href="{% url 'start_chat' profile.id %}" style="text-decoration: none;">📩</a></button>
                 </div>
             </div>
             {% endfor %}

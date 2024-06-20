@@ -20,13 +20,5 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', nextProfile);
     });
 
-    document.querySelectorAll('.like-button').forEach(button => {
-        button.addEventListener('click', nextProfile);
-    });
-
-    document.querySelectorAll('.superlike-button').forEach(button => {
-        button.addEventListener('click', nextProfile);
-    });
-
     showProfile(currentIndex);
 });
