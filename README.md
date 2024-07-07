@@ -59,7 +59,7 @@ Afin de la rendre plus facilement testable, le repository contient la base de do
           'ENGINE': 'django.db.backends.sqlite3',
           'NAME': BASE_DIR / 'db.sqlite3',
       }
-    }
+      }
       ```
   - Utilisation de MySQL : 
       ```bash
