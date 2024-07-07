@@ -21,8 +21,8 @@ Afin de la rendre plus facilement testable, le repository contient la base de do
 
 ## Installation
 
-- [Python 3.9](https://www.python.org/downloads/)
-- [Django 4.2.13](https://www.djangoproject.com/)
+- [Python](https://www.python.org/downloads/)
+- [Django](https://www.djangoproject.com/)
 - Autres dépendances listées dans `requirements.txt`
 
   ### Installation
